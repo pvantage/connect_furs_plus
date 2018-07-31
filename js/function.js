@@ -1,4 +1,4 @@
-var siteurl = 'http://localhost/connect_furs_plus/index.php?route=';
+var siteurl = 'http://connectfursplus.vantageappspro.com/index.php?route=';
 
 function gup(sParam){
   var sPageURL = decodeURIComponent(window.location.search.substring(1)),
@@ -91,48 +91,6 @@ function loginNow(){
 	 }
    });
 	//
-}
-
-function validateOtp(){
-	var customer_mob = $('#customer_mob').val();
-	var customer_otp = $('#customer_otp').val();
-	var action_url = siteurl + 'account/login/otp';	
-	$.ajax({
-	 type: 'POST',
-	 url: action_url,
-	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,otp:customer_otp},
-	 crossDomain: true,
-	 success: function(data){
-		
-	   	if(data['success'])
-		{
-			$('#mobile_no_container').remove();
-			$('#customer_mob').val(data['success']['no']);
-			$('#otp_container').show();
-			
-			if(data['success']['redirect'] == 1)
-			{
-				localStorage.setItem('cust_id', data['success']['id']);
-				window.location = 'select_info.html';
-				
-			}else if(data['success']['redirect'] == 2)
-			{
-				localStorage.setItem('cust_id', data['success']['id']);
-				window.location = 'profile-info.html';
-			}else{
-				localStorage.setItem('cust_id', data['success']['id']);
-				window.location = 'swipe.html';
-			}
-		}
-		
-		if(data['error'])
-		{
-			$('#customer_otp').addClass('req');
-			alert(data['error']['otp']);
-		}
-	 }
-   });
 }
 
 function checkLogin(){
