@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/function.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript">
+ checkLogin();
+</script>
+</head>
+<body class="bottom-links-bar">
+<div class="container">
+    <div class="edit-profile mt-4">
+        <h1 class="red">EDIT PROFILE</h1>
+        <form>
+            <div class="form-group">
+                <label>Change Profile Pics</label>
+                <div class="profile-pic-change">
+                    <div class="pic-upload"><img src="images/blankimg.jpg" alt="" id="image_sr_1" onclick="getImage1();">
+                       <!-- <input type="file" class="form-control-file">-->
+                    </div>
+                    <!--<div class="pic-upload"> <img src="images/blankimg.jpg" alt="">
+                        <input type="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload Photo</button>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Owner Name:</label>
+                <input type="text" name="name" id="name" tabindex="1" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>Sex </label>
+                <select class="form-control" name="sex" id="sex" tabindex="2">
+                    <option value="male">Male </option>
+                    <option value="female">Female </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Pet Name:</label>
+                <input type="text" name="petname" id="petname" tabindex="3" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>Tell us about your pet</label>
+                <textarea class="form-control" name="aboutpet" id="aboutpet" tabindex="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Distance willing to Look (miles)</label>
+                <select class="form-control" name="willing_distance" id="willing_distance" tabindex="5">
+                    <option value="">Please select</option>
+                    <option value="1"> 1 Miles</option>
+                    <option value="2"> 2 Miles</option>
+                    <option value="3"> 3 Miles</option>
+                    <option value="4"> 4 Miles</option>
+                    <option value="5"> 5 Miles</option>
+                    <option value="6"> 6 Miles</option>
+                    <option value="7"> 7 Miles</option>
+                    <option value="8"> 8 Miles</option>
+                    <option value="9"> 9 Miles</option>
+                    <option value="10"> 10 Miles</option>
+                    <option value="11"> 11 Miles</option>
+                    <option value="12"> 12 Miles</option>
+                    <option value="13"> 13 Miles</option>
+                    <option value="14"> 14 Miles</option>
+                    <option value="15"> 15 Miles</option>
+                    <option value="16"> 16 Miles</option>
+                    <option value="17"> 17 Miles</option>
+                    <option value="18"> 18 Miles</option>
+                    <option value="19"> 19 Miles</option>
+                    <option value="20"> 20 Miles</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Who do you want to play/breeding with </label>
+                <select class="form-control" name="who_play_breed" id="who_play_breed" tabindex="6">
+                    <option value="0">Any Pet </option>
+                    <option value="1">Just my breed </option>
+                    <option value="2">Specific breed </option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="breed_specific">
+                <label>Select Breed </label>
+                <select class="form-control" name="specific_breed" id="specific_breed" tabindex="7">
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>What color is your animal?</label>
+                <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="8">
+            </div>
+			
+            <div class="form-group">
+                <label>Edit Instagram Photos</label>
+                <div class="profile-pic-change">
+                    <div class="pic-upload"> <img src="images/blankimg.jpg" class="img-responsive">
+                       <!-- <input type="file" class="form-control-file">-->
+                    </div>
+                    <!--<div class="pic-upload"> <img src="images/blankimg.jpg" alt="">
+                        <input type="file" class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload Photo</button>-->
+                </div>
+            </div>
+            <!--<div class="form-group  text-left"> <a href="edit-user-info.html">Edit user name or password?</a> </div>-->
+            <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">UPDATE</button>
+        </form>
+    </div>
+</div>
+<div class="bottom-fixed-bar">
+    <div class="container">
+        <table class="table">
+             <tr>
+                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="loadermain" id="loadingImg">
+
+<script type="text/javascript">
+  function getImage1() {	  
+	             
+           navigator.camera.getPicture(uploadPhoto1, function(message) {
+						
+			navigator.notification.alert(
+						"desculpa! upload da imagem descartado.",
+						callBackFunctionFlag, 
+						'Confirmações',
+						"Está bem"
+					);
+			
+			
+			
+		},{
+			quality: 50, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 600,
+            targetHeight: 600,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto1(imageURI1) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + '?route=account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI1.substr(imageURI1.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI1, upload_url, win1, fail1, options1);
+        }
+ 
+        function win1(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				$('#image_sr_1').attr('src', resturn_data_1.success);				
+				$("#profile_image_1").val(resturn_data_1.img_name);
+			}else if(resturn_data_1.error)
+			{								
+				navigator.notification.alert(
+						resturn_data_1.error,
+						callBackFunctionFlag, 
+						'Confirmações',
+						"Está bem"
+					);
+			}
+            
+        }
+ 
+        function fail1(error) {
+           $("#loadingImg").fadeOut();
+			navigator.notification.alert(
+						"Ocorreu um erro",
+						callBackFunctionFlag, 
+						'Confirmações',
+						"Está bem"
+					);
+        }
+ </script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var login_id = localStorage.getItem('cust_id');
+
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/getbreedbylogin',
+	 dataType: 'json',
+	 data: {login_id:login_id},
+	 crossDomain: true,
+	 success: function(data){
+		 	$('#specific_breed').html(data['success']);
+	   }
+});
+
+$(document).ready(function(e){
+    $('input[name="medical_history"]').on('click',function(){
+		
+		if($('input[name="medical_history"]:checked').val() == 1)
+		{
+			$('.about_medical').show();
+		}else{
+			$('.about_medical').hide();
+		}
+	});
+	
+	$('select[name="who_play_breed"]').on('change',function(){
+		if($(this).val() == 2) $('#breed_specific').show();
+		else $('#breed_specific').hide();
+	});
+	
+	$('select[name="who_play_breed"]').trigger('change');
+});
+
+function addProfileinfo(){
+	var name = $('#name').val();
+	var petname = $('#petname').val();
+	var aboutpet = $('#aboutpet').val();
+	var willing_distance = $('#willing_distance').val();
+	var who_play_breed = $('#who_play_breed').val();
+	var pet_color = $('#pet_color').val();
+	
+	var breed_specific = '';
+	if(who_play_breed == 2)
+	{
+		breed_specific = $('#specific_breed').val();
+	}
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'account/setinfo/profile',
+	 dataType: 'json',
+	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific},
+	 crossDomain: true,
+	 success: function(data){
+		 
+		 $('input, textarea, select').removeClass('req');
+		 
+		 if(data['error'])
+		 {
+			 if(data['error']['name'])  $('#name').addClass('req');
+			 if(data['error']['petname']) $('#petname').addClass('req');
+			 if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
+			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
+			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
+		 }
+		 
+	   	if(data['success'])
+		{
+			alert('Profile updated auccessfully.');
+		}
+	   }
+   });
+}
+
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/getAccount',
+	 dataType: 'json',
+	 data: {login_id:login_id},
+	 crossDomain: true,
+	 success: function(data){
+			$('input[name="name"]').val(data['success']['name']);
+			$('input[name="petname"]').val(data['success']['petname']);
+			$('textarea[name="aboutpet"]').val(data['success']['aboutpet']);
+			$('input[name="pet_color"]').val(data['success']['pet_color']);
+			
+			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');
+			$('#willing_distance [value="'+ data['success']['willing_distance'] +'"]').attr('selected', 'true');
+			
+			if(data['success']['who_play_breed'])
+			{
+				$('#who_play_breed [value="'+ data['success']['who_play_breed'] +'"]').attr('selected', 'true');
+				$('select[name="who_play_breed"]').trigger('change');
+				
+				if(data['success']['who_play_breed'] == 2)
+				{
+					$('#specific_breed [value="'+ data['success']['breed_specific'] +'"]').attr('selected', 'true');
+				}
+			}
+	   }
+   });
+</script>
+</body>
+</html>

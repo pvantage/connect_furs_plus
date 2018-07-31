@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- /Bootstrap CSS -->
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<!-- /Font Awesome CSS -->
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="css/owl.theme.default.css">
+<!-- /Font Awesome CSS -->
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="css/owl.carousel.css">
+<!-- /Font Awesome CSS -->
+
+<!-- Common Style CSS -->
+<link rel="stylesheet" href="css/style.css">
+<!-- /Common Style CSS -->
+
+</head>
+
+<body class="bottom-links-bar">
+<div class="breed-detail-wrap">
+    <div class="container">
+        <div class="breed-slider">
+            <div class="owl-carousel owl-theme">
+                <div class="item"><a href="match.html"><img src="images/slider01.jpg" alt=""></a></div>
+                <div class="item"><img src="images/slider01.jpg" alt=""></div>
+                <div class="item"><img src="images/slider01.jpg" alt=""></div>
+            </div>
+         </div>
+        <div class="breedInfo">
+            <table class="table table-bordered">
+                <tr>
+                    <td><span class="red">Rex,</span> 4 years </td>
+                    <td class="red text-right">34 Miles Away </td>
+                </tr>
+                <tr>
+                    <td>Male </td>
+                    <td class="text-right">Ricky</td>
+                </tr>
+            </table>
+        </div>
+        <div class="breedSharebtn"> <a href="#" class="btn btn-danger float-left" ><i class="fa fa-share-alt" ></i> Share With Friends</a> 
+		<button type="button" class="btn btn-dark float-right" data-toggle="modal" data-target="#report_user">Report Rex</a> </div>
+        <div class="breedSpec">
+            <table class="table table-bordered">
+                <tr>
+                    <td><strong>Color :</strong></td>
+                    <td>White </td>
+                </tr>
+                <tr>
+                    <td><strong>Temperament :</strong></td>
+                    <td>Shy</td>
+                </tr>
+                <tr>
+                    <td><strong>Medical History :</strong></td>
+                    <td>No</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>About Rex:</strong> Lorem Ipsum is simply dummy text 
+                        of the printing and typesetting industry...</td>
+                </tr>
+            </table>
+        </div>
+        <div class="instagramFeed text-center"><img src="images/instagramimg.jpg" alt=""></div>
+        <!-- Modal -->
+<div id="report_user" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="info-background"><img src="images/info_icon.png"></div>
+       <!-- <span class="close" data-dismiss="modal">&times;</span>-->
+        <h2 class="modal-title2">Report User</h2>
+      </div>
+      <div class="modal-body">
+        <ul>
+         <li><a href="#"><img src="images/write-icon.png"> <span>Report inhance Conditions/ Puppy mills</span></a></li>
+         <li><a href="#"><img src="images/write-icon.png"> <span>Report Fake Profile</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+    </div>
+</div>
+<div class="bottom-fixed-bar">
+    <div class="container">
+        <table class="table">
+            <tbody>
+               <tr>
+                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="js/jquery-3.2.1.slim.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/owl.carousel.js"></script> 
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:false,
+    margin:0,
+    nav:true,
+	dots: false,
+	paginations:false,
+	items: 1
+   
+})
+</script>
+</body>
+</html>

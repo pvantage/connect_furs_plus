@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/function.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript">
+ checkLogin();
+</script>
+</head>
+<body class="bottom-links-bar">
+<div class="container">
+    <div class="create-account mt-4" id="account_prof">
+        <h1 class="red">PROFILE INFO</h1>
+            <div class="form-group">
+                <label>Owner Name:</label>
+                <input type="text" name="name" id="name" tabindex="1" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Pet Name:</label>
+                <input type="text" name="petname" id="petname" tabindex="2" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Tell us about your pet</label>
+                <textarea class="form-control" name="aboutpet" id="aboutpet" tabindex="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Distance willing to Look (miles)</label>
+                <select class="form-control" name="willing_distance" id="willing_distance" tabindex="4">
+                    <option value="">Please select</option>
+                    <option value="1"> 1 Miles</option>
+                    <option value="2"> 2 Miles</option>
+                    <option value="3"> 3 Miles</option>
+                    <option value="4"> 4 Miles</option>
+                    <option value="5"> 5 Miles</option>
+                    <option value="6"> 6 Miles</option>
+                    <option value="7"> 7 Miles</option>
+                    <option value="8"> 8 Miles</option>
+                    <option value="9"> 9 Miles</option>
+                    <option value="10"> 10 Miles</option>
+                    <option value="11"> 11 Miles</option>
+                    <option value="12"> 12 Miles</option>
+                    <option value="13"> 13 Miles</option>
+                    <option value="14"> 14 Miles</option>
+                    <option value="15"> 15 Miles</option>
+                    <option value="16"> 16 Miles</option>
+                    <option value="17"> 17 Miles</option>
+                    <option value="18"> 18 Miles</option>
+                    <option value="19"> 19 Miles</option>
+                    <option value="20"> 20 Miles</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Who do you want to play/breeding with </label>
+                <select class="form-control" name="who_play_breed" id="who_play_breed" tabindex="5">
+                    <option value="0">Any Pet </option>
+                    <option value="1">Just my breed </option>
+                    <option value="2">Specific breed </option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="breed_specific">
+                <label>Select Breed </label>
+                <select class="form-control" name="specific_breed" id="specific_breed" tabindex="6">
+                    
+                </select>
+            </div>
+            
+			 <div class="form-group">
+                <label>What color is your animal?</label>
+                <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="7">
+            </div>
+            <div class="form-group">
+                <label>Any medical History other owners should be aware of </label>
+                <div class="form-inline">
+                    <div class="form-check" style="margin-right:20px;">
+                        <input class="form-check-input" name="medical_history" type="radio" value="1">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="medical_history" type="radio" vale="0" checked>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group about_medical" style="display:none;">
+                <textarea class="form-control" name="about_med_his" id="about_med_his" placeholder="Please explain about medical history."></textarea>
+            </div>
+            <div class="form-group uploadbtns">
+                <button type="button" class="btn btn-dark">Upload Photo</button>
+                <button type="button" class="btn btn-dark">Upload Instagram Photo</button>
+            </div>
+            <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">SUBMIT</button>        
+    </div>
+</div>
+<div class="bottom-fixed-bar">
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+var login_id = localStorage.getItem('cust_id');
+$.ajax({
+	 type:'POST',
+	 url:siteurl + 'common/common/getbreedbylogin',
+	 dataType:'json',
+	 data:{login_id:login_id},
+	 crossDomain:true,
+	 success:function(data){
+		 	$('#specific_breed').html(data['success']);
+	   }
+});
+
+$(document).ready(function(e){
+    $('input[name="medical_history"]').on('click',function(){
+		
+		if($('input[name="medical_history"]:checked').val() == 1)
+		{
+			$('.about_medical').show();
+		}else{
+			$('.about_medical').hide();
+		}
+	});
+	
+	$('select[name="who_play_breed"]').on('change',function(){
+		if($(this).val() == 2) $('#breed_specific').show();
+		else $('#breed_specific').hide();
+	});
+	
+	$('select[name="who_play_breed"]').trigger('change');
+});
+
+function addProfileinfo(){
+	var name = $('#name').val();
+	var petname = $('#petname').val();
+	var aboutpet = $('#aboutpet').val();
+	var willing_distance = $('#willing_distance').val();
+	var who_play_breed = $('#who_play_breed').val();
+	var pet_color = $('#pet_color').val();
+	var medical_history = $('input[name="medical_history"]:checked').val();
+	var about_med_his = $('#about_med_his').val();
+	var breed_specific = '';
+	if(who_play_breed == 2)
+	{
+		breed_specific = $('#specific_breed').val();
+	}
+	
+	$.ajax({
+	 type:'POST',
+	 url:siteurl + 'account/setinfo/profile',
+	 dataType:'json',
+	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:medical_history, about_med_his:about_med_his, who_play_breed:who_play_breed, breed_specific:breed_specific},
+	 crossDomain:true,
+	 success:function(data){
+		 
+		 $('input, textarea, select').removeClass('req');
+		 
+		 if(data['error'])
+		 {
+			 if(data['error']['name'])  $('#name').addClass('req');
+			 if(data['error']['petname']) $('#petname').addClass('req');
+			 if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
+			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
+			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
+		 }
+		 
+	   	if(data['success'])
+		{
+			window.location = "swipe.html";
+		}
+	   }
+   });
+}
+</script>
+</body>
+</html>

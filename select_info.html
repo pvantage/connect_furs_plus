@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript">
+ checkLogin();
+</script>
+</head>
+<body class="">
+<div class="container">
+  <div class="select-info-wrap mt-4">
+    <h1 class="red">Select your Pets Info to Search similar </h1>
+    <div class="select-info-grid" id="select_pet_info">
+      <table class="table">
+        <tr>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img01.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Animal Temperament</h2>
+            </div>
+            </a>
+            <div class="modal modal_multi" id="modal_temperament">
+              <div class="modal-content">
+                <button class="close close_multi">X</button>
+                <h3>Animal Temperament</h3>
+                <select name="temperament" id="temperament">
+                  <option value="">Please select</option>
+                </select>
+              </div>
+            </div></td>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img06.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Playdate / Breeding</h2>
+            </div>
+            </a>
+            <div class="modal modal_multi" id="modal_breeding">
+              <div class="modal-content">
+                <button class="close close_multi">X</button>
+                <div id="choose0" style="display:block">
+                  <h3>Reason for visiting us today </h3>
+                  <select id="reason" name="reason">
+                    <option value="play">Playdate</option>
+                    <option value="breed">Breeding</option>
+                  </select>
+                </div>
+                <div id="choose1"  style="display:none">
+                  <h3>Choose: </h3>
+                  <select id="cpapered" name="cpapered">
+                    <option value="">select</option>                    
+                    <option value="nonpapered">Non Papered</option>
+                    <option value="papered">Papered</option>
+                  </select>
+                </div>
+                <div id="choose2"  style="display:none">
+                  <h3>Is the pet previously bred? </h3>
+                  <select id="pet_breed_previously" name="pet_breed_previously">
+                    <option value="">Please select</option>                    
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                  </select>
+                </div>
+                <div id="choose3"  style="display:none">
+                  <h3>How many times ? </h3>
+                  <select id="how_many_times" name="how_many_times">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+                <div id="choose4"  style="display:none">
+                  <h3>Heat cycles </h3>
+                  <select id="heat_cycle" name="heat_cycle">
+                    <option value="1">Jan to Feb</option>
+                    <option value="2">Mar to Apr</option>
+                    <option value="3">July to Aug</option>
+                  </select>
+                </div>
+                <!-- <button class="button-submit btn">Save</button>--> 
+              </div>
+            </div></td>
+        </tr>
+        <tr>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img02.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Select Gender</h2>
+            </div>
+            </a>
+            <div class="modal modal_multi" id="modal_gender">
+              <div class="modal-content">
+                <button class="close close_multi">X</button>
+                <div id="choose5">
+                  <h3>Gender</h3>
+                  <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </div>
+                <div id="choose6"  style="display:none">
+                  <h3>Select Fixed/Non fixed</h3>
+                  <select id="fixnonfix" name="fixnonfix">
+                    <option value="nonfixed">Non fixed</option>
+                    <option value="fixed">Fixed</option>
+                  </select>
+                  <!--<button class="button-submit btn">Save</button>--> 
+                </div>
+              </div>
+            </div></td>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img04.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Animal Type</h2>
+            </div>
+            </a>
+            <div class="modal modal_multi" id="modal_animal">
+              <div class="modal-content">
+                <button class="close close_multi">X</button>
+                <div id="type">
+                  <h3>Select Type of Animal</h3>
+                  <select name="animal_type" id="animal_type">
+                    <option value="">Please select </option>
+                  </select>
+                </div>
+                <div id="breed" style="display:none">
+                  <h3>Select Breed of Animal</h3>
+                  <select name="breed" id="animal_breed">
+                  </select>
+                </div>
+              </div>
+            </div></td>
+        </tr>
+      </table>
+    </div>
+    <button class="btn btn-block btn-danger" type="button" onClick="proceedProfile();">SUBMIT</button>
+  </div>
+</div>
+<script type="text/javascript">
+
+function proceedProfile(){
+	var cust_id = localStorage.getItem('cust_id');
+	var temperament = $('#temperament').val();
+	var reason = $('#reason').val();
+	var cpapered = $('#cpapered').val();
+	var pet_breed_previously = $('#pet_breed_previously').val();
+	var how_many_times = $('#how_many_times').val();
+	var heat_cycle = $('#heat_cycle').val();
+	var gender = $('#gender').val();
+	var fixnonfix = $('#fixnonfix').val();
+	var animal_type = $('#animal_type').val();
+	var animal_breed = $('#animal_breed').val();
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'account/setinfo',
+	 dataType: 'json',
+	 data: {login_id:cust_id, temperament: temperament, reason: reason, cpapered:cpapered, pet_breed_previously: pet_breed_previously, how_many_times : how_many_times, heat_cycle :heat_cycle, gender:gender, fixnonfix:fixnonfix, animal_type:animal_type, animal_breed: animal_breed},
+	 crossDomain: true,
+	 success: function(data){
+		 
+		 $('.error').remove();
+		 
+		 if(data['error'])
+		 {
+			 var error_msg = '<p class="error">';
+			 
+			 if(data['error']['temperament']) error_msg +=  data['error']['temperament'] + '<br>';
+			 
+			 if(data['error']['animal_type']) error_msg +=  data['error']['animal_type'] + '<br>';
+			 
+			 if(data['error']['animal_breed']) error_msg +=  data['error']['animal_breed'] + '<br>';
+			 
+			 error_msg += '</p>';
+			 
+			 $('#select_pet_info').after(error_msg);
+		 }		 
+		 
+	   	if(data['success'])
+		{
+			window.location = "profile-info.html";			
+		}
+	   }
+   });
+	
+	
+	
+	
+}
+
+
+$(document).ready(function(e) {
+  
+ $('select[name="animal_type"]').on('change', function(){
+		
+  $.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/breed',
+	 dataType: 'json',
+	 data: {category_id:$(this).val()},
+	 crossDomain: true,
+	 success: function(data){
+	   	if(data['success'])
+		{
+			$('select[name="breed"]').html(data['success']);
+			$("#breed").show();
+     		$("#type").hide();
+			
+		}
+	   }
+   });
+   
+  });
+});
+
+
+
+</script> 
+<script type="text/javascript">
+var customer_id = 0;
+getTemperament('temperament', customer_id);
+getCategory('animal_type', customer_id);
+</script> 
+<script type="text/javascript">
+var modalparent = document.getElementsByClassName("modal_multi");
+var modal_btn_multi = document.getElementsByClassName("myBtn_multi");
+var span_close_multi = document.getElementsByClassName("close_multi");
+function setDataIndex(){
+	   
+	for(i = 0; i < modal_btn_multi.length; i++)
+	{
+		modal_btn_multi[i].setAttribute('data-index', i);
+		modalparent[i].setAttribute('data-index', i);
+		span_close_multi[i].setAttribute('data-index', i);
+	}
+ }
+
+	for(i = 0; i < modal_btn_multi.length; i++)
+	{
+		modal_btn_multi[i].onclick = function(){
+			var ElementIndex = this.getAttribute('data-index');
+			modalparent[ElementIndex].style.display = "block";
+		};
+	  
+		span_close_multi[i].onclick = function(){
+			var ElementIndex = this.getAttribute('data-index');
+			modalparent[ElementIndex].style.display = "none";
+		};
+	}
+
+  window.onload = function(){
+   setDataIndex();
+};
+</script> 
+<script type="text/javascript">
+ $('select').change(function (){
+   
+     var optionSelected = $(this).find("option:selected").val();
+ 	 
+     if (optionSelected == "breed"){ 
+      $("#choose1").show();
+      $("#choose0").hide();
+   }
+   
+     
+  if (optionSelected == 'papered'){ 
+     $("#choose2").show();
+     $("#choose1").hide();
+   }
+   
+    if(optionSelected == 'yes'){
+     $("#choose3").show();
+     $("#choose2").hide();
+   }
+   
+   if (parseInt(optionSelected) > 0){ 
+     $("#choose4").show();
+     $("#choose3").hide();
+   }
+   
+   if (optionSelected == 'male' || optionSelected == 'female'){ 
+     $("#choose6").show();
+     $("#choose5").hide();
+   }
+   
+   
+ })
+</script>
+</body>
+</html>
