@@ -97,7 +97,7 @@
             </div>
             <div class="form-group uploadbtns">
                 <button type="button" class="btn btn-dark" onclick="uploadFromGallery();">Upload Photo</button>
-                <input type="hidden" name="pet_image" id="pet_image">
+                <input type="text" name="pet_image" id="pet_image">
                 <p class="error_msg" style="display:none;">Please upload pet image.</p>
                 <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
             </div>
@@ -122,7 +122,15 @@
 function uploadFromGallery() {
     
     navigator.camera.getPicture(uploadPhoto,
-                                function(message) { alert('get picture failed'); },
+                                function(message) { 								
+								navigator.notification.alert(
+										"get picture failed.",
+										callBackFunctionFlag, 
+										'Confirmation',
+										"OK"
+									);
+								
+								 },
                                 { quality: 50, 
                                 destinationType: navigator.camera.DestinationType.FILE_URI,
                                 sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
@@ -155,10 +163,19 @@ function win(r) {
 		//$('#pet_image_src').attr('src', resturn_data_1.success);				
 		$("#pet_image").val(resturn_data_1.img_name);
 		$('.error_msg').hide();
-		alert(resturn_data_1.img_name);
+		//alert(resturn_data_1.img_name);
+		
+		navigator.notification.alert(
+										resturn_data_1.img_name,
+										callBackFunctionFlag, 
+										'Confirmation',
+										"OK"
+									);
+		
+		
 	}else if(resturn_data_1.error)
-	{								
-		alert(resturn_data_1.error);
+	{
+		navigator.notification.alert(resturn_data_1.error,callBackFunctionFlag, 'Confirmation',"OK");
 	}
 }
 
@@ -166,6 +183,11 @@ function fail(error) {
     alert("An error has occurred: Code = " + error.code);
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
+}
+
+function callBackFunctionFlag(){
+	$("#loadingImg").fadeOut();
+	return true;
 }
 
   function getImage1() {	             
