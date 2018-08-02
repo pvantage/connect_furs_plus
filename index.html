@@ -19,20 +19,20 @@
 }, 3000);*/
 
 function checkDeviceGPS(){
-	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){		
 		
-		alert('GPS Status: ' + enabled);
-		
-		/*if(enabled == 'enabled')
+		if(enabled)
 		{
-			
-		}else if(enabled == 'disabled'){
-			
+			window.location = 'login.html';
+		}else{
+			alert('Please enable your GPS.');
+			cordova.plugins.diagnostic.switchToLocationSettings();
 		}
-		alert("GPS location is " + (enabled ? "enabled" : "disabled"));*/
+		
 		
 	}, function(error){
 		alert("The following error occurred: "+error);
+		cordova.plugins.diagnostic.switchToLocationSettings();
 	}); 
 }
 
