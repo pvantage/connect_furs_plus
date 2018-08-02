@@ -118,14 +118,9 @@
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
-  function getImage1() {	  
-	             
-           navigator.camera.getPicture(uploadPhoto1, function(message) {
-						
-			alert('Error!!');
-			
-			
-			
+  function getImage1() {	             
+           navigator.camera.getPicture(uploadPhoto1, function(message) {						
+			alert('get picture failed');			
 		},{
 			quality: 50, 
 			correctOrientation: true,
@@ -139,28 +134,24 @@
  
         }
  
-        function uploadPhoto1(imageURI1) {
+        function uploadPhoto1(imageURI) {
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';
 						
-            var options1 = new FileUploadOptions();
-            options1.fileKey="file";
-            options1.fileName=imageURI1.substr(imageURI1.lastIndexOf('/')+1);
-            options1.mimeType="image/jpeg";
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+            options.mimeType="text/plain";
  
-            var params1 = new Object();
-            params1.value1 = "test";
-            params1.value2 = "param";
+            var params = new Object();
+            options.params = params;
  
-            options1.params1 = params1;
-            options1.chunkedMode = false;
- 
-            var ft1 = new FileTransfer();
-            ft1.upload(imageURI1, upload_url, win1, fail, options1);
+            var ft = new FileTransfer();
+            ft.upload(imageURI, encodeURI(upload_url), win, fail, options);
         }
  
-        function win1(r){
+        function win(r){
             $("#loadingImg").fadeOut();
 			var resturn_data_1 = jQuery.parseJSON(r.response);
 			
