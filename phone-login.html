@@ -15,9 +15,14 @@
 <script src="js/function.js"></script>
 <script type="text/javascript">
 var lat, longi;
-var onSuccess = function(position) {		  
+var onSuccess = function(position) {
+					  
 			lat =  position.coords.latitude;
 			longi = position.coords.longitude;
+			
+			var loc_msg = 'Latitude: ' + position.coords.latitude + "\n";
+			loc_msg += 'Longitude: ' + position.coords.longitude + "\n";
+			alert(loc_msg);
     };
 
 function onError(error){
