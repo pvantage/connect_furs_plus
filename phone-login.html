@@ -25,10 +25,12 @@ function onError(error){
 }
 
 
-function checkLogin(){
+function checkdeviceLogin(){
+	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	console.log(localStorage.getItem("cust_id"));
+	alert(localStorage.getItem("cust_id"));
 	if(localStorage.getItem("cust_id") != null)
-	{
-		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	{		
 		var customer_login = localStorage.getItem("cust_id");
 		$.ajax({
 		 type: 'POST',
@@ -48,9 +50,7 @@ function checkLogin(){
 	}
 }
 
-document.addEventListener("deviceready", checkLogin, false);
-
-navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:3000});
+document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
 <body>
@@ -91,20 +91,18 @@ function validateOtp(){
 		
 	   	if(data['success'])
 		{
+			
 			$('#mobile_no_container').remove();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();
-			
+			localStorage.setItem('cust_id', data['success']['id']);
 			if(data['success']['redirect'] == 1)
-			{
-				localStorage.setItem('cust_id', data['success']['id']);
+			{				
 				window.location = 'select_info.html';
 			}else if(data['success']['redirect'] == 2)
-			{
-				localStorage.setItem('cust_id', data['success']['id']);
+			{				
 				window.location = 'profile-info.html';
-			}else{
-				localStorage.setItem('cust_id', data['success']['id']);
+			}else{				
 				window.location = 'swipe.html';
 			}
 		}
