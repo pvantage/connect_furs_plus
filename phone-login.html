@@ -27,10 +27,16 @@ function onError(error){
 
 function checkdeviceLogin(){
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-	console.log(localStorage.getItem("cust_id"));
+	
 	alert(localStorage.getItem("cust_id"));
 	if(localStorage.getItem("cust_id") != null)
-	{		
+	{	
+		var msg = 'Customer ID:' + localStorage.getItem("cust_id") + "\n";
+		
+		msg += "Latitude:" + lat + "\n";
+		msg += "Longitude:" + longi;
+		
+		alert(msg);	
 		var customer_login = localStorage.getItem("cust_id");
 		$.ajax({
 		 type: 'POST',
