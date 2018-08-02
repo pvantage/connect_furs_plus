@@ -14,14 +14,9 @@
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript">
 
-cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-   setTimeout(function(){
+setTimeout(function(){
 	window.location = 'login.html';
 }, 3000);
-}, function(error){
-    cordova.plugins.diagnostic.switchToLocationSettings();
-});  
-
 </script>
 </head>
 

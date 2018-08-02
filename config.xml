@@ -20,8 +20,7 @@
 	<plugin name="cordova-plugin-device" spec="~1.1.6" />
 	<plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
 	<plugin name="cordova-plugin-camera" spec="~2.4.1"/>	
-	<plugin name="cordova-plugin-file-transfer" spec="~1.6.3"/>
-	<plugin name="cordova.plugins.diagnostic" source="npm" />
+	<plugin name="cordova-plugin-file-transfer" spec="~1.6.3"/>	
 	<plugin name="cordova-plugin-console"/>	
 	
 	<plugin name="cordova-plugin-splashscreen" />
