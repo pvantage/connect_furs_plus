@@ -39,12 +39,13 @@ function checkdeviceLogin(){
 	
 	if(localStorage.getItem("cust_id") != null)
 	{	
-		var msg = 'Customer ID:' + localStorage.getItem("cust_id") + "\n";
+		/*var msg = 'Customer ID:' + localStorage.getItem("cust_id") + "\n";
 		
 		msg += "Latitude:" + lat + "\n";
 		msg += "Longitude:" + longi;
 		
-		alert(msg);	
+		alert(msg);*/
+		alert(siteurl + "account/setinfo/lat");	
 		var customer_login = localStorage.getItem("cust_id");
 		$.ajax({
 		 type: 'POST',
