@@ -97,7 +97,7 @@
             </div>
             <div class="form-group uploadbtns">
                 <button type="button" class="btn btn-dark" onclick="getImage();">Upload Photo</button>
-                <input type="text" name="pet_image" id="pet_image">
+                <input type="hidden" name="pet_image" id="pet_image">
                 <p class="error_msg" style="display:none;">Please upload pet image.</p>
                 <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
             </div>
@@ -166,7 +166,7 @@
 			}else if(resturn_data_1.error)
 			{								
 				alert(resturn_data_1.error);
-				console.log(resturn_data_1.error);
+				//console.log(resturn_data_1.error);
 			}
             
         }
@@ -174,12 +174,12 @@
         function fail(error) {
            $("#loadingImg").fadeOut();			
 			
-			var error_html = "An error has occurred: Code = " + error.code + "\n";			
-        	error_html += "upload error source " + error.source + "\n";
-        	error_html += "upload error target " + error.target;
+			//var error_html = "An error has occurred: Code = " + error.code + "\n";			
+        	//error_html += "upload error source " + error.source + "\n";
+        	//error_html += "upload error target " + error.target;
+			alert('Opps, something wrong.');
 			
-			alert(error_html);
-			console.log(error_html);
+			//console.log(error_html);
         }
  </script>
 <script type="text/javascript">
