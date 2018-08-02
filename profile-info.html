@@ -118,81 +118,8 @@
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
-
-function uploadFromGallery() {
-    
-    navigator.camera.getPicture(uploadPhoto,
-                                function(message) { 								
-								navigator.notification.alert(
-										"get picture failed.",
-										callBackFunctionFlag, 
-										'Confirmation',
-										"OK"
-									);
-								
-								 },
-                                { quality: 50, 
-                                destinationType: navigator.camera.DestinationType.FILE_URI,
-                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                );
-
-}
-
-function uploadPhoto(imageURI) {
-    var options = new FileUploadOptions();
-    options.fileKey="file";
-    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-    options.mimeType="text/plain";
-
-    var params = new Object();
-
-    options.params = params;
-
-    var ft = new FileTransfer();
-    ft.upload(imageURI, encodeURI(upload_url), win, fail, options);
-}
-
-function win(r) {
-    /*console.log("Code = " + r.responseCode);
-    console.log("Response = " + r.response);
-    console.log("Sent = " + r.bytesSent);*/
-	$("#loadingImg").fadeOut();
-	var resturn_data_1 = jQuery.parseJSON(r.response);
-	$("#pet_image").val(r.response);
-	if(resturn_data_1.success)
-	{
-		//$('#pet_image_src').attr('src', resturn_data_1.success);				
-		$("#pet_image").val(resturn_data_1.img_name);
-		$('.error_msg').hide();
-		//alert(resturn_data_1.img_name);
-		
-		/*navigator.notification.alert(
-										resturn_data_1.img_name,
-										callBackFunctionFlag, 
-										'Confirmation',
-										"OK"
-									);*/
-		
-		
-	}/*else if(resturn_data_1.error)
-	{
-		navigator.notification.alert(resturn_data_1.error,callBackFunctionFlag, 'Confirmation',"OK");
-	}*/
-}
-
-function fail(error) {
-    alert("An error has occurred: Code = " + error.code);
-    console.log("upload error source " + error.source);
-    console.log("upload error target " + error.target);
-}
-
-function callBackFunctionFlag(){
-	$("#loadingImg").fadeOut();
-	return true;
-}
-
-  function getImage1() {	             
-           navigator.camera.getPicture(uploadPhoto1, function(message) {						
+  function getImage() {	             
+           navigator.camera.getPicture(uploadPhoto, function(message) {						
 			alert('get picture failed');			
 		},{
 			quality: 50, 
@@ -207,24 +134,27 @@ function callBackFunctionFlag(){
  
         }
  
-        function uploadPhoto1(imageURI) {
+        function uploadPhoto(imageURI) {
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';
 						
             var options = new FileUploadOptions();
             options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.jpeg';
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
             options.mimeType="image/jpeg";
  
             var params = new Object();
-            options.params = params;
+            params.value1 = "test";
+			 params.value2 = "param";
+			 options.params = params;
+			 options.chunkedMode = false;
  
             var ft = new FileTransfer();
             ft.upload(imageURI, encodeURI(upload_url), win, fail, options);
         }
  
-        /*function win(r){
+        function win(r){
             $("#loadingImg").fadeOut();
 			var resturn_data_1 = jQuery.parseJSON(r.response);
 			
@@ -236,11 +166,12 @@ function callBackFunctionFlag(){
 			}else if(resturn_data_1.error)
 			{								
 				alert(resturn_data_1.error);
+				console.log(resturn_data_1.error);
 			}
             
-        }*/
+        }
  
-        /*function fail(error) {
+        function fail(error) {
            $("#loadingImg").fadeOut();			
 			
 			var error_html = "An error has occurred: Code = " + error.code + "\n";			
@@ -248,7 +179,8 @@ function callBackFunctionFlag(){
         	error_html += "upload error target " + error.target;
 			
 			alert(error_html);
-        }*/
+			console.log(error_html);
+        }
  </script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
