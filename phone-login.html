@@ -9,40 +9,46 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript">
 var lat, longi;
-var onSuccess = function(position) {
-        /*alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');*/
-			  
-			  
+var onSuccess = function(position) {		  
 			lat =  position.coords.latitude;
 			longi = position.coords.longitude;
     };
 
 function onError(error){
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+        alert('message: ' + error.message + '\n');
 }
+
 
 function checkLogin(){
 	if(localStorage.getItem("cust_id") != null)
 	{
-		//navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:3000});
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		var customer_login = localStorage.getItem("cust_id");
+		$.ajax({
+		 type: 'POST',
+		 url: siteurl + "account/setinfo/lat",
+		 dataType: 'json',
+		 data: {login_id:customer_login, latitude:lat, longitude:longi},
+		 crossDomain: true,
+		 success: function(data){
+			
+			if(data['success'])
+			{
+				window.location = 'swipe.html';			
+			}	
+		  }
+	   });
 		
-		//window.location = 'swipe.html';
 	}
 }
+
+document.addEventListener("deviceready", checkLogin, false);
 
 navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:3000});
 </script>
