@@ -806,7 +806,7 @@ body {
     padding-bottom: 0px !important;
 }
 
-.req{ border:1px solid #F00;}
+.req{ border:1px solid #F00;}.error_msg{ color:#F00;}
 .loadermain {
     float: left;
     width: 100%;

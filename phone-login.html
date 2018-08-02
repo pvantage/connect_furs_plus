@@ -30,11 +30,10 @@ var onSuccess = function(position) {
 			longi = position.coords.longitude;
     };
 
-  function onError(error) {
+function onError(error){
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
- }
-
+}
 
 function checkLogin(){
 	if(localStorage.getItem("cust_id") != null)
@@ -46,7 +45,6 @@ function checkLogin(){
 }
 
 navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout:3000});
-
 </script>
 </head>
 <body>
@@ -95,7 +93,6 @@ function validateOtp(){
 			{
 				localStorage.setItem('cust_id', data['success']['id']);
 				window.location = 'select_info.html';
-				
 			}else if(data['success']['redirect'] == 2)
 			{
 				localStorage.setItem('cust_id', data['success']['id']);

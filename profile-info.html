@@ -96,8 +96,10 @@
                 <textarea class="form-control" name="about_med_his" id="about_med_his" placeholder="Please explain about medical history."></textarea>
             </div>
             <div class="form-group uploadbtns">
-                <button type="button" class="btn btn-dark">Upload Photo</button>
-                <button type="button" class="btn btn-dark">Upload Instagram Photo</button>
+                <button type="button" class="btn btn-dark" onclick="getImage1();">Upload Photo</button>
+                <input type="hidden" name="pet_image" id="pet_image">
+                <p class="error_msg" style="display:none;">Please upload pet image.</p>
+                <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
             </div>
             <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">SUBMIT</button>        
     </div>
@@ -113,6 +115,71 @@
         </table>
     </div>
 </div>
+<div class="loadermain" id="loadingImg">
+
+<script type="text/javascript">
+  function getImage1() {	  
+	             
+           navigator.camera.getPicture(uploadPhoto, function(message) {
+						
+			alert('Error!!');
+			
+			
+			
+		},{
+			quality: 40, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto(imageURI1) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + '?route=account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI1.substr(imageURI1.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI1, upload_url, win1, fail1, options1);
+        }
+ 
+        function win1(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				//$('#pet_image_src').attr('src', resturn_data_1.success);				
+				$("#pet_image").val(resturn_data_1.img_name);
+				$('.error_msg').hide();
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}
+            
+        }
+ 
+        function fail1(error) {
+           $("#loadingImg").fadeOut();
+			alert('Failed to upload.');
+        }
+ </script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
 $.ajax({
@@ -155,6 +222,10 @@ function addProfileinfo(){
 	var medical_history = $('input[name="medical_history"]:checked').val();
 	var about_med_his = $('#about_med_his').val();
 	var breed_specific = '';
+	var pet_image = $('input[name="pet_image"]').val();
+	
+	
+	
 	if(who_play_breed == 2)
 	{
 		breed_specific = $('#specific_breed').val();
@@ -164,7 +235,7 @@ function addProfileinfo(){
 	 type:'POST',
 	 url:siteurl + 'account/setinfo/profile',
 	 dataType:'json',
-	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:medical_history, about_med_his:about_med_his, who_play_breed:who_play_breed, breed_specific:breed_specific},
+	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:medical_history, about_med_his:about_med_his, who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image},
 	 crossDomain:true,
 	 success:function(data){
 		 
@@ -177,6 +248,9 @@ function addProfileinfo(){
 			 if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
 			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
 			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
+			 
+			 if(data['error']['image']) $('.error_msg').show();
+			 
 		 }
 		 
 	   	if(data['success'])
