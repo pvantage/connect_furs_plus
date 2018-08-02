@@ -32,20 +32,17 @@ function onError(error){
 
 
 function checkdeviceLogin(){
+	
 	$("#loadingImg").fadeIn();
+	
+cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+		
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:3000, enableHighAccuracy:true});
 	
 	setTimeout(function(){
 	
 	if(localStorage.getItem("cust_id") != null)
-	{	
-		/*var msg = 'Customer ID:' + localStorage.getItem("cust_id") + "\n";
-		
-		msg += "Latitude:" + lat + "\n";
-		msg += "Longitude:" + longi;
-		
-		alert(msg);*/
-		alert(siteurl + "account/setinfo/lat");	
+	{			
 		var customer_login = localStorage.getItem("cust_id");
 		$.ajax({
 		 type: 'POST',
@@ -65,6 +62,11 @@ function checkdeviceLogin(){
 	}
 	$("#loadingImg").fadeOut();
 	}, 3000);
+	
+	
+}, function(error){
+    cordova.plugins.diagnostic.switchToLocationSettings();
+}); 
 	
 }
 
