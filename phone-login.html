@@ -14,6 +14,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
+
 var lat, longi;
 var onSuccess = function(position) {
 					  
@@ -31,6 +32,7 @@ function onError(error){
 
 
 function checkdeviceLogin(){
+	$("#loadingImg").fadeIn();
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:3000, enableHighAccuracy:true});
 	
 	setTimeout(function(){
@@ -60,6 +62,7 @@ function checkdeviceLogin(){
 	   });
 		
 	}
+	$("#loadingImg").fadeOut();
 	}, 3000);
 	
 }
@@ -89,6 +92,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         </div>
     </div>
 </div>
+<div class="loadermain" id="loadingImg">
 </body>
 <script type="text/javascript">
 function validateOtp(){
