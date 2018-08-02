@@ -96,7 +96,7 @@
                 <textarea class="form-control" name="about_med_his" id="about_med_his" placeholder="Please explain about medical history."></textarea>
             </div>
             <div class="form-group uploadbtns">
-                <button type="button" class="btn btn-dark" onclick="getImage1();">Upload Photo</button>
+                <button type="button" class="btn btn-dark" onclick="uploadFromGallery();">Upload Photo</button>
                 <input type="hidden" name="pet_image" id="pet_image">
                 <p class="error_msg" style="display:none;">Please upload pet image.</p>
                 <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
@@ -118,6 +118,44 @@
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
+
+function uploadFromGallery() {
+    
+    navigator.camera.getPicture(uploadPhoto,
+                                function(message) { alert('get picture failed'); },
+                                { quality: 50, 
+                                destinationType: navigator.camera.DestinationType.FILE_URI,
+                                sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                );
+
+}
+
+function uploadPhoto(imageURI) {
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+    options.mimeType="text/plain";
+
+    var params = new Object();
+
+    options.params = params;
+
+    var ft = new FileTransfer();
+    ft.upload(imageURI, encodeURI(upload_url), win, fail, options);
+}
+
+function win(r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
+}
+
   function getImage1() {	             
            navigator.camera.getPicture(uploadPhoto1, function(message) {						
 			alert('get picture failed');			
@@ -151,7 +189,7 @@
             ft.upload(imageURI, encodeURI(upload_url), win, fail, options);
         }
  
-        function win(r){
+        /*function win(r){
             $("#loadingImg").fadeOut();
 			var resturn_data_1 = jQuery.parseJSON(r.response);
 			
@@ -165,18 +203,17 @@
 				alert(resturn_data_1.error);
 			}
             
-        }
+        }*/
  
-        function fail(error) {
-           $("#loadingImg").fadeOut();
-			//alert('Failed to upload.');
+        /*function fail(error) {
+           $("#loadingImg").fadeOut();			
 			
 			var error_html = "An error has occurred: Code = " + error.code + "\n";			
         	error_html += "upload error source " + error.source + "\n";
         	error_html += "upload error target " + error.target;
 			
 			alert(error_html);
-        }
+        }*/
  </script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
