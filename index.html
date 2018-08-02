@@ -20,7 +20,17 @@
 
 function checkDeviceGPS(){
 	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-		alert("GPS location is " + (enabled ? "enabled" : "disabled"));
+		
+		alert('GPS Status: ' + enabled);
+		
+		/*if(enabled == 'enabled')
+		{
+			
+		}else if(enabled == 'disabled'){
+			
+		}
+		alert("GPS location is " + (enabled ? "enabled" : "disabled"));*/
+		
 	}, function(error){
 		alert("The following error occurred: "+error);
 	}); 
