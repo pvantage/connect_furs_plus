@@ -158,6 +158,7 @@ function win(r) {
     console.log("Sent = " + r.bytesSent);*/
 	$("#loadingImg").fadeOut();
 	var resturn_data_1 = jQuery.parseJSON(r.response);
+	$("#pet_image").val(r.response);
 	if(resturn_data_1.success)
 	{
 		//$('#pet_image_src').attr('src', resturn_data_1.success);				
@@ -165,18 +166,18 @@ function win(r) {
 		$('.error_msg').hide();
 		//alert(resturn_data_1.img_name);
 		
-		navigator.notification.alert(
+		/*navigator.notification.alert(
 										resturn_data_1.img_name,
 										callBackFunctionFlag, 
 										'Confirmation',
 										"OK"
-									);
+									);*/
 		
 		
-	}else if(resturn_data_1.error)
+	}/*else if(resturn_data_1.error)
 	{
 		navigator.notification.alert(resturn_data_1.error,callBackFunctionFlag, 'Confirmation',"OK");
-	}
+	}*/
 }
 
 function fail(error) {
@@ -213,8 +214,8 @@ function callBackFunctionFlag(){
 						
             var options = new FileUploadOptions();
             options.fileKey="file";
-            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-            options.mimeType="text/plain";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.jpeg';
+            options.mimeType="image/jpeg";
  
             var params = new Object();
             options.params = params;
