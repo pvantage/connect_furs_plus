@@ -16,13 +16,12 @@
 <script type="text/javascript">
 
 var lat, longi;
-var onSuccess = function(position) {
-					  
+var onSuccess = function(position){					  
 			lat =  position.coords.latitude;
 			longi = position.coords.longitude;			
     };
 
-function onError(error){
+function onError(error){		
         alert('message: ' + error.message + '\n');
 }
 
@@ -30,34 +29,46 @@ function onError(error){
 function checkdeviceLogin(){
 	
 	$("#loadingImg").fadeIn();
-	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:7000, enableHighAccuracy:true});
-	
-	setTimeout(function(){
-	
-	if(localStorage.getItem("cust_id") != null)
-	{			
-		var customer_login = localStorage.getItem("cust_id");
-		$.ajax({
-		 type: 'POST',
-		 url: siteurl + "account/setinfo/lat",
-		 dataType: 'json',
-		 data: {login_id:customer_login, latitude:lat, longitude:longi},
-		 crossDomain: true,
-		 success: function(data){
+
+	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+		
+	if(enabled)
+	{	
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:7000, enableHighAccuracy:true});
 			
-			if(data['success'])
-			{
-				window.location = 'swipe.html';			
-			}	
-		  }
-	   });
+			setTimeout(function(){
+			
+			if(localStorage.getItem("cust_id") != null)
+			{			
+				var customer_login = localStorage.getItem("cust_id");
+				$.ajax({
+				 type: 'POST',
+				 url: siteurl + "account/setinfo/lat",
+				 dataType: 'json',
+				 data: {login_id:customer_login, latitude:lat, longitude:longi},
+				 crossDomain: true,
+				 success: function(data){
+					
+					if(data['success'])
+					{
+						window.location = 'swipe.html';			
+					}	
+				  }
+			   });
+				
+			}
+				$("#loadingImg").fadeOut();
+			}, 3000);
+	}else{
+		alert('Please enable your location settings.');
+		cordova.plugins.diagnostic.switchToLocationSettings();
 		
 	}
-	$("#loadingImg").fadeOut();
-	}, 3000);
 	
+	}, function(error){
+		alert("The following error occurred: "+error);		
+	});	
 }
-
 document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
