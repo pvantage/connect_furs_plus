@@ -157,7 +157,7 @@
             options1.chunkedMode = false;
  
             var ft1 = new FileTransfer();
-            ft1.upload(imageURI1, upload_url, win1, fail1, options1);
+            ft1.upload(imageURI1, upload_url, win1, fail, options1);
         }
  
         function win1(r){
@@ -176,10 +176,15 @@
             
         }
  
-        function fail1(error) {
+        function fail(error) {
            $("#loadingImg").fadeOut();
 			//alert('Failed to upload.');
-			alert(error);
+			
+			var error_html = "An error has occurred: Code = " + error.code + "\n";			
+        	error_html += "upload error source " + error.source + "\n";
+        	error_html += "upload error target " + error.target;
+			
+			alert(error_html);
         }
  </script>
 <script type="text/javascript">
