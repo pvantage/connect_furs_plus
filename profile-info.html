@@ -141,7 +141,8 @@
  
         function uploadPhoto1(imageURI1) {
 			$("#loadingImg").fadeIn();
-			
+			alert(upload_url);
+			return false;
 			var upload_url = siteurl + 'account/upload';			
             var options1 = new FileUploadOptions();
             options1.fileKey="file";
