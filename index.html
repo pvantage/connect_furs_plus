@@ -18,11 +18,15 @@
 	window.location = 'login.html';
 }, 3000);*/
 
-cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-    alert("GPS location is " + (enabled ? "enabled" : "disabled"));
-}, function(error){
-    alert("The following error occurred: "+error);
-});  
+function checkDeviceGPS(){
+	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+		alert("GPS location is " + (enabled ? "enabled" : "disabled"));
+	}, function(error){
+		alert("The following error occurred: "+error);
+	}); 
+}
+
+document.addEventListener("deviceready", checkDeviceGPS, false); 
 </script>
 </head>
 
