@@ -19,11 +19,7 @@ var lat, longi;
 var onSuccess = function(position) {
 					  
 			lat =  position.coords.latitude;
-			longi = position.coords.longitude;
-			
-			var loc_msg = 'Latitude: ' + position.coords.latitude + "\n";
-			loc_msg += 'Longitude: ' + position.coords.longitude + "\n";
-			alert(loc_msg);
+			longi = position.coords.longitude;			
     };
 
 function onError(error){
@@ -34,7 +30,7 @@ function onError(error){
 function checkdeviceLogin(){
 	
 	$("#loadingImg").fadeIn();
-	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:3000, enableHighAccuracy:true});
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:7000, enableHighAccuracy:true});
 	
 	setTimeout(function(){
 	
