@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript">
  checkLogin();
 </script>
@@ -155,6 +155,7 @@ function win(r) {
 		//$('#pet_image_src').attr('src', resturn_data_1.success);				
 		$("#pet_image").val(resturn_data_1.img_name);
 		$('.error_msg').hide();
+		alert(resturn_data_1.img_name);
 	}else if(resturn_data_1.error)
 	{								
 		alert(resturn_data_1.error);
