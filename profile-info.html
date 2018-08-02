@@ -120,14 +120,14 @@
 <script type="text/javascript">
   function getImage1() {	  
 	             
-           navigator.camera.getPicture(uploadPhoto, function(message) {
+           navigator.camera.getPicture(uploadPhoto1, function(message) {
 						
 			alert('Error!!');
 			
 			
 			
 		},{
-			quality: 40, 
+			quality: 50, 
 			correctOrientation: true,
 			allowEdit : true,
 			targetWidth: 200,
@@ -139,10 +139,10 @@
  
         }
  
-        function uploadPhoto(imageURI1) {
+        function uploadPhoto1(imageURI1) {
 			$("#loadingImg").fadeIn();
 			
-			var upload_url = siteurl + '?route=account/upload';			
+			var upload_url = siteurl + 'account/upload';			
             var options1 = new FileUploadOptions();
             options1.fileKey="file";
             options1.fileName=imageURI1.substr(imageURI1.lastIndexOf('/')+1);
@@ -224,8 +224,6 @@ function addProfileinfo(){
 	var breed_specific = '';
 	var pet_image = $('input[name="pet_image"]').val();
 	
-	
-	
 	if(who_play_breed == 2)
 	{
 		breed_specific = $('#specific_breed').val();
@@ -248,9 +246,7 @@ function addProfileinfo(){
 			 if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
 			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
 			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
-			 
 			 if(data['error']['image']) $('.error_msg').show();
-			 
 		 }
 		 
 	   	if(data['success'])
