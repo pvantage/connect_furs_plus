@@ -26,7 +26,7 @@ function onError(error){
 
 
 function checkdeviceLogin(){
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:60000, timeout:5000, enableHighAccuracy:true});
 	
 	alert(localStorage.getItem("cust_id"));
 	if(localStorage.getItem("cust_id") != null)
