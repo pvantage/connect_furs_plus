@@ -145,9 +145,20 @@ function uploadPhoto(imageURI) {
 }
 
 function win(r) {
-    console.log("Code = " + r.responseCode);
+    /*console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
-    console.log("Sent = " + r.bytesSent);
+    console.log("Sent = " + r.bytesSent);*/
+	$("#loadingImg").fadeOut();
+	var resturn_data_1 = jQuery.parseJSON(r.response);
+	if(resturn_data_1.success)
+	{
+		//$('#pet_image_src').attr('src', resturn_data_1.success);				
+		$("#pet_image").val(resturn_data_1.img_name);
+		$('.error_msg').hide();
+	}else if(resturn_data_1.error)
+	{								
+		alert(resturn_data_1.error);
+	}
 }
 
 function fail(error) {
