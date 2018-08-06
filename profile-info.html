@@ -96,16 +96,16 @@
                 <textarea class="form-control" name="about_med_his" id="about_med_his" placeholder="Please explain about medical history."></textarea>
             </div>-->
             <div class="form-group uploadbtns">
-			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg"  id="src_pet_image" onclick="getImage('pet_image');"/>
+			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg"  id="src_pet_image" onclick="getImage();"/>
             <input type="hidden" name="pet_image" id="pet_image">
 			<div class="smallimg">
-            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1" onclick="getImage('pet_image_1');"/>
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1" onclick="getImage1();"/>
             <input type="hidden" name="pet_image_1" id="pet_image_1">
-            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2" onclick="getImage('pet_image_2');"/>
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2" onclick="getImage2();"/>
             <input type="hidden" name="pet_image_2" id="pet_image_2">
-            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3" onclick="getImage('pet_image_3');"/>
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3" onclick="getImage3();"/>
             <input type="hidden" name="pet_image_3" id="pet_image_3">  
-			<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4" onclick="getImage('pet_image_4');"/>
+			<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4" onclick="getImage4();"/>
             <input type="hidden" name="pet_image_4" id="pet_image_4"> 
              </div>
 			</div>
@@ -118,7 +118,7 @@
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
-  function getImage(img_id) {	             
+  function getImage() {	             
            navigator.camera.getPicture(uploadPhoto, function(message) {						
 			alert('get picture failed');			
 		},{
@@ -134,9 +134,8 @@
  
         }
  
-        function uploadPhoto(imageURI, img_id) {
+        function uploadPhoto(imageURI) {			
 			
-			alert(img_id);
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';
@@ -161,29 +160,234 @@
 			var resturn_data_1 = jQuery.parseJSON(r.response);
 			
 			if(resturn_data_1.success)
-			{
-				//$('#pet_image_src').attr('src', resturn_data_1.success);				
+			{						
 				$("#pet_image").val(resturn_data_1.img_name);
+				$("#src_pet_image").attr('src', resturn_data_1.success);				
 				$('.error_msg').hide();
 			}else if(resturn_data_1.error)
 			{								
 				alert(resturn_data_1.error);
-				//console.log(resturn_data_1.error);
-			}
-            
+			}            
         }
  
         function fail(error) {
            $("#loadingImg").fadeOut();			
-			
-			//var error_html = "An error has occurred: Code = " + error.code + "\n";			
-        	//error_html += "upload error source " + error.source + "\n";
-        	//error_html += "upload error target " + error.target;
 			alert('Opps, something wrong.');
-			
-			//console.log(error_html);
         }
- </script>
+</script>
+
+<script type="text/javascript">
+  function getImage1() {	             
+           navigator.camera.getPicture(uploadPhoto1, function(message) {						
+			alert('get picture failed');			
+		},{
+			quality: 50, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto1(imageURI) {			
+			
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';
+						
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+ 
+            var params = new Object();
+            params.value1 = "test";
+			 params.value2 = "param";
+			 options.params = params;
+			 options.chunkedMode = false;
+ 
+            var ft = new FileTransfer();
+            ft.upload(imageURI, encodeURI(upload_url), win1, fail, options);
+        }
+ 
+        function win1(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{						
+				$("#pet_image_1").val(resturn_data_1.img_name);
+				$("#src_pet_image_1").attr('src', resturn_data_1.success);				
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}            
+        }        
+</script>
+
+<script type="text/javascript">
+  function getImage2() {	             
+           navigator.camera.getPicture(uploadPhoto2, function(message) {						
+			alert('get picture failed');			
+		},{
+			quality: 50, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto2(imageURI) {			
+			
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';
+						
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+ 
+            var params = new Object();
+            params.value1 = "test";
+			 params.value2 = "param";
+			 options.params = params;
+			 options.chunkedMode = false;
+ 
+            var ft = new FileTransfer();
+            ft.upload(imageURI, encodeURI(upload_url), win2, fail, options);
+        }
+ 
+        function win2(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{						
+				$("#pet_image_2").val(resturn_data_1.img_name);
+				$("#src_pet_image_2").attr('src', resturn_data_1.success);				
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}            
+        }        
+</script>
+
+<script type="text/javascript">
+  function getImage3() {	             
+           navigator.camera.getPicture(uploadPhoto3, function(message) {						
+			alert('get picture failed');			
+		},{
+			quality: 50, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto3(imageURI) {			
+			
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';
+						
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+ 
+            var params = new Object();
+            params.value1 = "test";
+			 params.value2 = "param";
+			 options.params = params;
+			 options.chunkedMode = false;
+ 
+            var ft = new FileTransfer();
+            ft.upload(imageURI, encodeURI(upload_url), win3, fail, options);
+        }
+ 
+        function win3(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{						
+				$("#pet_image_3").val(resturn_data_1.img_name);
+				$("#src_pet_image_3").attr('src', resturn_data_1.success);				
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}            
+        }        
+</script>
+
+
+<script type="text/javascript">
+  function getImage4() {	             
+           navigator.camera.getPicture(uploadPhoto4, function(message) {						
+			alert('get picture failed');			
+		},{
+			quality: 50, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+function uploadPhoto4(imageURI){
+			
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';
+						
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+ 
+            var params = new Object();
+            params.value1 = "test";
+			 params.value2 = "param";
+			 options.params = params;
+			 options.chunkedMode = false;
+ 
+            var ft = new FileTransfer();
+            ft.upload(imageURI, encodeURI(upload_url), win4, fail, options);
+    }
+ 
+        function win4(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{						
+				$("#pet_image_4").val(resturn_data_1.img_name);
+				$("#src_pet_image_4").attr('src', resturn_data_1.success);				
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}            
+        }        
+</script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
 $.ajax({
@@ -225,8 +429,15 @@ function addProfileinfo(){
 	var pet_color = $('#pet_color').val();
 	//var medical_history = $('input[name="medical_history"]:checked').val();
 	//var about_med_his = $('#about_med_his').val();
+	
 	var breed_specific = '';
 	var pet_image = $('input[name="pet_image"]').val();
+	
+	//
+	var pet_image_1 = $('#pet_image_1').val();
+	var pet_image_2 = $('#pet_image_2').val();
+	var pet_image_3 = $('#pet_image_3').val();
+	var pet_image_4 = $('#pet_image_4').val();
 	
 	if(who_play_breed == 2)
 	{
@@ -237,8 +448,9 @@ function addProfileinfo(){
 	 type:'POST',
 	 url:siteurl + 'account/setinfo/profile',
 	 dataType:'json',
-	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:0, about_med_his:'', who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image},
+	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:0, about_med_his:'', who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image, pet_image_1:pet_image_1, pet_image_2:pet_image_2, pet_image_3:pet_image_3, pet_image_4:pet_image_4},
 	 crossDomain:true,
+	 
 	 success:function(data){
 		 
 		 $('input, textarea, select').removeClass('req');
