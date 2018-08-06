@@ -358,18 +358,21 @@ function shownextModel(hide, show){
 	
 	if(show == 'modal_breeding')
 	{
-		$('#choose0').show();		
+		$('#choose0').show();
+		$("#reason").prop('selectedIndex',0);				
 		$('#choose1').hide();
 		$('#choose2').hide();
 		$('#choose3').hide();
 		$('#choose4').hide();	
 	}else if(show == 'modal_gender')
 	{
-		$('#choose5').show();		
+		$('#choose5').show();
+		$("#gender").prop('selectedIndex',0);		
 		$('#choose6').hide();		
 	}else if(show == 'modal_animal')
 	{
-		$('#type').show();		
+		$('#type').show();
+		$("#animal_type").prop('selectedIndex',0);		
 		$('#breed').hide();		
 	}
 	
