@@ -66,22 +66,7 @@ function loginNow(){
 		{
 			$('#mobile_no_container').remove();
 			$('#customer_mob').val(data['success']['no']);
-			$('#otp_container').show();
-			
-			/*if(data['success']['redirect'] == 1)
-			{
-				localStorage.setItem('cust_id', data['success']['id']);	
-				window.location = 'select_info.html';
-				
-			}else if(data['success']['redirect'] == 2)
-			{
-				
-				localStorage.setItem('cust_id', data['success']['id']);	
-				window.location = 'profile-info.html';
-			}else{
-				localStorage.setItem('cust_id', data['success']['id']);	
-				window.location = 'swipe.html';
-			}*/
+			$('#otp_container').show();			
 		}
 		
 		if(data['error'])
@@ -95,6 +80,11 @@ function loginNow(){
 
 function checkLogin(){
 	if(localStorage.getItem("cust_id") == null) window.location = 'phone-login.html';
+}
+
+function logOut(){
+	localStorage.removeItem('cust_id');
+	window.location = 'phone-login.html';
 }
 
 $(document).ready(function(e){

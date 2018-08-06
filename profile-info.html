@@ -223,8 +223,8 @@ function addProfileinfo(){
 	var willing_distance = $('#willing_distance').val();
 	var who_play_breed = $('#who_play_breed').val();
 	var pet_color = $('#pet_color').val();
-	var medical_history = $('input[name="medical_history"]:checked').val();
-	var about_med_his = $('#about_med_his').val();
+	//var medical_history = $('input[name="medical_history"]:checked').val();
+	//var about_med_his = $('#about_med_his').val();
 	var breed_specific = '';
 	var pet_image = $('input[name="pet_image"]').val();
 	
@@ -237,7 +237,7 @@ function addProfileinfo(){
 	 type:'POST',
 	 url:siteurl + 'account/setinfo/profile',
 	 dataType:'json',
-	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:medical_history, about_med_his:about_med_his, who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image},
+	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:0, about_med_his:'', who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image},
 	 crossDomain:true,
 	 success:function(data){
 		 

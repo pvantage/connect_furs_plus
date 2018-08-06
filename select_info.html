@@ -222,6 +222,12 @@ function proceedProfile(){
 			 var error_msg = '<p class="error">';
 			 
 			 if(data['error']['temperament']) error_msg +=  data['error']['temperament'] + '<br>';
+			 if(data['error']['reason']) error_msg +=  data['error']['reason'] + '<br>';			 
+			 
+			 if(data['error']['cpapered']) error_msg +=  data['error']['cpapered'] + '<br>';
+			 if(data['error']['pet_breed_previously']) error_msg +=  data['error']['pet_breed_previously'] + '<br>';
+			 if(data['error']['how_many_times']) error_msg +=  data['error']['how_many_times'] + '<br>';
+			 if(data['error']['heat_cycle']) error_msg +=  data['error']['heat_cycle'] + '<br>';
 			 
 			 if(data['error']['animal_type']) error_msg +=  data['error']['animal_type'] + '<br>';
 			 
