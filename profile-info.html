@@ -14,7 +14,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
- checkLogin();
+ //checkLogin();
 </script>
 </head>
 <body class="bottom-links-bar">
@@ -79,7 +79,7 @@
                 <label>What color is your animal?</label>
                 <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="7">
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Any medical History other owners should be aware of </label>
                 <div class="form-inline">
                     <div class="form-check" style="margin-right:20px;">
@@ -91,34 +91,34 @@
                         <label class="form-check-label">No</label>
                     </div>
                 </div>
-            </div>
-            <div class="form-group about_medical" style="display:none;">
+            </div>-->
+            <!--<div class="form-group about_medical" style="display:none;">
                 <textarea class="form-control" name="about_med_his" id="about_med_his" placeholder="Please explain about medical history."></textarea>
-            </div>
+            </div>-->
             <div class="form-group uploadbtns">
-                <button type="button" class="btn btn-dark" onclick="getImage();">Upload Photo</button>
-                <input type="hidden" name="pet_image" id="pet_image">
-                <p class="error_msg" style="display:none;">Please upload pet image.</p>
-                <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
+			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg"  id="src_pet_image" onclick="getImage('pet_image');"/>
+            <input type="hidden" name="pet_image" id="pet_image">
+			<div class="smallimg">
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1" onclick="getImage('pet_image_1');"/>
+            <input type="hidden" name="pet_image_1" id="pet_image_1">
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2" onclick="getImage('pet_image_2');"/>
+            <input type="hidden" name="pet_image_2" id="pet_image_2">
+            <img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3" onclick="getImage('pet_image_3');"/>
+            <input type="hidden" name="pet_image_3" id="pet_image_3">  
+			<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4" onclick="getImage('pet_image_4');"/>
+            <input type="hidden" name="pet_image_4" id="pet_image_4"> 
+             </div>
+			</div>
+              <p class="error_msg" style="display:none;">Please upload pet main image.</p>                
             </div>
             <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">SUBMIT</button>        
     </div>
 </div>
-<div class="bottom-fixed-bar">
-    <div class="container">
-        <table class="table">
-            <tr>
-                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
-                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
-                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
-            </tr>
-        </table>
-    </div>
-</div>
+
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
-  function getImage() {	             
+  function getImage(img_id) {	             
            navigator.camera.getPicture(uploadPhoto, function(message) {						
 			alert('get picture failed');			
 		},{
@@ -134,7 +134,9 @@
  
         }
  
-        function uploadPhoto(imageURI) {
+        function uploadPhoto(imageURI, img_id) {
+			
+			alert(img_id);
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';

@@ -17,7 +17,33 @@
 </script>
 </head>
 <body class="bottom-links-bar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"> 
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">Profile</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Setting</a>
+     </li>
+	   <li class="nav-item">
+        <a class="nav-link" href="#">Logout</a>
+
+
+
+     </li>
+    </ul>
+
+  </div>
+</nav>
+
+
 <div class="container">
+
     <div class="edit-profile mt-4">
         <h1 class="red">EDIT PROFILE</h1>
         <form>
@@ -101,6 +127,17 @@
             <div class="form-group">
                 <label>What color is your animal?</label>
                 <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="8">
+            </div>
+			
+			     <div class="form-group uploadbtns">
+			<div class="upbtn" onclick="getImage();"><img class="mainpic" src="images/profile.jpg"/>
+			<div class="smallimg"><img src="images/multiple.jpg"/>  <img src="images/multiple.jpg"/>  <img src="images/multiple.jpg"/>  
+			 <img src="images/multiple.jpg"/> </div>
+			</div>
+                <!--<button type="button" class="btn btn-dark" onclick="getImage();">Upload Photo</button>-->
+                <input type="hidden" name="pet_image" id="pet_image">
+                <p class="error_msg" style="display:none;">Please upload pet image.</p>
+                <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
             </div>
 			
             <!--<div class="form-group">

@@ -61,8 +61,7 @@ function checkdeviceLogin(){
 			}, 3000);
 	}else{
 		alert('Please enable your location settings.');
-		cordova.plugins.diagnostic.switchToLocationSettings();
-		
+		cordova.plugins.diagnostic.switchToLocationSettings();		
 	}
 	
 	}, function(error){
@@ -70,6 +69,7 @@ function checkdeviceLogin(){
 	});	
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
+
 </script>
 </head>
 <body>

@@ -8,46 +8,83 @@
 <title>Animal App</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<!--<script type="text/javascript" src="cordova.js"></script>-->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript">
- checkLogin();
+ //checkLogin();
 </script>
 </head>
 <body class="">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
+<img src="images/menu-logo.png"/>
+</nav>
+
 <div class="container">
   <div class="select-info-wrap mt-4">
     <h1 class="red">Select your Pets Info to Search similar </h1>
     <div class="select-info-grid" id="select_pet_info">
       <table class="table">
         <tr>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img01.jpg" alt="">
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel(null, 'modal_temperament')"><img src="images/img01.jpg" alt="">
             <div class="select-info-box">
               <h2>Animal Temperament</h2>
             </div>
-            </a>
-            <div class="modal modal_multi" id="modal_temperament">
-              <div class="modal-content">
-                <button class="close close_multi">X</button>
-                <h3>Animal Temperament</h3>
-                <select name="temperament" id="temperament">
-                  <option value="">Please select</option>
-                </select>
-              </div>
-            </div></td>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img06.jpg" alt="">
+            </a>            
+		</td>
+       <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_temperament', 'modal_breeding')"><img src="images/img06.jpg" alt="">
             <div class="select-info-box">
               <h2>Playdate / Breeding</h2>
             </div>
             </a>
-            <div class="modal modal_multi" id="modal_breeding">
+            
+			
+			</td>
+        </tr>
+        <tr>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_breeding', 'modal_gender')"><img src="images/img02.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Select Gender</h2>
+            </div>
+            </a>
+            </td>
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_gender', 'modal_animal')"><img src="images/img04.jpg" alt="">
+            <div class="select-info-box">
+              <h2>Animal Type</h2>
+            </div>
+            </a>
+            </td>
+        </tr>
+      </table>     
+      
+    </div>
+    <button class="btn btn-block btn-danger" type="button" onClick="proceedProfile();">SUBMIT</button>
+  </div>
+  
+  
+  <div class="modal fade modelcommon" id="modal_temperament" role="dialog">
+  <div class="modal-dialog">
               <div class="modal-content">
-                <button class="close close_multi">X</button>
+                <button class="close close_multi" data-dismiss="modal">X</button>
+                <h3>Animal Temperament</h3>
+                <select name="temperament" id="temperament">
+                  <option value="">Please select</option>
+                </select>
+					  	<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_temperament', 'modal_breeding')"><img src="images/right-arrow.png"/></a></div>
+              </div>
+			  </div>
+		
+            </div>
+  <!-- -->
+  
+  <div class="modal fade modelcommon" id="modal_breeding" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>
                 <div id="choose0" style="display:block">
                   <h3>Reason for visiting us today </h3>
                   <select id="reason" name="reason">
+                  	<option value="">Please select</option>
                     <option value="play">Playdate</option>
                     <option value="breed">Breeding</option>
                   </select>
@@ -71,6 +108,7 @@
                 <div id="choose3"  style="display:none">
                   <h3>How many times ? </h3>
                   <select id="how_many_times" name="how_many_times">
+                    <option value="">Please select</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -96,27 +134,25 @@
                 <div id="choose4"  style="display:none">
                   <h3>Heat cycles </h3>
                   <select id="heat_cycle" name="heat_cycle">
+                    <option value="">Please select</option>
                     <option value="1">Jan to Feb</option>
                     <option value="2">Mar to Apr</option>
                     <option value="3">July to Aug</option>
                   </select>
                 </div>
                 <!-- <button class="button-submit btn">Save</button>--> 
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_breeding', 'modal_gender')"><img src="images/right-arrow.png"/></a></div>
               </div>
-            </div></td>
-        </tr>
-        <tr>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img02.jpg" alt="">
-            <div class="select-info-box">
-              <h2>Select Gender</h2>
             </div>
-            </a>
-            <div class="modal modal_multi" id="modal_gender">
+            
+            
+    <div class="modal fade modelcommon" id="modal_gender" role="dialog">
               <div class="modal-content">
-                <button class="close close_multi">X</button>
+                <button class="close close_multi" data-dismiss="modal">X</button>
                 <div id="choose5">
                   <h3>Gender</h3>
                   <select id="gender" name="gender">
+                  	<option value="">-- Please select --</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </select>
@@ -124,39 +160,37 @@
                 <div id="choose6"  style="display:none">
                   <h3>Select Fixed/Non fixed</h3>
                   <select id="fixnonfix" name="fixnonfix">
+                  	<option value="">--Please select --</option>
                     <option value="nonfixed">Non fixed</option>
                     <option value="fixed">Fixed</option>
                   </select>
                   <!--<button class="button-submit btn">Save</button>--> 
                 </div>
+				
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_gender', 'modal_animal')"><img src="images/right-arrow.png"/></a></div>
               </div>
-            </div></td>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi"><img src="images/img04.jpg" alt="">
-            <div class="select-info-box">
-              <h2>Animal Type</h2>
-            </div>
-            </a>
-            <div class="modal modal_multi" id="modal_animal">
+            </div>        
+            
+  
+  
+  <div class="modal fade modelcommon" id="modal_animal" role="dialog">
               <div class="modal-content">
-                <button class="close close_multi">X</button>
+                <button class="close close_multi" data-dismiss="modal">X</button>
                 <div id="type">
                   <h3>Select Type of Animal</h3>
                   <select name="animal_type" id="animal_type">
                     <option value="">Please select </option>
                   </select>
                 </div>
-                <div id="breed" style="display:none">
+                <div id="breed" style="display:none;">
                   <h3>Select Breed of Animal</h3>
                   <select name="breed" id="animal_breed">
+                  	<option value="">Please select</option>
                   </select>
                 </div>
+					<!--<div class="slidearrow"><a href="#" ><img src="images/right-arrow.png"/></a></div>-->
               </div>
-            </div></td>
-        </tr>
-      </table>
-    </div>
-    <button class="btn btn-block btn-danger" type="button" onClick="proceedProfile();">SUBMIT</button>
-  </div>
+            </div>
 </div>
 <script type="text/javascript">
 
@@ -205,37 +239,103 @@ function proceedProfile(){
 	   }
    });
 	
-	
-	
-	
 }
 
 
 $(document).ready(function(e) {
   
  $('select[name="animal_type"]').on('change', function(){
-		
-  $.ajax({
-	 type: 'POST',
-	 url: siteurl + 'common/common/breed',
-	 dataType: 'json',
-	 data: {category_id:$(this).val()},
-	 crossDomain: true,
-	 success: function(data){
-	   	if(data['success'])
-		{
-			$('select[name="breed"]').html(data['success']);
-			$("#breed").show();
-     		$("#type").hide();
-			
-		}
-	   }
-   });
-   
+	 
+  if($('select[name="animal_type"]') != ''){		
+	  $.ajax({
+		 type: 'POST',
+		 url: siteurl + 'common/common/breed',
+		 dataType: 'json',
+		 data: {category_id:$(this).val()},
+		 crossDomain: true,
+		 success: function(data){
+			if(data['success'])
+			{
+				$('select[name="breed"]').html(data['success']);
+				$("#breed").show();
+				$("#type").hide();
+				
+			}
+		   }
+	   });   
+     }else{
+			$("#type").html('<option value="">please select</option>'); 
+	}   
   });
+  
+  $('select[name="animal_type"]').trigger('change');
+  // Reason 
+  
+  
+  $('select[name="reason"]').on('change', function(){
+		
+		if($(this).val() == 'breed')
+		{
+			$('#choose0').hide();
+			$('#choose1').show();
+		}else{
+			$('#choose1').hide();
+		}		
+  });
+  
+  $('select[name="reason"]').trigger('change');
+  
+  $('select[name="cpapered"]').on('change', function(){
+		
+		if($(this).val() == 'papered')
+		{
+			$('#choose0').hide();
+			$('#choose1').hide();
+			$('#choose2').show();
+		}else{
+			$('#choose2').hide();
+		}		
+  });
+  
+  $('select[name="pet_breed_previously"]').on('change', function(){
+		
+		if($(this).val() == 'yes')
+		{
+			$('#choose0').hide();
+			$('#choose1').hide();
+			$('#choose2').hide();
+			$('#choose3').show();
+		}else{
+			$('#choose3').hide();
+		}		
+  });
+  
+  $('select[name="how_many_times"]').on('change', function(){
+		
+		if($(this).val() != '')
+		{
+			$('#choose0').hide();
+			$('#choose1').hide();
+			$('#choose2').hide();
+			$('#choose3').hide();
+			$('#choose4').show();
+		}else{
+			$('#choose4').hide();
+		}		
+  }); 
+  
+  $('select[name="gender"]').on('change', function(){
+		
+		if($(this).val() == 'female')
+		{
+			$('#choose5').hide();			
+			$('#choose6').show();
+		}else{
+			$('#choose6').hide();
+		}		
+  });
+  
 });
-
-
 
 </script> 
 <script type="text/javascript">
@@ -244,69 +344,34 @@ getTemperament('temperament', customer_id);
 getCategory('animal_type', customer_id);
 </script> 
 <script type="text/javascript">
-var modalparent = document.getElementsByClassName("modal_multi");
-var modal_btn_multi = document.getElementsByClassName("myBtn_multi");
-var span_close_multi = document.getElementsByClassName("close_multi");
-function setDataIndex(){
-	   
-	for(i = 0; i < modal_btn_multi.length; i++)
-	{
-		modal_btn_multi[i].setAttribute('data-index', i);
-		modalparent[i].setAttribute('data-index', i);
-		span_close_multi[i].setAttribute('data-index', i);
+function shownextModel(hide, show){
+	
+	if(hide != null){
+	  $('#'+ hide).modal('hide');
 	}
- }
-
-	for(i = 0; i < modal_btn_multi.length; i++)
+	
+	if(show == 'modal_breeding')
 	{
-		modal_btn_multi[i].onclick = function(){
-			var ElementIndex = this.getAttribute('data-index');
-			modalparent[ElementIndex].style.display = "block";
-		};
-	  
-		span_close_multi[i].onclick = function(){
-			var ElementIndex = this.getAttribute('data-index');
-			modalparent[ElementIndex].style.display = "none";
-		};
+		$('#choose0').show();		
+		$('#choose1').hide();
+		$('#choose2').hide();
+		$('#choose3').hide();
+		$('#choose4').hide();	
+	}else if(show == 'modal_gender')
+	{
+		$('#choose5').show();		
+		$('#choose6').hide();		
+	}else if(show == 'modal_animal')
+	{
+		$('#type').show();		
+		$('#breed').hide();		
 	}
-
-  window.onload = function(){
-   setDataIndex();
-};
-</script> 
-<script type="text/javascript">
- $('select').change(function (){
-   
-     var optionSelected = $(this).find("option:selected").val();
- 	 
-     if (optionSelected == "breed"){ 
-      $("#choose1").show();
-      $("#choose0").hide();
-   }
-   
-     
-  if (optionSelected == 'papered'){ 
-     $("#choose2").show();
-     $("#choose1").hide();
-   }
-   
-    if(optionSelected == 'yes'){
-     $("#choose3").show();
-     $("#choose2").hide();
-   }
-   
-   if (parseInt(optionSelected) > 0){ 
-     $("#choose4").show();
-     $("#choose3").hide();
-   }
-   
-   if (optionSelected == 'male' || optionSelected == 'female'){ 
-     $("#choose6").show();
-     $("#choose5").hide();
-   }
-   
-   
- })
+	
+	$('#'+show).modal('toggle');
+	 
+}
+ 
+ 
 </script>
 </body>
 </html>
