@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,800');
 
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 30px;
+    height: 26px;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
+}
+.mainpics {
+    float: left;
+    width: 80px;
+    margin-right: 10px;
+    height: 80px;
+    overflow: hidden;
+}
 .modelcommon div:last-child h3 {
     margin-top: 10px;
 }
@@ -63,6 +80,26 @@ color: #fff;
 .navmainsection button {
     border: none;
     padding: 0;
+	background: none;
+	    margin-left: 10px;
+}
+.navmainsection .navbar-collapse li {
+    list-style: none;
+}
+
+.navmainsection .navbar-nav {
+    padding-left: 30px;
+}
+.navmainsection .navbar-nav li a {
+    padding: 10px;
+    float: left;
+    width: 100%;
+    padding-left: 0px;
+    border-bottom: 1px solid #ddd;
+	    color: #000;
+}
+.navmainsection .navbar-collapse {
+    padding: 0;
 }
 .slidearrow {
     float: right;
@@ -75,7 +112,8 @@ color: #fff;
 	border: 1px solid #d6d6d6;
 }
 .navmainsection {
-    padding: 11px 10px;
+    padding: 11px 0px;
+	    background: #eeeeee;
 }
 .navbar-toggler {
     font-size: 1rem;
