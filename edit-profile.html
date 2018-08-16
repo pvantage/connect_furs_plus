@@ -475,11 +475,38 @@ function addProfileinfo(){
 		breed_specific = $('#specific_breed').val();
 	}
 	
+	var image_1 = '';
+	var image_2 = '';
+	var image_3 = '';
+	var image_4 = '';
+	
+	if($('#pet_image_1').val() != '')
+	{
+		image_1 = $('#pet_image_1').val();		
+	}
+	
+	if($('#pet_image_2').val() != '')
+	{
+		image_2 = $('#pet_image_2').val();		
+	}
+	
+	if($('#pet_image_3').val() != '')
+	{
+		image_3 = $('#pet_image_3').val();		
+	}
+	
+	if($('#pet_image_4').val() != '')
+	{
+		image_4 = $('#pet_image_4').val();		
+	}
+	
+	
+	
 	$.ajax({
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage,petlocation:petlocation},
+	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage,petlocation:petlocation, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
 	 crossDomain: true,
 	 success: function(data){
 		 
