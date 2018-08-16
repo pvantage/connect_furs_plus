@@ -539,6 +539,8 @@ $.ajax({
 	 crossDomain: true,
 	 success: function(data){
 			$('input[name="name"]').val(data['success']['name']);
+			$('input[name="petage"]').val(data['success']['age']);
+			$('input[name="petlocation"]').val(data['success']['location']);
 			$('input[name="petname"]').val(data['success']['petname']);
 			$('textarea[name="aboutpet"]').val(data['success']['aboutpet']);
 			$('input[name="pet_color"]').val(data['success']['pet_color']);
