@@ -40,36 +40,28 @@
 <div class="container">
     <div class="edit-profile mt-4">
         <h1 class="red">EDIT PROFILE</h1>
-        <form>
+        <form>            
             <div class="form-group">
-                <label>Change Profile Pics</label>
-                <div class="profile-pic-change">
-                    <div class="pic-upload"><img src="images/blankimg.jpg" alt="" id="pet_image_src" onclick="getImage1();">
-                       <input type="hidden" name="pet_image" id="pet_image">
-                    </div>
-                    <!--<div class="pic-upload"> <img src="images/blankimg.jpg" alt="">
-                        <input type="file" class="form-control-file">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload Photo</button>-->
-                </div>
+                <label><span class="reqfield">*</span>Owner Name:</label>
+                <input type="text" name="name" id="name" placeholder="Please enter owner name." class="form-control">
             </div>
             <div class="form-group">
-                <label>Owner Name:</label>
-                <input type="text" name="name" id="name" tabindex="1" class="form-control">
+                <label><span class="reqfield">*</span>Pet Name:</label>
+                <input type="text" name="petname" id="petname" placeholder="Please enter pet name." class="form-control">
             </div>
             
             <div class="form-group">
-                <label>Sex </label>
-                <select class="form-control" name="sex" id="sex" tabindex="2">
+                <label><span class="reqfield">*</span>Pet Age <small>(Number Only)</small>:</label>
+                <input type="number" name="petage" id="petage" placeholder="Please enter pet age." class="form-control">
+            </div>
+            <div class="form-group">
+                <label><span class="reqfield">*</span>Pet Sex </label>
+                <select class="form-control" name="sex" id="sex">
                     <option value="male">Male </option>
                     <option value="female">Female </option>
                 </select>
             </div>
             
-            <div class="form-group">
-                <label>Pet Name:</label>
-                <input type="text" name="petname" id="petname" tabindex="3" class="form-control">
-            </div>
             
             <div class="form-group">
                 <label>Tell us about your pet</label>
@@ -77,7 +69,11 @@
             </div>
             
             <div class="form-group">
-                <label>Distance willing to Look (miles)</label>
+                <label><span class="reqfield">*</span>Pet Location:</label>
+                <input type="text" name="petlocation" id="petlocation" placeholder="Please enter pet location i.e city, state" class="form-control">
+            </div>
+            <div class="form-group">
+                <label><span class="reqfield">*</span>Distance willing to Look (miles)</label>
                 <select class="form-control" name="willing_distance" id="willing_distance" tabindex="5">
                     <option value="">Please select</option>
                     <option value="1"> 1 Miles</option>
@@ -104,7 +100,7 @@
             </div>
             
             <div class="form-group">
-                <label>Who do you want to play/breeding with </label>
+                <label><span class="reqfield">*</span>Who do you want to play/breeding with </label>
                 <select class="form-control" name="who_play_breed" id="who_play_breed" tabindex="6">
                     <option value="0">Any Pet </option>
                     <option value="1">Just my breed </option>
@@ -113,7 +109,7 @@
             </div>
             
             <div class="form-group" id="breed_specific">
-                <label>Select Breed </label>
+                <label><span class="reqfield">*</span>Select Breed </label>
                 <select class="form-control" name="specific_breed" id="specific_breed" tabindex="7">
                 </select>
             </div>
@@ -123,30 +119,24 @@
                 <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="8">
             </div>
 			
-			     <div class="form-group uploadbtns">
-			<div class="upbtn" onclick="getImage();"><img class="mainpic" src="images/profile.jpg"/>
-			<div class="smallimg"><img src="images/multiple.jpg"/>  <img src="images/multiple.jpg"/>  <img src="images/multiple.jpg"/>  
-			 <img src="images/multiple.jpg"/> </div>
+			<div class="form-group uploadbtns">
+            <label>Change Profile Pics</label>
+			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg" id="pet_image_src"  onclick="getImage();">
+            <input type="hidden" name="pet_image" id="pet_image">
+			<div class="smallimg">
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1" onclick="getImage1();">
+                <input type="hidden" name="pet_image_1" id="pet_image_1">
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2" onclick="getImage2();">
+                <input type="hidden" name="pet_image_2" id="pet_image_2">
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3" onclick="getImage3();">
+                <input type="hidden" name="pet_image_3" id="pet_image_3">  
+			 	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4" onclick="getImage4();">
+                <input type="hidden" name="pet_image_4" id="pet_image_4">
+             </div>
 			</div>
-                <!--<button type="button" class="btn btn-dark" onclick="getImage();">Upload Photo</button>-->
-                <input type="hidden" name="pet_image" id="pet_image">
-                <p class="error_msg" style="display:none;">Please upload pet image.</p>
-                <!--<button type="button" class="btn btn-dark">Upload Instagram Photo</button>-->
-            </div>
-			
-            <!--<div class="form-group">
-                <label>Edit Instagram Photos</label>
-                <div class="profile-pic-change">
-                    <div class="pic-upload"> <img src="images/blankimg.jpg" class="img-responsive">
-                       <input type="file" class="form-control-file">
-                    </div>
-                   <div class="pic-upload"> <img src="images/blankimg.jpg" alt="">
-                        <input type="file" class="form-control-file">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload Photo</button>
-                </div>
-            </div>-->
-            <!--<div class="form-group  text-left"> <a href="edit-user-info.html">Edit user name or password?</a> </div>-->
+                
+                <p class="error_msg" style="display:none;">Please upload pet image.</p>                
+            </div>            
             <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">UPDATE</button>
         </form>
     </div>
@@ -166,13 +156,9 @@
 <div class="loadermain" id="loadingImg">
 
 <script type="text/javascript">
-  function getImage1() {	  
-	             
-           navigator.camera.getPicture(uploadPhoto, function(message) {
-						
+  function getImage() {             
+           navigator.camera.getPicture(uploadPhoto, function(message){						
 			alert('Error!!');
-			
-			
 			
 		},{
 			quality: 40, 
@@ -187,13 +173,13 @@
  
         }
  
-        function uploadPhoto(imageURI1) {
+        function uploadPhoto(imageURI) {
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';			
             var options1 = new FileUploadOptions();
             options1.fileKey="file";
-            options1.fileName=imageURI1.substr(imageURI1.lastIndexOf('/')+1);
+            options1.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
             options1.mimeType="image/jpeg";
  
             var params1 = new Object();
@@ -204,10 +190,10 @@
             options1.chunkedMode = false;
  
             var ft1 = new FileTransfer();
-            ft1.upload(imageURI1, upload_url, win1, fail1, options1);
+            ft1.upload(imageURI, upload_url, win, fail, options1);
         }
  
-        function win1(r){
+        function win(r){
             $("#loadingImg").fadeOut();
 			var resturn_data_1 = jQuery.parseJSON(r.response);
 			
@@ -222,11 +208,232 @@
             
         }
  
-        function fail1(error) {
+        function fail(error) {
            $("#loadingImg").fadeOut();
 			alert('Failed to upload.');
         }
- </script>
+</script>
+
+
+<script type="text/javascript">
+  function getImage1() {             
+           navigator.camera.getPicture(uploadPhoto1, function(message){						
+			alert('Error!!');
+			
+		},{
+			quality: 40, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto1(imageURI) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI, upload_url, win1, fail, options1);
+        }
+ 
+        function win1(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				$('#src_pet_image_1').attr('src', resturn_data_1.success);				
+				$('input[name="pet_image_1"]').val(resturn_data_1.img_name);
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}
+            
+        }       
+</script>
+
+<script type="text/javascript">
+  function getImage2() {             
+           navigator.camera.getPicture(uploadPhoto2, function(message){						
+			alert('Error!!');
+			
+		},{
+			quality: 40, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+        }
+ 
+        function uploadPhoto2(imageURI) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI, upload_url, win2, fail, options1);
+        }
+ 
+        function win2(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				$('#src_pet_image_2').attr('src', resturn_data_1.success);				
+				$('input[name="pet_image_2"]').val(resturn_data_1.img_name);
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}
+            
+        }       
+</script>
+
+<!---- upload 3 -->
+<script type="text/javascript">
+function getImage3() {             
+           navigator.camera.getPicture(uploadPhoto3, function(message){						
+			alert('Error!!');
+			
+		},{
+			quality: 40, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+}
+ 
+function uploadPhoto3(imageURI) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI, upload_url, win3, fail, options1);
+        }
+ 
+        function win3(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				$('#src_pet_image_3').attr('src', resturn_data_1.success);				
+				$('input[name="pet_image_3"]').val(resturn_data_1.img_name);
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}
+            
+        }       
+</script>
+<!--- end upload 3 -->
+
+<!---- upload 3 -->
+<script type="text/javascript">
+function getImage4() {             
+           navigator.camera.getPicture(uploadPhoto4, function(message){						
+			alert('Error!!');
+			
+		},{
+			quality: 40, 
+			correctOrientation: true,
+			allowEdit : true,
+			targetWidth: 200,
+            targetHeight: 200,						
+			destinationType: navigator.camera.DestinationType.FILE_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+		}
+            );
+ 
+}
+ 
+function uploadPhoto4(imageURI) {
+			$("#loadingImg").fadeIn();
+			
+			var upload_url = siteurl + 'account/upload';			
+            var options1 = new FileUploadOptions();
+            options1.fileKey="file";
+            options1.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options1.mimeType="image/jpeg";
+ 
+            var params1 = new Object();
+            params1.value1 = "test";
+            params1.value2 = "param";
+ 
+            options1.params1 = params1;
+            options1.chunkedMode = false;
+ 
+            var ft1 = new FileTransfer();
+            ft1.upload(imageURI, upload_url, win4, fail, options1);
+        }
+ 
+        function win4(r){
+            $("#loadingImg").fadeOut();
+			var resturn_data_1 = jQuery.parseJSON(r.response);
+			
+			if(resturn_data_1.success)
+			{
+				$('#src_pet_image_4').attr('src', resturn_data_1.success);				
+				$('input[name="pet_image_4"]').val(resturn_data_1.img_name);
+			}else if(resturn_data_1.error)
+			{								
+				alert(resturn_data_1.error);
+			}
+            
+        }       
+</script>
+<!--- end upload 3 -->
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
 
@@ -241,17 +448,7 @@ $.ajax({
 	   }
 });
 
-$(document).ready(function(e){
-    /*$('input[name="medical_history"]').on('click',function(){
-		
-		if($('input[name="medical_history"]:checked').val() == 1)
-		{
-			$('.about_medical').show();
-		}else{
-			$('.about_medical').hide();
-		}
-	});*/
-	
+$(document).ready(function(e){	
 	$('select[name="who_play_breed"]').on('change',function(){
 		if($(this).val() == 2) $('#breed_specific').show();
 		else $('#breed_specific').hide();
@@ -269,6 +466,9 @@ function addProfileinfo(){
 	var pet_color = $('#pet_color').val();
 	var pet_image = $('input[name="pet_image"]').val();
 	
+	var petage = $('#petage').val();
+	var petlocation = $('#petlocation').val();
+	
 	var breed_specific = '';
 	if(who_play_breed == 2)
 	{
@@ -279,7 +479,7 @@ function addProfileinfo(){
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image},
+	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage,petlocation:petlocation},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -289,9 +489,11 @@ function addProfileinfo(){
 		 {
 			 if(data['error']['name'])  $('#name').addClass('req');
 			 if(data['error']['petname']) $('#petname').addClass('req');
-			 if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
+			 //if(data['error']['aboutpet']) $('#aboutpet').addClass('req');
 			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
 			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
+			 if(data['error']['petage']) $('#petage').addClass('req');
+			 if(data['error']['petlocation']) $('#petlocation').addClass('req');
 		 }
 		 
 	   	if(data['success'])
