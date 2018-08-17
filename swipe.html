@@ -57,12 +57,11 @@ checkLogin();
 </div>
 
 
-<div class="swiper-container header-swiper-front swiper-container-coverflow swiper-container-3d swiper-container-horizontal">
+<div class="swiper-container header-swiper-front swiper-container-coverflow swiper-container-3d swiper-container-horizontal" id="add_pets_profile">
 
 <div class="swiper-button-next swiper-button-white swiper-button-disabled" role="button" aria-label="Next slide"></div>
 <div class="swiper-button-prev swiper-button-white" role="button" aria-label="Previous slide"></div>
 
-<div class="swiper-wrapper" id="add_pets_profile"></div>
 
 </div>
 </div>
@@ -114,6 +113,7 @@ $('.owl-carousel').owlCarousel({
 </script>-->
 <script src="js/swiper.js.download"></script>
 <script src="js/main.js.download"></script>
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
 $.ajax({
@@ -127,11 +127,35 @@ $.ajax({
 		 	if(data['success'])
 			{
 		 		$('#add_pets_profile').html(data['success']);
+				
+				//setTimeout(function(){				
+								
+				var swiperBack2=new Swiper('.header-swiper-back-2',{slidesPerView:'auto',centeredSlides:true,spaceBetween:100,onlyExternal:true,effect:'coverflow',direction:'vertical',speed:600,coverflowEffect:{slideShadows:false}});
+				var swiperBack1=new Swiper('.header-swiper-back-1',{slidesPerView:'auto',centeredSlides:true,spaceBetween:300,effect:'coverflow',speed:600,coverflowEffect:{slideShadows:false}});
+				var swiperFront=new Swiper('.header-swiper-front',{slidesPerView:'auto',centeredSlides:true,spaceBetween:100,effect:'coverflow',speed:600,coverflowEffect:{slideShadows:false},pagination:{el:'.header-swiper-front .swiper-pagination',clickable:true,},navigation:{nextEl:'.header-swiper-front .swiper-button-next',prevEl:'.header-swiper-front .swiper-button-prev',},controller:{control:[swiperBack1,swiperBack2],by:'container',},keyboard:true,a11y:true,on:{slideChange:function(){var s=this;if(s.activeIndex===$('.swiper-slide-gallery').index()){$(s.el).find('.swiper-pagination').hide();}
+else{$(s.el).find('.swiper-pagination').show();}}}});
+var galleryTopSwiper=new Swiper('.swiper-gallery-top',{slidesPerView:1,spaceBetween:10,nested:true,resistanceRatio:0,preloadImages:false,lazy:true,});
+var galleryThumbsSwiper=new Swiper('.swiper-gallery-thumbs',{slidesPerView:5,spaceBetween:10,centeredSlides:true,touchRatio:0.2,slideToClickedSlide:true,nested:true,resistanceRatio:0,});galleryTopSwiper.controller.control=galleryThumbsSwiper;galleryThumbsSwiper.controller.control=galleryTopSwiper;
+				//},2000);
+				 
+				
 			}else{
 				//window.location = 'no_results.html';	
 			}
 	   }
 });
 </script>
+<script type="text/javascript">
+$(function() {
+  $("#test").swipe( {
+    
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+      alert("You swiped " + direction );  
+    }
+  });
+
+});
+</script>
+
 </body>
 </html>
