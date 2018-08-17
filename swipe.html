@@ -140,7 +140,7 @@ var galleryThumbsSwiper=new Swiper('.swiper-gallery-thumbs',{slidesPerView:5,spa
 				 
 				
 			}else{
-				//window.location = 'no_results.html';	
+				window.location = 'no_results.html';	
 			}
 	   }
 });
@@ -150,7 +150,9 @@ $(function() {
   $(".profile-swipes").swipe( {
     
     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      alert("You swiped " + direction );  
+      //alert("You swiped " + direction ); 
+	  
+	   
     }
   });
 
