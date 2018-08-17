@@ -137,6 +137,17 @@ else{$(s.el).find('.swiper-pagination').show();}}}});
 var galleryTopSwiper=new Swiper('.swiper-gallery-top',{slidesPerView:1,spaceBetween:10,nested:true,resistanceRatio:0,preloadImages:false,lazy:true,});
 var galleryThumbsSwiper=new Swiper('.swiper-gallery-thumbs',{slidesPerView:5,spaceBetween:10,centeredSlides:true,touchRatio:0.2,slideToClickedSlide:true,nested:true,resistanceRatio:0,});galleryTopSwiper.controller.control=galleryThumbsSwiper;galleryThumbsSwiper.controller.control=galleryTopSwiper;
 				//},2000);
+				
+				
+				$(".profile-swipes").swipe( {
+    
+				swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+				  //alert("You swiped " + direction ); 
+				 var prof_id =  $('.swiper-slide-active').attr("data-id");
+				 //alert(prof_id);
+				   
+				}
+			  });
 				 
 				
 			}else{
@@ -145,20 +156,19 @@ var galleryThumbsSwiper=new Swiper('.swiper-gallery-thumbs',{slidesPerView:5,spa
 	   }
 });
 </script>
-<script type="text/javascript">
-$(function() {
+<script type="text/javascrip/*$(function() {
   $(".profile-swipes").swipe( {
     
     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
       //alert("You swiped " + direction ); 
-	 var prof_id =  $('.swiper-slide-active').attr("data-profileid");
-	 alert(prof_id);
+	 var prof_id =  $('.swiper-slide-active').attr("data-id");
+	 //alert(prof_id);
 	   
     }
   });
 
-});
-</script>
+});*/t">
 
+</script>
 </body>
 </html>
