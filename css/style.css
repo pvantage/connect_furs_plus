@@ -952,3 +952,12 @@ body {
     top: 0;
     text-align: center;
 }
+
+.profilesl{
+background-position:top center;
+background-size:cover;	
+}
+
+.profilesl-thumb{ text-align:right;}
+
+.profilesl-thumb img{ width:50px;}
