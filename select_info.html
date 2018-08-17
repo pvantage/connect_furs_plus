@@ -27,13 +27,13 @@
     <div class="select-info-grid" id="select_pet_info">
       <table class="table">
         <tr>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel(null, 'modal_temperament')"><img src="images/img01.jpg" alt="">
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_temperament')"><img src="images/img01.jpg" alt="">
             <div class="select-info-box">
               <h2>Animal Temperament</h2>
             </div>
             </a>            
 		</td>
-       <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_temperament', 'modal_breeding')"><img src="images/img06.jpg" alt="">
+       <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_breeding')"><img src="images/img06.jpg" alt="">
             <div class="select-info-box">
               <h2>Playdate / Breeding</h2>
             </div>
@@ -43,13 +43,13 @@
 			</td>
         </tr>
         <tr>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_breeding', 'modal_gender')"><img src="images/img02.jpg" alt="">
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_gender')"><img src="images/img02.jpg" alt="">
             <div class="select-info-box">
               <h2>Select Gender</h2>
             </div>
             </a>
             </td>
-          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_gender', 'modal_animal')"><img src="images/img04.jpg" alt="">
+          <td><a href="javascript:void(0);" class="select-img-box myBtn_multi" onClick="shownextModel('modal_animal')"><img src="images/img04.jpg" alt="">
             <div class="select-info-box">
               <h2>Animal Type</h2>
             </div>
@@ -70,8 +70,7 @@
                 <h3>Animal Temperament</h3>
                 <select name="temperament" id="temperament">
                   <option value="">Please select</option>
-                </select>
-					  	<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_temperament', 'modal_breeding')"><img src="images/right-arrow.png"/></a></div>
+                </select>					  	
               </div>
 			  </div>
 		
@@ -141,7 +140,7 @@
                   </select>
                 </div>
                 <!-- <button class="button-submit btn">Save</button>--> 
-					<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_breeding', 'modal_gender')"><img src="images/right-arrow.png"/></a></div>
+					<div class="slidearrow" id="modal_temperament_next"><a href="javascript:void(0);" onClick="showNext();"><img src="images/right-arrow.png"/></a></div>
               </div>
             </div>
             
@@ -167,7 +166,7 @@
                   <!--<button class="button-submit btn">Save</button>--> 
                 </div>
 				
-					<div class="slidearrow"><a href="javascript:void(0);" onClick="shownextModel('modal_gender', 'modal_animal')"><img src="images/right-arrow.png"/></a></div>
+					<div class="slidearrow" id="btn_next_gender"><a href="javascript:void(0);" onClick="showFixed();"><img src="images/right-arrow.png"/></a></div>
               </div>
             </div>        
             
@@ -188,7 +187,7 @@
                   	<option value="">Please select</option>
                   </select>
                 </div>
-					<!--<div class="slidearrow"><a href="#" ><img src="images/right-arrow.png"/></a></div>-->
+					<div class="slidearrow" id="breed_next"><a href="javascript:void(0);" onClick="showbreed();"><img src="images/right-arrow.png"/></a></div>
               </div>
             </div>
 </div>
@@ -263,6 +262,7 @@ $(document).ready(function(e) {
 			if(data['success'])
 			{
 				$('select[name="breed"]').html(data['success']);
+				$('#breed_next').hide();
 				$("#breed").show();
 				$("#type").hide();
 				
@@ -320,28 +320,111 @@ $(document).ready(function(e) {
 		
 		if($(this).val() != '')
 		{
+			$('#modal_temperament_next').hide();
 			$('#choose0').hide();
 			$('#choose1').hide();
 			$('#choose2').hide();
 			$('#choose3').hide();
 			$('#choose4').show();
+			
 		}else{
 			$('#choose4').hide();
+			$('#modal_temperament_next').show();
 		}		
   }); 
   
   $('select[name="gender"]').on('change', function(){
 		
-		if($(this).val() == 'female')
+		if($('select[name="gender"]') == 'female')
 		{
 			$('#choose5').hide();			
 			$('#choose6').show();
+			$('#btn_next_gender').hide();
 		}else{
 			$('#choose6').hide();
+			$('#btn_next_gender').show();
 		}		
   });
   
 });
+
+function showFixed(){
+	if($('#gender').val() == 'female')
+	{
+		$('#choose5').hide();			
+		$('#choose6').show();
+		$('#btn_next_gender').hide();	
+	}
+}
+
+function showbreed(){
+	
+	if($('#animal_type').val() != '')
+	{
+		$('#breed_next').hide();
+		$('#type').hide();
+		$('#breed').show();
+	}else{
+		$('#breed_next').show();	
+	}
+}
+
+
+function showNext(){
+	var choose0 = $('#choose0').css("display");
+	var reason = $('#reason').val();
+	
+	if(choose0 == 'block' && reason == 'breed')
+	{
+		$('#choose0').css("display", "none");	
+		$('#choose1').show();
+		$('#choose2').css("display", "none");
+		$('#choose3').css("display", "none");
+		$('#choose4').css("display", "none");
+	}
+	
+	var choose1 = $('#choose1').css("display");
+	var cpapered = $('#cpapered').val();
+	
+	if(choose1 == 'block' && cpapered == 'papered')
+	{
+		$('#choose0').css("display", "none");
+		$('#choose1').css("display", "none");		
+		$('#choose2').show();
+		$('#choose3').css("display", "none");
+		$('#choose4').css("display", "none");
+	}
+	
+	var choose2 = $('#choose2').css("display");
+	var pet_breed_previously = $('#pet_breed_previously').val();
+	
+	if(choose2 == 'block' && pet_breed_previously == 'yes')
+	{
+		$('#choose0').css("display", "none");
+		$('#choose1').css("display", "none");
+		$('#choose2').css("display", "none");
+		$('#choose3').show();
+		$('#choose4').css("display", "none");
+	}
+	
+	
+	var choose3 = $('#choose3').css("display");
+	var how_many_times = $('#how_many_times').val();
+	
+	
+	if(choose3 == 'block' && how_many_times != '')
+	{
+		$('#choose0').css("display", "none");
+		$('#choose1').css("display", "none");
+		$('#choose2').css("display", "none");
+		$('#choose3').css("display", "none");
+		$('#choose4').css("display", "block");
+		$('#modal_temperament_next').hide();
+	}else{		
+		$('#modal_temperament_next').show();
+	}
+}
+
 
 </script> 
 <script type="text/javascript">
@@ -350,29 +433,35 @@ getTemperament('temperament', customer_id);
 getCategory('animal_type', customer_id);
 </script> 
 <script type="text/javascript">
-function shownextModel(hide, show){
-	
-	if(hide != null){
-	  $('#'+ hide).modal('hide');
-	}
+function shownextModel(show){	
 	
 	if(show == 'modal_breeding')
-	{
+	{	
+		$('#modal_temperament_next').show();	
 		$('#choose0').show();
-		$("#reason").prop('selectedIndex',0);				
-		$('#choose1').hide();
+		//$("#reason").prop('selectedIndex',0);	
+		$('#choose1').css("display", "none");
+		$('#choose2').css("display", "none");
+		$('#choose3').css("display", "none");
+		$('#choose4').css("display", "none");
+					
+		/*$('#choose1').hide();
 		$('#choose2').hide();
 		$('#choose3').hide();
-		$('#choose4').hide();	
+		$('#choose4').hide();*/	
+		
+		
 	}else if(show == 'modal_gender')
 	{
 		$('#choose5').show();
-		$("#gender").prop('selectedIndex',0);		
-		$('#choose6').hide();		
+		//$("#gender").prop('selectedIndex',0);		
+		$('#choose6').hide();
+		$('#btn_next_gender').show();		
 	}else if(show == 'modal_animal')
 	{
+		$('#breed_next').show();
 		$('#type').show();
-		$("#animal_type").prop('selectedIndex',0);
+		//$("#animal_type").prop('selectedIndex',0);
 		$('#breed').hide();
 	}
 	
