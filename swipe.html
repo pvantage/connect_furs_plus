@@ -85,9 +85,14 @@ $.ajax({
 				 var current_html_block =  $(this).attr("data-currentid");
 				 var next_html_block =  $(this).attr("data-nextid");
 				 
-				 $('#'+ next_html_block).show();
-				 $('#'+ current_html_block).remove();
-				   
+				 if(next_html_block != '')
+				 {
+				 	$('#'+ next_html_block).show();
+				 	$('#'+ current_html_block).remove();
+				 }else{
+					alert('You have no more records.'); 
+				 }
+				 
 				}
 			  });
 				
