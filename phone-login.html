@@ -75,11 +75,13 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <body>
 <div class="full-height center">
     <div class="container phloginecontainer">
+    
+    <form>
         <div class="phone-login" id="mobile_no_container">
             <h3>Enter your mobile number</h3>
             <div class="phone-login-field">
                 <div class="countryflag"><img src="images/flag1.png" alt=""></div>
-                <input type="number" maxlength="12" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="+1">
+                <input type="text" maxlength="12" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="+1">
             </div>
             <button type="button" class="btn btn-block btn-danger" onClick="loginNow();">NEXT</button>
         </div>
@@ -92,6 +94,9 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
             </div>
             <button type="button" class="btn btn-block btn-danger" onClick="validateOtp();">Submit</button>
         </div>
+        </form>
+        
+        
     </div>
 </div>
 <div class="loadermain" id="loadingImg"></div>
