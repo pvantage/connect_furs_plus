@@ -357,11 +357,18 @@ margin:20px 0;
 .login-slider .owl-stage-outer,
 .breed-slider .owl-stage-outer
 {
-border-top:2px solid #e33125;
-border-bottom:2px solid #e33125;
+border:2px solid #e33125;
 	
 }
-
+#report_user .modal-content  { float: left; width:100%;}
+.backbtn {
+  color: red;
+  float: right;
+  font-size: 15px;
+  font-style: italic !important;
+  margin-right: 16px;
+  text-decoration: underline;
+}
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span{
 background:#e33125;	
 }
