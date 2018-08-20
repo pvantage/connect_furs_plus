@@ -98,11 +98,27 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         
         
     </div>
+    
+    
+  <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
+              <div class="modal-content">               
+                <div id="common_popup">
+                  
+                </div>
+                
+                 <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
+                 
+              </div>
+        </div>  
+    
+    
+    
 </div>
 <div class="loadermain" id="loadingImg"></div>
 </body>
 <script type="text/javascript">
 function validateOtp(){
+	$('.modal').modal('hide');
 	var customer_mob = $('#customer_mob').val();
 	var customer_otp = $('#customer_otp').val();
 	var action_url = siteurl + 'account/login/otp';	
@@ -135,7 +151,10 @@ function validateOtp(){
 		if(data['error'])
 		{
 			$('#customer_otp').addClass('req');
-			alert(data['error']['otp']);
+			
+			$('#common_popup').html(data['error']['otp']);
+			$('#modal_error').modal('show');
+			//alert(data['error']['otp']);
 		}
 	 }
    });

@@ -19,7 +19,7 @@ header.profilebanner {
 }
 .pet-dtl {
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     background: rgba(0,0,0,0.5);
 	padding-top:10px;
 }

@@ -24,27 +24,24 @@ checkLogin();
 <body class="bottom-links-bar profile-swipes">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"> 
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="javascript:void(0);">Home <span class="sr-only">Profile</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0);">Setting</a>
-     </li>
-	   <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a>
-     </li>
-    </ul>
-  </div>
+<img src="images/menu-logo.png"/>
 </nav>
+
+
 <div class="container">
 <div id="add_pets_profile"></div>
 
+
+<div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
+              <div class="modal-content">               
+                <div id="common_popup">
+                  
+                </div>
+                
+                 <button class="ok_onfirm_btn" data-dismiss="modal">X</button>
+                 
+              </div>
+        </div>
 </div>
 
 <div class="bottom-fixed-bar">
@@ -81,6 +78,8 @@ $.ajax({
 				 var current_html_block =  $(this).attr("data-currentid");
 				 var next_html_block =  $(this).attr("data-nextid");
 				 
+				  $('.modal').modal('hide');
+				 
 				 if(direction == 'right')
 				 {
 					 if(next_html_block != '')
@@ -88,7 +87,9 @@ $.ajax({
 						$('#'+ next_html_block).show();
 						$('#'+ current_html_block).remove();
 					 }else{
-						alert('You have no more records.'); 
+						//alert('You have no more records.'); 
+						$('#common_popup').html('You have no more records.');
+						 $('#modal_common').modal('show');
 					 }
 				 }else if(direction == 'left')
 				 {
@@ -97,7 +98,9 @@ $.ajax({
 						$('#'+ next_html_block).show();
 						$('#'+ current_html_block).remove();
 					 }else{
-						alert('You have no more records.'); 
+						 
+						 $('#common_popup').html('You have no more records.');
+						 $('#modal_common').modal('show');						
 					 }				 
 				 }
 				}
@@ -115,18 +118,6 @@ function changeThumb(div_container_id, img_ur){
 	$('#' + div_container_id).css('background-image','url('+img_ur +')');
 }
 
-</script>
-<script type="text/javascript">
-/*$(function() {
-  $("#add_pets_profile").swipe({
-    
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {     
-	 var prof_id =  $('.profilesl').attr("data-currentid");
-	 alert(prof_id);	   
-    }
-  });
-
-});*/
 </script>
 </body>
 </html>

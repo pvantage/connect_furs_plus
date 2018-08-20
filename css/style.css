@@ -559,7 +559,7 @@ font-size:30px;
 { color:#000;}
 
 .breedInfo table.table td{  font-weight:600; background-color:#f3f3f3;}
-.breedSharebtn { padding-bottom:0px; width:100%; float:left; bottom:0; position:absolute;}
+.breedSharebtn { padding-bottom:0px; width:100%; float:left; }
 .breedSharebtn .btn{ font-size:14px;}
 
 .uploadbtns .btn{ font-size:14px; padding-left:8px; padding-right:8px;}
@@ -873,6 +873,18 @@ label small{ font-size:8px;}
 }
 .navmainsection img {
     margin-left: 10px;
+}
+.model_center_pop_up {
+  top: 18%;
+}
+.model_center_pop_up .ok_onfirm_btn {
+  background: red none repeat scroll 0 0;
+  border: medium none;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 10px;
+  padding: 5px;
+  width: 100%;
 }
 @media (max-width: 767.98px) {
   .chat-application .chat-app-window {

@@ -153,14 +153,16 @@
     </div>
 </div>
 
-<div class="modal fade modelcommon" id="modal_common" role="dialog">
-              <div class="modal-content">
-                <button class="close close_multi" data-dismiss="modal">X</button>                
+<div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
+              <div class="modal-content">               
                 <div id="common_popup">
                   
-                </div> 
-  </div>
-</div>
+                </div>
+                
+                 <button class="ok_onfirm_btn" data-dismiss="modal">X</button>
+                 
+              </div>
+        </div> 
             
 <div class="loadermain" id="loadingImg"></div>
 
@@ -582,6 +584,23 @@ $.ajax({
 			{
 				$('#pet_image_src').attr('src', data['success']['image']);
 				$('input[name="pet_image"]').val(data['success']['image_name']);	
+			}
+			
+			if(data['success']['img_1'])
+			{
+				$('#src_pet_image_1').attr('src', data['success']['img_1']);				
+			}
+			if(data['success']['img_2'])
+			{
+				$('#src_pet_image_2').attr('src', data['success']['img_2']);				
+			}
+			if(data['success']['img_3'])
+			{
+				$('#src_pet_image_3').attr('src', data['success']['img_3']);				
+			}
+			if(data['success']['img_4'])
+			{
+				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
 			}
 	   }
    });

@@ -125,14 +125,30 @@
             </div>
             <button type="button" class="btn btn-danger btn-block" onClick="addProfileinfo();">SUBMIT</button>        
     </div>
+    
+    
+   <div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
+              <div class="modal-content">               
+                <div id="common_popup">
+                  
+                </div>
+                
+                 <button class="ok_onfirm_btn" data-dismiss="modal">X</button>
+                 
+              </div>
+        </div> 
+    
+    
+    
+    
 </div>
 
-<div class="loadermain" id="loadingImg">
+<div class="loadermain" id="loadingImg"></div>
 
 <script type="text/javascript">
   function getImage(){
            navigator.camera.getPicture(uploadPhoto, function(message){
-			alert('get picture failed');
+			//alert('get picture failed');
 		},{
 			quality:50,
 			correctOrientation: true,
@@ -165,6 +181,7 @@ function uploadPhoto(imageURI) {
  
 function win(r){
 	$("#loadingImg").fadeOut();
+	$('.modal').modal('hide');
 	var resturn_data_1 = jQuery.parseJSON(r.response);
 	
 	if(resturn_data_1.success)
@@ -174,20 +191,26 @@ function win(r){
 		$('.error_msg').hide();
 	}else if(resturn_data_1.error)
 	{
-		alert(resturn_data_1.error);
+		//alert(resturn_data_1.error);
+		$('#common_popup').html(resturn_data_1.error);
+		$('#modal_common').modal('show');
 	}
 }
  
 function fail(error){
    $("#loadingImg").fadeOut();
-	alert('Opps, something wrong.');
+	//alert('Opps, something wrong.');
+	$('.modal').modal('hide');
+	$('#common_popup').html('Opps, something wrong.');
+	$('#modal_common').modal('show');
+	
 }
 </script>
 
 <script type="text/javascript">
 function getImage1(){
 	   navigator.camera.getPicture(uploadPhoto1, function(message){
-		alert('get picture failed');
+		//alert('get picture failed');
 	},{
 		quality:50,
 		correctOrientation: true,
@@ -228,14 +251,16 @@ function win1(r){
 		$("#src_pet_image_1").attr('src', resturn_data_1.success);
 	}else if(resturn_data_1.error)
 	{
-		alert(resturn_data_1.error);
+		//alert(resturn_data_1.error);
+		$('#common_popup').html(resturn_data_1.error);
+		$('#modal_common').modal('show');
 	}
  }
 </script>
 <script type="text/javascript">
   function getImage2(){
            navigator.camera.getPicture(uploadPhoto2, function(message){
-			alert('get picture failed');
+			//alert('get picture failed');
 		},{
 			quality:50,
 			correctOrientation: true,
@@ -275,7 +300,9 @@ function win1(r){
 				$("#src_pet_image_2").attr('src', resturn_data_1.success);				
 			}else if(resturn_data_1.error)
 			{								
-				alert(resturn_data_1.error);
+				//alert(resturn_data_1.error);
+				$('#common_popup').html(resturn_data_1.error);
+				$('#modal_common').modal('show');
 			}            
         }        
 </script>
@@ -283,7 +310,7 @@ function win1(r){
 <script type="text/javascript">
   function getImage3() {	             
            navigator.camera.getPicture(uploadPhoto3, function(message) {						
-			alert('get picture failed');			
+			//alert('get picture failed');			
 		},{
 			quality: 50, 
 			correctOrientation: true,
@@ -328,7 +355,9 @@ function win1(r){
 				$("#src_pet_image_3").attr('src', resturn_data_1.success);				
 			}else if(resturn_data_1.error)
 			{								
-				alert(resturn_data_1.error);
+				//alert(resturn_data_1.error);
+				$('#common_popup').html(resturn_data_1.error);
+				$('#modal_common').modal('show');
 			}            
         }        
 </script>
@@ -337,7 +366,7 @@ function win1(r){
 <script type="text/javascript">
   function getImage4() {	             
            navigator.camera.getPicture(uploadPhoto4, function(message) {						
-			alert('get picture failed');			
+			//alert('get picture failed');			
 		},{
 			quality: 50, 
 			correctOrientation: true,
@@ -382,7 +411,10 @@ function uploadPhoto4(imageURI){
 				$("#src_pet_image_4").attr('src', resturn_data_1.success);				
 			}else if(resturn_data_1.error)
 			{								
-				alert(resturn_data_1.error);
+				//alert(resturn_data_1.error);
+				
+				$('#common_popup').html(resturn_data_1.error);
+				$('#modal_common').modal('show');
 			}            
         }        
 </script>
