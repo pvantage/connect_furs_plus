@@ -28,7 +28,7 @@ function onError(error){
 
 function checkdeviceLogin(){
 	
-	$("#loadingImg").fadeIn();
+	//$("#loadingImg").fadeIn();
 
 	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 		
@@ -57,7 +57,7 @@ function checkdeviceLogin(){
 			   });
 				
 			}
-				$("#loadingImg").fadeOut();
+				//$("#loadingImg").fadeOut();
 			}, 3000);
 	}else{
 		alert('Please enable your location settings.');
@@ -74,7 +74,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 </head>
 <body>
 <div class="full-height center">
-    <div class="container">
+    <div class="container phloginecontainer">
         <div class="phone-login" id="mobile_no_container">
             <h3>Enter your mobile number</h3>
             <div class="phone-login-field">
@@ -94,7 +94,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         </div>
     </div>
 </div>
-<div class="loadermain" id="loadingImg">
+<div class="loadermain" id="loadingImg"></div>
 </body>
 <script type="text/javascript">
 function validateOtp(){

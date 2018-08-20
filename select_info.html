@@ -72,39 +72,71 @@
                   <option value="">Please select</option>
                 </select>					  	
               </div>
-			  </div>
-		
+			  </div>		
             </div>
   <!-- -->
+  
+  
+  
   
   <div class="modal fade modelcommon" id="modal_breeding" role="dialog">
               <div class="modal-content">
                 <button class="close close_multi" data-dismiss="modal">X</button>
-                <div id="choose0" style="display:block">
+                <div id="choose0">
                   <h3>Reason for visiting us today </h3>
                   <select id="reason" name="reason">
                   	<option value="">Please select</option>
                     <option value="play">Playdate</option>
                     <option value="breed">Breeding</option>
                   </select>
-                </div>
-                <div id="choose1"  style="display:none">
+                </div>              
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="showNext('modal_choose1');"><img src="images/right-arrow.png"/></a></div>
+              </div>
+            </div>
+  
+  
+  
+  
+  <div class="modal fade modelcommon" id="modal_choose1" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>                
+                <div id="choose1">
                   <h3>Choose: </h3>
                   <select id="cpapered" name="cpapered">
                     <option value="">select</option>                    
                     <option value="nonpapered">Non Papered</option>
                     <option value="papered">Papered</option>
                   </select>
-                </div>
-                <div id="choose2"  style="display:none">
+                </div>                
+              
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="showNext('modal_choose2');"><img src="images/right-arrow.png"/></a></div>
+              </div>
+            </div>
+            
+         <!--  -->
+         <div class="modal fade modelcommon" id="modal_choose2" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>              
+                
+                <div id="choose2">
                   <h3>Is the pet previously bred? </h3>
                   <select id="pet_breed_previously" name="pet_breed_previously">
                     <option value="">Please select</option>                    
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
                   </select>
-                </div>
-                <div id="choose3"  style="display:none">
+                </div>               
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="showNext('modal_choose3');"><img src="images/right-arrow.png"/></a></div>
+              </div>
+            </div>
+            
+            <!-- -->  
+            
+            
+            <div class="modal fade modelcommon" id="modal_choose3" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>
+                <div id="choose3">
                   <h3>How many times ? </h3>
                   <select id="how_many_times" name="how_many_times">
                     <option value="">Please select</option>
@@ -129,8 +161,17 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                   </select>
-                </div>
-                <div id="choose4"  style="display:none">
+                </div>             
+               
+					<div class="slidearrow"><a href="javascript:void(0);" onClick="showNext('modal_choose4');"><img src="images/right-arrow.png"/></a></div>
+              </div>
+            </div>
+            
+            
+            <div class="modal fade modelcommon" id="modal_choose4" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button> 
+                <div id="choose4">
                   <h3>Heat cycles </h3>
                   <select id="heat_cycle" name="heat_cycle">
                     <option value="">Please select</option>
@@ -139,10 +180,11 @@
                     <option value="3">July to Aug</option>
                   </select>
                 </div>
-                <!-- <button class="button-submit btn">Save</button>--> 
-					<div class="slidearrow" id="modal_temperament_next"><a href="javascript:void(0);" onClick="showNext();"><img src="images/right-arrow.png"/></a></div>
               </div>
             </div>
+            
+    <!-- end of all breeding --> 
+            
             
             
     <div class="modal fade modelcommon" id="modal_gender" role="dialog">
@@ -156,19 +198,25 @@
                     <option value="female">Female</option>
                   </select>
                 </div>
-                <div id="choose6"  style="display:none">
+				
+			<div class="slidearrow"><a href="javascript:void(0);" onClick="showNext('modal_choose6');"><img src="images/right-arrow.png"/></a></div>
+              </div>
+            </div> 
+            
+            
+        <div class="modal fade modelcommon" id="modal_choose6" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>                
+                <div id="choose6">
                   <h3>Select Fixed/Non fixed</h3>
                   <select id="fixnonfix" name="fixnonfix">
                   	<option value="">--Please select --</option>
                     <option value="nonfixed">Non fixed</option>
                     <option value="fixed">Fixed</option>
-                  </select>
-                  <!--<button class="button-submit btn">Save</button>--> 
+                  </select>                  
                 </div>
-				
-					<div class="slidearrow" id="btn_next_gender"><a href="javascript:void(0);" onClick="showFixed();"><img src="images/right-arrow.png"/></a></div>
               </div>
-            </div>        
+            </div>       
             
   
   
@@ -190,10 +238,22 @@
 					<div class="slidearrow" id="breed_next"><a href="javascript:void(0);" onClick="showbreed();"><img src="images/right-arrow.png"/></a></div>
               </div>
             </div>
+            
+        <div class="modal fade modelcommon" id="modal_error" role="dialog">
+              <div class="modal-content">
+                <button class="close close_multi" data-dismiss="modal">X</button>
+                <div id="error_msg">
+                  
+                </div>
+              </div>
+            </div>    
+            
+            
 </div>
 <script type="text/javascript">
 
 function proceedProfile(){
+	$('.modal').modal('hide');
 	var cust_id = localStorage.getItem('cust_id');
 	var temperament = $('#temperament').val();
 	var reason = $('#reason').val();
@@ -234,7 +294,8 @@ function proceedProfile(){
 			 
 			 error_msg += '</p>';
 			 
-			 $('#select_pet_info').after(error_msg);
+			 $('#error_msg').after(error_msg);
+			 $('#modal_error').modal('show');
 		 }		 
 		 
 	   	if(data['success'])
@@ -275,87 +336,107 @@ $(document).ready(function(e) {
   });
   
   $('select[name="animal_type"]').trigger('change');
-  // Reason 
   
   
+$('select[name="breed"]').on('change', function(){
+	
+	if($(this).val() != '')
+	{
+		$('#modal_animal').modal('hide');
+	}
+});
+  
+$('select[name="temperament"]').on('change', function(){
+	
+	if($(this).val() != '')
+	{
+		$('#modal_temperament').modal('hide');	
+	}
+});
+
+$('select[name="fixnonfix"]').on('change', function(){
+	
+	if($(this).val() != '')
+	{
+		$('#modal_choose6').modal('hide');	
+	}
+});
+
+
+  
+  // Reason   
   $('select[name="reason"]').on('change', function(){
 		
 		if($(this).val() == 'breed')
 		{
-			$('#choose0').hide();
-			$('#choose1').show();
+			$('#modal_breeding').modal('hide');
+			$('#modal_choose1').modal('show');
 		}else{
-			$('#choose1').hide();
+			$('#modal_breeding').modal('hide');
+			$('#modal_choose1').modal('hide');
 		}		
   });
   
-  $('select[name="reason"]').trigger('change');
+  //$('select[name="reason"]').trigger('change');
   
   $('select[name="cpapered"]').on('change', function(){
 		
 		if($(this).val() == 'papered')
 		{
-			$('#choose0').hide();
-			$('#choose1').hide();
-			$('#choose2').show();
-		}else{
-			$('#choose2').hide();
+			$('#modal_choose1').modal('hide');			
+			$('#modal_choose2').modal('show');
+		}else if($(this).val() != ''){
+			$('#modal_choose1').modal('hide');
+			$('#modal_choose2').modal('hide');
 		}		
   });
   
   $('select[name="pet_breed_previously"]').on('change', function(){
 		
 		if($(this).val() == 'yes')
-		{
-			$('#choose0').hide();
-			$('#choose1').hide();
-			$('#choose2').hide();
-			$('#choose3').show();
-		}else{
-			$('#choose3').hide();
+		{			
+			$('#modal_choose2').modal('hide');
+			$('#modal_choose3').modal('show');
+		}else if($(this).val() != ''){
+			$('#modal_choose2').modal('hide');
+			$('#modal_choose3').modal('hide');
 		}		
   });
   
   $('select[name="how_many_times"]').on('change', function(){
 		
 		if($(this).val() != '')
-		{
-			$('#modal_temperament_next').hide();
-			$('#choose0').hide();
-			$('#choose1').hide();
-			$('#choose2').hide();
-			$('#choose3').hide();
-			$('#choose4').show();
+		{	
+			$('#modal_choose3').modal('hide');
+			$('#modal_choose4').modal('show');
 			
 		}else{
-			$('#choose4').hide();
-			$('#modal_temperament_next').show();
+			$('#modal_choose4').modal('hide');			
 		}		
-  }); 
+  });
+  
+  $('select[name="heat_cycle"]').on('change', function(){
+		
+		if($(this).val() != '')
+		{	
+			$('#modal_choose4').modal('hide');			
+		}		
+  });  
   
   $('select[name="gender"]').on('change', function(){
 		
-		if($('select[name="gender"]') == 'female')
+		if($(this).val() == 'female')
 		{
-			$('#choose5').hide();			
-			$('#choose6').show();
-			$('#btn_next_gender').hide();
-		}else{
-			$('#choose6').hide();
-			$('#btn_next_gender').show();
+			$('#modal_gender').modal('hide');			
+			$('#modal_choose6').modal('show');
+			
+		}else if($(this).val() == 'male'){
+			$('#modal_gender').modal('hide');			
+			$('#modal_choose6').modal('hide');			
 		}		
   });
   
 });
-
-function showFixed(){
-	if($('#gender').val() == 'female')
-	{
-		$('#choose5').hide();			
-		$('#choose6').show();
-		$('#btn_next_gender').hide();	
-	}
-}
 
 function showbreed(){
 	
@@ -370,58 +451,47 @@ function showbreed(){
 }
 
 
-function showNext(){
-	var choose0 = $('#choose0').css("display");
-	var reason = $('#reason').val();
+function showNext(model_container){
 	
-	if(choose0 == 'block' && reason == 'breed')
+	if(model_container == 'modal_choose1')
 	{
-		$('#choose0').css("display", "none");	
-		$('#choose1').show();
-		$('#choose2').css("display", "none");
-		$('#choose3').css("display", "none");
-		$('#choose4').css("display", "none");
-	}
-	
-	var choose1 = $('#choose1').css("display");
-	var cpapered = $('#cpapered').val();
-	
-	if(choose1 == 'block' && cpapered == 'papered')
+		if($('#reason').val() == 'breed')
+		{
+			$('.modal').modal('hide');
+			$('#'+model_container).modal('show');
+		}
+	}else if(model_container == 'modal_choose6')
 	{
-		$('#choose0').css("display", "none");
-		$('#choose1').css("display", "none");		
-		$('#choose2').show();
-		$('#choose3').css("display", "none");
-		$('#choose4').css("display", "none");
-	}
-	
-	var choose2 = $('#choose2').css("display");
-	var pet_breed_previously = $('#pet_breed_previously').val();
-	
-	if(choose2 == 'block' && pet_breed_previously == 'yes')
+		if($('#gender').val() == 'female')
+		{
+			$('.modal').modal('hide');
+			$('#'+model_container).modal('show');
+		}//
+	}else if(model_container == 'modal_choose2')
 	{
-		$('#choose0').css("display", "none");
-		$('#choose1').css("display", "none");
-		$('#choose2').css("display", "none");
-		$('#choose3').show();
-		$('#choose4').css("display", "none");
-	}
-	
-	
-	var choose3 = $('#choose3').css("display");
-	var how_many_times = $('#how_many_times').val();
-	
-	
-	if(choose3 == 'block' && how_many_times != '')
+		if($('#cpapered').val() == 'papered')
+		{
+			$('.modal').modal('hide');
+			$('#'+model_container).modal('show');
+		}
+	}else if(model_container == 'modal_choose3')
 	{
-		$('#choose0').css("display", "none");
-		$('#choose1').css("display", "none");
-		$('#choose2').css("display", "none");
-		$('#choose3').css("display", "none");
-		$('#choose4').css("display", "block");
-		$('#modal_temperament_next').hide();
-	}else{		
-		$('#modal_temperament_next').show();
+		if($('#pet_breed_previously').val() == 'yes')
+		{
+			$('.modal').modal('hide');
+			$('#'+model_container).modal('show');
+		}
+	}else if(model_container == 'modal_choose4')
+	{
+		if($('#how_many_times').val() != '')
+		{
+			$('.modal').modal('hide');
+			$('#'+model_container).modal('show');
+		}
+	}else{
+		
+		$('.modal').modal('hide');
+		$('#'+model_container).modal('show');
 	}
 }
 
@@ -435,29 +505,7 @@ getCategory('animal_type', customer_id);
 <script type="text/javascript">
 function shownextModel(show){	
 	
-	if(show == 'modal_breeding')
-	{	
-		$('#modal_temperament_next').show();	
-		$('#choose0').show();
-		//$("#reason").prop('selectedIndex',0);	
-		$('#choose1').css("display", "none");
-		$('#choose2').css("display", "none");
-		$('#choose3').css("display", "none");
-		$('#choose4').css("display", "none");
-					
-		/*$('#choose1').hide();
-		$('#choose2').hide();
-		$('#choose3').hide();
-		$('#choose4').hide();*/	
-		
-		
-	}else if(show == 'modal_gender')
-	{
-		$('#choose5').show();
-		//$("#gender").prop('selectedIndex',0);		
-		$('#choose6').hide();
-		$('#btn_next_gender').show();		
-	}else if(show == 'modal_animal')
+	if(show == 'modal_animal')
 	{
 		$('#breed_next').show();
 		$('#type').show();
