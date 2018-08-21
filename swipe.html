@@ -33,6 +33,73 @@ checkLogin();
                  <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
               </div>
         </div>
+   
+   
+ <div id="report_user" class="modal fade" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="info-background"><img src="images/info_icon.png"></div>      
+        <h2 class="modal-title2">Report User</h2>
+      </div>
+      <div class="modal-body">
+      <input type="hidden" name="report_prof_id" id="report_prof_id">
+        <ul>
+         <li><a href="javascript:void(0);" onClick="report('photo');"><img src="images/photo.png"><span> Inapproprite Photos</span></a></li>
+         <li><a href="javascript:void(0);" onClick="report('spam');"><img src="images/spam.png"><span> Feels like Spam</span></a></li>
+         <li><a href="javascript:void(0);" onClick="showModal('report_other');"><img src="images/other.png"><span> Other</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>     
+        
+    
+    
+ <!-- report_other -->   
+ <div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="info-background"><img src="images/info_icon.png"></div>      
+        <h2 class="modal-title2">Report User</h2>
+         <p>Is this person bothering you? Tell us what they did.</p>
+      </div>
+      <div class="modal-body">
+     
+        <div><textarea name="report_text" id="report_text"></textarea></div>
+        <div><button onClick="report('other');">Report User</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- end -->
+
+<!-- report confirm -->
+<div id="report_confirm" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="info-background"><img src="images/info_icon.png"></div>      
+        <h2 class="modal-title2">User Reported</h2>
+      </div>
+      <div class="modal-body">
+        
+        <div><button data-dismiss="modal">Okay</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- end -->
+    
+    
+    
+        
+        
 </div>
 
 <div class="bottom-fixed-bar">
@@ -122,6 +189,58 @@ function likeProfile(like_by, like_to){
 					
 			   }
 	});	
+}
+
+
+function showModal(modal_name)
+{
+	$('.modal').modal('hide');
+	$('#'+modal_name).modal('show');	
+}
+
+function reportUser(user_id){
+	$('.modal').modal('hide');
+	$('#report_user').modal('show');
+	$('#report_prof_id').val(user_id);
+}
+
+function report(subject)
+{	
+	
+	var report_msg = '';
+	var profile_id = $('input[name="report_prof_id"]').val();
+	
+	if(subject == 'other')
+	{
+		report_msg = $('textarea[name="report_text"]').val();	
+	}
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'account/report',
+	 dataType: 'json',
+	 data: {profile_id:profile_id, login_id:login_id, message: report_msg, subject:subject},
+	 crossDomain: true,
+	 success: function(data){
+		 
+		 $('.error').remove();
+		 
+		 if(data['success'])
+		 {
+			 $('.modal').modal('hide');
+			 $('#report_confirm').modal('show');
+			 $('textarea[name="report_text"]').val('');
+			 			 
+		 }else if(data['error'])
+		 {
+			 if(data['error']['message'])
+			 {
+				$('textarea[name="report_text"]').after('<p class="error">' + data['error']['message'] + '</p>'); 
+			 }		 
+		 }
+	  }
+   });	
+	
 }
 </script>
 </body>
