@@ -22,10 +22,10 @@ var onSuccess = function(position){
     };
 
 function onError(error){		
-        //alert('message: ' + error.message + '\n');
-		$('.modal').modal('hide');
-		$('#common_popup').html('message: ' + error.message);
-		$('#modal_error').modal('show');
+        alert('message: ' + error.message + '\n');
+		//$('.modal').modal('hide');
+		//$('#common_popup').html('message: ' + error.message);
+		//$('#modal_error').modal('show');
 }
 
 
@@ -63,16 +63,16 @@ function checkdeviceLogin(){
 				//$("#loadingImg").fadeOut();
 			}, 3000);
 	}else{
-		//alert('Please enable your location settings.');
-		$('#common_popup').html('Please enable your location settings.');
-		$('#modal_error').modal('show');
+		alert('Please enable your location settings.');
+		//$('#common_popup').html('Please enable your location settings.');
+		//$('#modal_error').modal('show');
 		cordova.plugins.diagnostic.switchToLocationSettings();		
 	}
 	
 	}, function(error){
-		$('#common_popup').html("The following error occurred: "+error);
-		$('#modal_error').modal('show');
-		//alert("The following error occurred: "+error);		
+		//$('#common_popup').html("The following error occurred: "+error);
+		//$('#modal_error').modal('show');
+		alert("The following error occurred: "+error);		
 	});	
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
