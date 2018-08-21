@@ -25,13 +25,18 @@ function checkDeviceGPS(){
 		{
 			window.location = 'login.html';
 		}else{
-			alert('Please enable your location settings.');
+			//alert('Please enable your location settings.');
+			$('.modal').modal('hide');
+			$('#common_popup').html('Please enable your location settings.');
+			$('#modal_error').modal('show');
 			cordova.plugins.diagnostic.switchToLocationSettings();
 		}
 		
 		
 	}, function(error){
-		alert("The following error occurred: "+error);
+		//alert("The following error occurred: "+error);
+		$('#common_popup').html("The following error occurred: "+error);
+		$('#modal_error').modal('show');
 		cordova.plugins.diagnostic.switchToLocationSettings();
 	}); 
 }
@@ -44,7 +49,15 @@ document.addEventListener("deviceready", checkDeviceGPS, false);
 <div class="full-height center">
     <div class="loding-logo"><img src="images/loading-logo.png"></div>
 </div>
- 
+
+<div class="container"> 
+ <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
+              <div class="modal-content">               
+                <div id="common_popup"></div>
+                 <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
+              </div>
+        </div>
+  </div>
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
