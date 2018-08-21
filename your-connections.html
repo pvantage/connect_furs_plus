@@ -20,7 +20,7 @@
 </script>
 </head>
 
-<body class="bottom-links-bar">
+<body class="bottom-links-bar" onLoad="showConnections();">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"> 
     <span class="navbar-toggler-icon"><img src="images/menubar.png"/></span>
@@ -29,7 +29,7 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="javascript:void(0);">Home <span class="sr-only">Profile</span></a>
+        <a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="javascript:void(0);">Setting</a>
@@ -44,53 +44,50 @@
     <div class="your-connections mt-4">
         <h1 class="red">YOUR CONNECTIONS</h1>
         <div class="table-responsive mb-3">
-            <table class="table table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th></th>
-                        <th ><!--<i  class="fa fa-trash-o"></i>--></th>
-                        <th ><!--<i  class="fa fa-pencil-square-o"></i>--></th>
-                    </tr>
-                </thead>
+            <table class="table table-bordered" id="connections">
                 <tbody>
+                    
+                </tbody>
+            </table>
+        </div>				      <!--<button type="submit" class="btn btn-danger btn-block">
+					  <a href="swipe.html" class="btn btn-danger btn-block">KEEP SWIPING</a></button>-->
+
+    </div>
+    
+    <div class="your-connections mt-4">
+        <h1 class="red">YOUR INVITES</h1>
+        <div class="table-responsive mb-3">
+            <table class="table table-bordered" id="invites">
+                 <tbody>
                     <tr>
-                        <td><img class="req-act" src="images/accept.png"/>
-                            <span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
-                            <div class="dog-detail"><strong>Rex</strong><br>
-                                <a href="chat.html">Chat With Mike</a></div></td>
-                        <td><a href="#">Delete User</a></td>
-                        <td><a href="#">Report User</a></td>
+                        <td><span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
+                            <div class="dog-detail"><strong>Rex</strong></div></td>
+                        <td><a href="#">Accept</a></td>
+                        <td><a href="#">Reject</a></td>
                     </tr>
                     <tr>
-                        <td><img class="req-act" src="images/naccepted.png"/>
-                            <span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
-                            <div class="dog-detail"><strong>Rex</strong><br>
-                                <a href="chat.html">Chat With Mike</a></div></td>
-                        <td><a href="#">Delete User</a></td>
-                        <td><a href="#">Report User</a></td>
+                        <td><span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
+                            <div class="dog-detail"><strong>Rex</strong></div></td>
+                        <td><a href="#">Accept</a></td>
+                        <td><a href="#">Reject</a></td>
                     </tr>
                     <tr>
-                    <td><img class="req-act" src="images/naccepted.png"/>
-                            <span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
-                               <div class="dog-detail"><strong>Rex</strong><br>
-                                <a href="chat.html">Chat With Mike</a></div></td>
-                        <td><a href="#">Delete User</a></td>
-                        <td><a href="#">Report User</a></td>
+                    <td><span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
+                        <div class="dog-detail"><strong>Rex</strong></div></td>
+                        <td><a href="#">Accept</a></td>
+                        <td><a href="#">Reject</a></td>
                     </tr>
                     <tr>
-                      <td><img class="req-act" src="images/naccepted.png"/>
-                            <span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
-                            <div class="dog-detail"><strong>Rex</strong><br>
-                                <a href="chat.html">Chat With Mike</a></div></td>
-                        <td><a href="#">Delete User</a></td>
-                        <td><a href="#">Report User</a></td>
+                      <td><span class="avatar"><a href="profile-info.html"><img src="images/001.jpg"></a></span>
+                            <div class="dog-detail"><strong>Rex</strong></div></td>
+                        <td><a href="#">Accept</a></td>
+                        <td><a href="#">Reject</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
- 				      <button type="submit" class="btn btn-danger btn-block">
-					  <a href="swipe.html" class="btn btn-danger btn-block">KEEP SWIPING</a></button>
-
+      <button type="submit" class="btn btn-danger btn-block">
+      <a href="swipe.html" class="btn btn-danger btn-block">KEEP SWIPING</a></button>
     </div>
 </div>
 <div class="bottom-fixed-bar">
@@ -104,5 +101,27 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+var login_id = localStorage.getItem('cust_id');
+
+function showConnections(){
+		$.ajax({
+			 type:'POST',
+			 url:siteurl + 'common/common/showConnection',
+			 dataType:'json',
+			 data:{login_id:login_id},
+			 crossDomain:true,
+			 success:function(data){
+				 
+					if(data['connection'])
+					{
+						$('#connections').html(data['connection']);
+						$('#invites').html(data['invite']);
+					}
+			   }
+		});
+}
+</script>
 </body>
 </html>

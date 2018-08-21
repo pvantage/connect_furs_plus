@@ -22,24 +22,15 @@ checkLogin();
 </script>
 </head>
 <body class="bottom-links-bar profile-swipes">
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
 <img src="images/menu-logo.png"/>
 </nav>
-
-
 <div class="container">
 <div id="add_pets_profile"></div>
-
-
 <div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
               <div class="modal-content">               
-                <div id="common_popup">
-                  
-                </div>
-                
+                <div id="common_popup"></div>                
                  <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
-                 
               </div>
         </div>
 </div>
@@ -74,9 +65,10 @@ $.ajax({
 				
 				$(".profilesl").swipe({
     
-				swipe:function(event, direction, distance, duration, fingerCount, fingerData) {     
+				swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
 				 var current_html_block =  $(this).attr("data-currentid");
 				 var next_html_block =  $(this).attr("data-nextid");
+				 var profile_id = $(this).attr("data-profile");
 				 
 				  $('.modal').modal('hide');
 				 
@@ -86,6 +78,8 @@ $.ajax({
 					 {
 						$('#'+ next_html_block).show();
 						$('#'+ current_html_block).remove();
+						likeProfile(login_id, profile_id);						
+						
 					 }else{
 						//alert('You have no more records.'); 
 						$('#common_popup').html('You have no more records.');
@@ -100,24 +94,34 @@ $.ajax({
 					 }else{
 						 
 						 $('#common_popup').html('You have no more records.');
-						 $('#modal_common').modal('show');						
-					 }				 
+						 $('#modal_common').modal('show');
+					 }
 				 }
 				}
 			  });
-				
 			}else{
-				window.location = 'no_results.html';	
+				window.location = 'no_results.html';
 			}
 	   }
 });
 
-
 function changeThumb(div_container_id, img_ur){
-	
 	$('#' + div_container_id).css('background-image','url('+img_ur +')');
 }
 
+function likeProfile(like_by, like_to){
+	
+	$.ajax({
+			 type:'POST',
+			 url:siteurl + 'common/common/likeProfile',
+			 dataType:'json',
+			 data:{login_id:like_by, like_to: like_to},
+			 crossDomain:true,
+			 success:function(data){				 
+					
+			   }
+	});	
+}
 </script>
 </body>
 </html>

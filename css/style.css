@@ -1,5 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,800');
 
+div#report_confirm {
+    top: 20%;
+}
+div#report_user {
+    top: 20%;
+}
+div#report_other {
+    top: 20%;
+}
+#report_confirm h2.modal-title2, #report_other h2.modal-title2 {
+    text-align: center;
+    padding-top: 15px;
+	    font-size: 23px;
+}
+.model_center_pop_up div#common_popup {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#report_confirm button, #report_other button {
+    background: #e33125;
+    width: 100%;
+    border: none;
+    color: #fff;
+    padding: 9px;
+    font-size: 18px;
+}
+#report_confirm .modal-dialog, #report_other .modal-dialog, #report_user .modal-dialog {
+    padding-top: 25px;
+}
+#report_other .modal-header, #report_confirm .modal-header {
+    border: none;
+    padding-bottom: 0;
+    text-align: center;
+}
+#report_other textarea#report_text {
+    width: 100%;
+}
 .breedSharebtn a {
 border-radius:0px;
 }
@@ -567,7 +605,21 @@ font-size:30px;
 { color:#000;}
 
 .breedInfo table.table td{  font-weight:600; background-color:#f3f3f3;}
-.breedSharebtn { padding-bottom:0px; width:100%; float:left; }
+.profiledet.breedSharebtn {  bottom: -47px;
+    float: left;
+    left: -1%;
+    padding-bottom: 0;
+    position: absolute;
+    width: 102%;
+    z-index: 9999;  }
+	
+	.breedSharebtn {
+    float: left;
+    
+    padding-bottom: 0;
+  
+    width: 100%;
+	 }
 .breedSharebtn .btn{ font-size:14px;}
 
 .uploadbtns .btn{ font-size:14px; padding-left:8px; padding-right:8px;}
@@ -886,13 +938,14 @@ label small{ font-size:8px;}
   top: 18%;
 }
 .model_center_pop_up .ok_onfirm_btn {
-  background: red none repeat scroll 0 0;
-  border: medium none;
-  color: #fff;
-  font-weight: 600;
-  margin-top: 10px;
-  padding: 5px;
-  width: 100%;
+    background: #e33125;
+    border: medium none;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 9px;
+    width: 100%;
+    font-size: 18px;
 }
 @media (max-width: 767.98px) {
   .chat-application .chat-app-window {
