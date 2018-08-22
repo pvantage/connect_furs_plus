@@ -646,6 +646,7 @@ cursor:pointer;
     position: relative;
     vertical-align: bottom;
     white-space: nowrap;
+	margin-right:5px;
     width: 30px;
 }
 
@@ -798,8 +799,10 @@ html body .content.app-content {
 .match-content{ text-align:center; color:#fff;}
 .match-content h1{ font-weight:700; color:#58de58; font-size:28px;}
 .match-content h2{ font-size:25px;}
-
-.matchGroup{ width:100%; float:left; position:relative;}
+.matchImage.matchImage2 {
+    margin-left: 23px;
+}
+.matchGroup{ width:100%; float:left; position:relative;     margin-bottom: 15px;}
 .matchGroup:before{ width:100%; height:2px; border-top:2px dashed #ff0000; position:absolute; content:""; left:0px; top:50%;}
 .matchImage{ width:120px; height:120px;  position:relative;
 border-radius:100%;
@@ -957,9 +960,9 @@ label small{ font-size:8px;}
 
 .your-connections .avatar{ width:50px; vertical-align:middle; float:left;}
 
-.your-connections .dog-detail{ margin-left:80px;}
+.your-connections .dog-detail{ margin-left:80px;     margin-top: 17px;}
 
-.your-connections table td{ vertical-align:middle;}
+.your-connections table td{ vertical-align:middle !important;}
 .your-connections table td input[type="checkbox"]{ float:left; margin:19px 10px 0 0}
 
 
