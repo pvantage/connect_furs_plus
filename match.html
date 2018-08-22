@@ -3,37 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Animal App</title>
-<!-- Bootstrap CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<!-- /Bootstrap CSS -->
-
-<!-- Font Awesome CSS -->
 <link rel="stylesheet" href="css/font-awesome.min.css">
-<!-- /Font Awesome CSS -->
-
-<!-- Common Style CSS -->
 <link rel="stylesheet" href="css/style.css">
-<!-- /Common Style CSS -->
-
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/function.js"></script>
 </head>
 
-<body class=" bottom-links-bar match-group">
+<body class=" bottom-links-bar match-group" onLoad="getMatch();">
 <div class="full-height  center">
     <div class="container match-content">
         <h2>Its A Match .. </h2>
         <h1>Congratulation !!</h1>
-        <div class="matchGroup">
-            <div class="matchImage"><img src="images/imgd1.png" alt=""></div>
-            <div class="matchImage matchImage2"><img src="images/imgd2.png" alt=""></div>
-        </div>
+        <div class="matchGroup"></div>
         <div class="clearfix"></div>
         <a href="chat.html" class="btn btn-danger btn-block mt-4">START CHAT NOW</a>
-		<a href="breed-detail.html" class="btn btn-light btn-block mt-3">WAIT CHAT LATER</a> 
-		        <a href="swipe.html" class="btn btn-danger btn-block mt-4">KEEP SWIPING</a>
+		<!--<a href="swipe.html" class="btn btn-light btn-block mt-3">WAIT CHAT LATER</a> -->
+		<a href="swipe.html" class="btn btn-danger btn-block mt-4">KEEP SWIPING</a>
 
 		</div>
 </div>
@@ -48,7 +39,24 @@
         </table>
     </div>
 </div>
-<script src="js/jquery-3.2.1.slim.min.js"></script> 
-<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function getMatch(){
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/getMatch',
+	 dataType: 'json',
+	 data: {match_id:gup('id')},
+	 crossDomain: true,
+	 success: function(data){
+		 if(data['success'])
+		 {
+			 $('.matchGroup').html(data['success']);
+			 
+		 }
+	  }
+   });
+}
+</script>
 </body>
 </html>

@@ -94,6 +94,20 @@ function showConnections(){
 			   }
 		});
 }
+
+function accptInvite(invitation_id){
+	$.ajax({
+			 type:'POST',
+			 url:siteurl + 'common/common/acceptInvite',
+			 dataType:'json',
+			 data:{invite_id:invitation_id},
+			 crossDomain:true,
+			 success:function(data){
+				 window.location = "match.html?id="+data['success'];
+					
+			   }
+		});
+}
 </script>
 </body>
 </html>

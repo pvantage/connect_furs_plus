@@ -22,10 +22,10 @@ function checkdeviceLogin(){
 	loadProfile();
 }
 
-//document.addEventListener("deviceready", checkdeviceLogin, false);
+document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
-<body class="bottom-links-bar" onLoad="loadProfile();">
+<body class="bottom-links-bar">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
 <img src="images/menu-logo.png"/>
 <a href="swipe.html" class="backbtn">Back</a>
@@ -44,7 +44,7 @@ function checkdeviceLogin(){
 <!--<div class="instagramFeed text-center"><img src="images/instagramimg.jpg" alt=""></div>-->
 
 
-<div id="report_user" class="modal fade" role="dialog">
+<div id="report_user" class="modal fade" role="dialog"  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -64,7 +64,7 @@ function checkdeviceLogin(){
 </div>
 
 
-<div id="report_other" class="modal fade" role="dialog">
+<div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -84,7 +84,7 @@ function checkdeviceLogin(){
 
 
 <!-- report confirm -->
-<div id="report_confirm" class="modal fade" role="dialog">
+<div id="report_confirm" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
