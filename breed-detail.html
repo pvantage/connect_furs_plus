@@ -31,19 +31,11 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <a href="swipe.html" class="backbtn">Back</a>
 </nav>
 <div class="breed-detail-wrap">
-    <div class="container">
-    
-    
-    <div id="profile_info">
-    
-       
+    <div class="container">    
+    <div id="profile_info">    
         
-   </div><!--  end profile info -->         
-        
-        
+   </div><!--  end profile info -->        
 <!--<div class="instagramFeed text-center"><img src="images/instagramimg.jpg" alt=""></div>-->
-
-
 <div id="report_user" class="modal fade" role="dialog"  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -59,11 +51,8 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         </ul>
       </div>
     </div>
-
   </div>
 </div>
-
-
 <div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -78,10 +67,8 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         <div><button onClick="report('other');">Report User</button></div>
       </div>
     </div>
-
   </div>
 </div>
-
 
 <!-- report confirm -->
 <div id="report_confirm" class="modal fade" role="dialog" aria-hidden="true">
@@ -92,16 +79,12 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         <h2 class="modal-title2">User Reported</h2>
       </div>
       <div class="modal-body">
-        
         <div><button data-dismiss="modal">Okay</button></div>
       </div>
     </div>
-
   </div>
 </div>
-
 <!-- end -->
-
  </div>
 </div>
 <div class="bottom-fixed-bar">
@@ -122,7 +105,6 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 var login_id = localStorage.getItem('cust_id');
 
 function loadProfile(){
-	
 $.ajax({
 	 type: 'POST',
 	 url: siteurl + 'common/common/userProfile',
@@ -189,8 +171,6 @@ function report(subject)
 		 }
 	  }
    });
-	
-	
 }
 </script>
 </body>
