@@ -62,7 +62,7 @@ function loginNow(){
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mob, latitude: lat, longitude:longi, device_type: device_platform, device_reg_id:device_reg_id},
+	 data: {customer_mobile:customer_mob,device_type: device_platform, device_reg_id:device_reg_id},
 	 crossDomain: true,
 	 success: function(data){	 
 		
