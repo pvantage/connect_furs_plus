@@ -53,12 +53,16 @@ function getCategory(select_id, user_id)
 
 function loginNow(){
 	var customer_mobile = $('#customer_mobile').val();
-	var action_url = siteurl + 'account/login';	
+	var action_url = siteurl + 'account/login';
+	
+	var device_platform = device.platform;
+	var device_reg_id = device.uuid;
+		
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mobile},
+	 data: {customer_mobile:customer_mob, latitude: lat, longitude:longi, device_type: device_platform, device_reg_id:device_reg_id},
 	 crossDomain: true,
 	 success: function(data){	 
 		
