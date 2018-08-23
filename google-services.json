@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "22045590689",
+    "firebase_url": "https://petapp-cc555.firebaseio.com",
+    "project_id": "petapp-cc555",
+    "storage_bucket": "petapp-cc555.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22045590689:android:b566515b50deee6a",
+        "android_client_info": {
+          "package_name": "connectfursplus.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22045590689-6531km0j82vp30jt1ghrelc1tk2rjpcb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoWNQLMJUAmDy-m5qFXsSv8dCaCsQKEBM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

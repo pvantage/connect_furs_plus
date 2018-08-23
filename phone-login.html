@@ -15,10 +15,13 @@
 <script src="js/function.js"></script>
 <script type="text/javascript">
 
-var lat, longi;
+var lat, longi, device_platform, device_reg_id;
 var onSuccess = function(position){					  
 			lat =  position.coords.latitude;
-			longi = position.coords.longitude;			
+			longi = position.coords.longitude;
+			
+			device_platform = device.platform;
+			device_reg_id = device.uuid;			
     };
 
 function onError(error){		
@@ -34,15 +37,15 @@ function checkdeviceLogin(){
 	//$("#loadingImg").fadeIn();
 
 	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-		
+	
 	if(enabled)
-	{	
+	{
 			navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:7000, enableHighAccuracy:true});
 			
 			setTimeout(function(){
 			
 			if(localStorage.getItem("cust_id") != null)
-			{			
+			{
 				var customer_login = localStorage.getItem("cust_id");
 				$.ajax({
 				 type: 'POST',
@@ -54,19 +57,18 @@ function checkdeviceLogin(){
 					
 					if(data['success'])
 					{
-						window.location = 'swipe.html';			
-					}	
+						window.location = 'swipe.html';
+					}
 				  }
 			   });
-				
-			}
+			 }
 				//$("#loadingImg").fadeOut();
 			}, 3000);
 	}else{
 		//alert('Please enable your location settings.');
 		$('#common_popup').html('Please enable your location settings.');
 		$('#modal_error').modal('show');
-		cordova.plugins.diagnostic.switchToLocationSettings();		
+		cordova.plugins.diagnostic.switchToLocationSettings();
 	}
 	
 	}, function(error){
@@ -81,7 +83,6 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <body>
 <div class="full-height center">
     <div class="container phloginecontainer">
-    
     <form>
         <div class="phone-login" id="mobile_no_container">
             <h3>Enter your mobile number</h3>
@@ -101,38 +102,35 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
             <button type="button" class="btn btn-block btn-danger" onClick="validateOtp();">Submit</button>
         </div>
         </form>
-        
-        
-    </div>
-    
-    
+    </div>    
   <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
-              <div class="modal-content">               
+              <div class="modal-content">
                 <div id="common_popup">
                   
                 </div>
-                
-                 <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
-                 
+                <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
               </div>
-        </div>  
-    
-    
-    
+        </div>
 </div>
 <div class="loadermain" id="loadingImg"></div>
 </body>
 <script type="text/javascript">
 function validateOtp(){
+	var show_device = 'Model: ' + device_platform + ' RegID:'+device_reg_id;
+	
+	alert(show_device);
+	
+	return false
+	
 	$('.modal').modal('hide');
 	var customer_mob = $('#customer_mob').val();
 	var customer_otp = $('#customer_otp').val();
-	var action_url = siteurl + 'account/login/otp';	
+	var action_url = siteurl + 'account/login/otp';
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude: lat, longitude:longi},
+	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude: lat, longitude:longi, device_type: device_platform, device_reg_id:device_reg_id},
 	 crossDomain: true,
 	 success: function(data){
 		
@@ -144,10 +142,10 @@ function validateOtp(){
 			$('#otp_container').show();
 			localStorage.setItem('cust_id', data['success']['id']);
 			if(data['success']['redirect'] == 1)
-			{				
+			{
 				window.location = 'select_info.html';
 			}else if(data['success']['redirect'] == 2)
-			{				
+			{
 				window.location = 'profile-info.html';
 			}else{				
 				window.location = 'swipe.html';
@@ -156,8 +154,7 @@ function validateOtp(){
 		
 		if(data['error'])
 		{
-			$('#customer_otp').addClass('req');
-			
+			$('#customer_otp').addClass('req');			
 			$('#common_popup').html(data['error']['otp']);
 			$('#modal_error').modal('show');
 			//alert(data['error']['otp']);
