@@ -51,37 +51,6 @@ function getCategory(select_id, user_id)
    });
 }
 
-function loginNow(){
-	var customer_mobile = $('#customer_mobile').val();
-	var action_url = siteurl + 'account/login';
-	
-	var device_platform = device.platform;
-	var device_reg_id = device.uuid;
-		
-	$.ajax({
-	 type: 'POST',
-	 url: action_url,
-	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,device_type: device_platform, device_reg_id:device_reg_id},
-	 crossDomain: true,
-	 success: function(data){	 
-		
-	   	if(data['success'])
-		{
-			$('#mobile_no_container').remove();
-			$('#customer_mob').val(data['success']['no']);
-			$('#otp_container').show();			
-		}
-		
-		if(data['error'])
-		{
-			$('#customer_mobile').addClass('req');
-		}
-	 }
-   });
-	//
-}
-
 function checkLogin(){
 	if(localStorage.getItem("cust_id") == null) window.location = 'phone-login.html';
 }

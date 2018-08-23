@@ -115,6 +115,36 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <div class="loadermain" id="loadingImg"></div>
 </body>
 <script type="text/javascript">
+
+function loginNow(){
+	var customer_mobile = $('#customer_mobile').val();
+	var action_url = siteurl + 'account/login';	
+			
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {customer_mobile:customer_mobile,device_type: device_platform, device_reg_id:device_reg_id},
+	 crossDomain: true,
+	 success: function(data){	 
+		
+	   	if(data['success'])
+		{
+			$('#mobile_no_container').remove();
+			$('#customer_mob').val(data['success']['no']);
+			$('#otp_container').show();			
+		}
+		
+		if(data['error'])
+		{
+			$('#customer_mobile').addClass('req');
+		}
+	 }
+   });
+	
+}
+
+
 function validateOtp(){
 		
 	$('.modal').modal('hide');
