@@ -21,7 +21,16 @@ var onSuccess = function(position){
 			longi = position.coords.longitude;
 			
 			device_platform = device.platform;
-			device_reg_id = device.uuid;			
+			device_reg_id = device.uuid;
+			
+			var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+		
+		push.on('registration', function(data)
+		{						
+			device_platform = data.registrationId;
+			device_reg_id = device.platform;
+		});
+					
     };
 
 function onError(error){		
