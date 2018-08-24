@@ -103,6 +103,28 @@ function accptInvite(invitation_id){
 		});
 }
 
+
+
+
+function rejectInvite(invitation_id){
+	$.ajax({
+			 type:'POST',
+			 url:siteurl + 'account/myconnections/reject',
+			 dataType:'json',
+			 data:{invite_id:invitation_id, login_id:login_id},
+			 crossDomain:true,
+			 success:function(data){
+				 
+				 if(data['invites'])
+				 {
+					$('#invites').html(data['invites']); 
+				 }
+					
+			   }
+		});
+}
+
+
 function deleteLike(invitation_id){
 	$.ajax({
 			 type:'POST',

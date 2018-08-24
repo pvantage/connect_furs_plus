@@ -51,6 +51,42 @@ function getCategory(select_id, user_id)
    });
 }
 
+function getState(select_val)
+{
+	var action_url = siteurl + 'common/common/getState';	
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {select_val:select_val},
+	 crossDomain: true,
+	 success: function(data){
+	   	if(data['success'])
+		{
+			$('#state').html(data['success']);
+		}
+	 }
+   });
+}
+
+function getCity(select_val, state_id)
+{
+	var action_url = siteurl + 'common/common/getCity';	
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {select_val:select_val, state_id:state_id},
+	 crossDomain: true,
+	 success: function(data){
+	   	if(data['success'])
+		{
+			$('#city').html(data['success']);
+		}
+	 }
+   });
+}
+
 function checkLogin(){
 	if(localStorage.getItem("cust_id") == null) window.location = 'phone-login.html';
 }

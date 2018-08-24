@@ -41,8 +41,20 @@
             </div>
             
             <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Location:</label>
-                <input type="text" name="petlocation" id="petlocation" placeholder="Please enter pet location i.e city, state" class="form-control">
+                <label>Pet Location:</label>               
+            </div>
+            
+            <div class="form-group">
+                <label><span class="reqfield">*</span>State:</label>
+                <select name="state" id="state" class="form-control" onChange="getCity('', this.value);">                
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label><span class="reqfield">*</span>City:</label>
+                <select name="city" id="city" class="form-control"> 
+                <option value="">Please select</option>               
+                </select>
             </div>
             
             <div class="form-group">
@@ -146,6 +158,8 @@
 <div class="loadermain" id="loadingImg"></div>
 
 <script type="text/javascript">
+
+getState('');
   function getImage(){
            navigator.camera.getPicture(uploadPhoto, function(message){
 			//alert('get picture failed');
@@ -360,10 +374,7 @@ function win1(r){
 				$('#modal_common').modal('show');
 			}            
         }        
-</script>
 
-
-<script type="text/javascript">
   function getImage4() {	             
            navigator.camera.getPicture(uploadPhoto4, function(message) {						
 			//alert('get picture failed');			
@@ -417,8 +428,7 @@ function uploadPhoto4(imageURI){
 				$('#modal_common').modal('show');
 			}            
         }        
-</script>
-<script type="text/javascript">
+
 var login_id = localStorage.getItem('cust_id');
 $.ajax({
 	 type:'POST',
@@ -459,7 +469,8 @@ function addProfileinfo(){
 	var pet_color = $('#pet_color').val();
 	//var medical_history = $('input[name="medical_history"]:checked').val();
 	var petage = $('#petage').val();
-	var petlocation = $('#petlocation').val();
+	var state = $('#state').val();
+	var city = $('#city').val();
 	var breed_specific = '';
 	var pet_image = $('input[name="pet_image"]').val();
 	//
@@ -473,11 +484,11 @@ function addProfileinfo(){
 		breed_specific = $('#specific_breed').val();
 	}
 	
-	$.ajax({
+$.ajax({
 	 type:'POST',
 	 url:siteurl + 'account/setinfo/profile',
 	 dataType:'json',
-	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:0, about_med_his:'', who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image, pet_image_1:pet_image_1, pet_image_2:pet_image_2, pet_image_3:pet_image_3, pet_image_4:pet_image_4,petage:petage, petlocation:petlocation},
+	 data:{login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color, medical_history:0, about_med_his:'', who_play_breed:who_play_breed, breed_specific:breed_specific, image:pet_image, pet_image_1:pet_image_1, pet_image_2:pet_image_2, pet_image_3:pet_image_3, pet_image_4:pet_image_4,petage:petage, state:state, city:city},
 	 crossDomain:true,
 	 
 	 success:function(data){
@@ -493,7 +504,8 @@ function addProfileinfo(){
 			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
 			 if(data['error']['image']) $('.error_msg').show();
 			 if(data['error']['petage'])  $('#petage').addClass('req');
-			 if(data['error']['petlocation'])  $('#petlocation').addClass('req');
+			 if(data['error']['state'])  $('#state').addClass('req');
+			 if(data['error']['city'])  $('#city').addClass('req');
 		 }
 		 
 	   	if(data['success'])

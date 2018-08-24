@@ -69,9 +69,24 @@
             </div>
             
             <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Location:</label>
-                <input type="text" name="petlocation" id="petlocation" placeholder="Please enter pet location i.e city, state" class="form-control">
+                <label>Pet Location:</label>                
             </div>
+            
+            <div class="form-group">
+                <label><span class="reqfield">*</span>State:</label>
+                <select name="state" id="state" class="form-control" onChange="getCity('', this.value);">
+                
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label><span class="reqfield">*</span>City:</label>
+                <select name="city" id="city" class="form-control">
+                <option value="">Please select</option>
+                </select>
+            </div>
+            
+            
             <div class="form-group">
                 <label><span class="reqfield">*</span>Distance willing to Look (miles)</label>
                 <select class="form-control" name="willing_distance" id="willing_distance" tabindex="5">
@@ -167,6 +182,7 @@
 <div class="loadermain" id="loadingImg"></div>
 
 <script type="text/javascript">
+
   function getImage() {             
            navigator.camera.getPicture(uploadPhoto, function(message){						
 			//alert('Error!!');
@@ -487,7 +503,8 @@ function addProfileinfo(){
 	var pet_image = $('input[name="pet_image"]').val();
 	
 	var petage = $('#petage').val();
-	var petlocation = $('#petlocation').val();
+	var state = $('#state').val();
+	var city = $('#city').val();
 	
 	var breed_specific = '';
 	if(who_play_breed == 2)
@@ -526,7 +543,7 @@ function addProfileinfo(){
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage,petlocation:petlocation, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
+	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage, state:state, city:city, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -540,7 +557,8 @@ function addProfileinfo(){
 			 if(data['error']['willing_distance']) $('#willing_distance').addClass('req');
 			 if(data['error']['pet_color']) $('#pet_color').addClass('req');
 			 if(data['error']['petage']) $('#petage').addClass('req');
-			 if(data['error']['petlocation']) $('#petlocation').addClass('req');
+			 if(data['error']['state']) $('#state').addClass('req');
+			 if(data['error']['city']) $('#city').addClass('req');
 		 }
 		 
 	   	if(data['success'])
@@ -580,6 +598,10 @@ $.ajax({
 				}
 			}
 			
+			getState(data['success']['state']);			
+			getCity(data['success']['city'], data['success']['state']);
+			
+			
 			if(data['success']['image'])
 			{
 				$('#pet_image_src').attr('src', data['success']['image']);
@@ -602,8 +624,18 @@ $.ajax({
 			{
 				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
 			}
+			
+			
+			
+			
+			
 	   }
    });
+</script>
+
+
+<script type="text/javascript">
+
 </script>
 </body>
 </html>
