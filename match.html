@@ -13,8 +13,15 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
-</head>
+<script type="text/javascript">
+ checkLogin();
+ function checkdeviceLogin(){
+	loadProfile();
+}
 
+//document.addEventListener("deviceready", checkdeviceLogin, false);
+</script>
+</head>
 <body class=" bottom-links-bar match-group" onLoad="getMatch();">
 <div class="full-height  center">
     <div class="container match-content">
@@ -22,7 +29,7 @@
         <h1>Congratulation !!</h1>
         <div class="matchGroup"></div>
         <div class="clearfix"></div>
-        <a href="chat.html" class="btn btn-danger btn-block mt-4">START CHAT NOW</a>
+        <a id="chatnow" href="chat.html" class="btn btn-danger btn-block mt-4">START CHAT NOW</a>
 		<!--<a href="swipe.html" class="btn btn-light btn-block mt-3">WAIT CHAT LATER</a> -->
 		<a href="swipe.html" class="btn btn-danger btn-block mt-4">KEEP SWIPING</a>
 
@@ -40,8 +47,7 @@
     </div>
 </div>
 <script type="text/javascript">
-function getMatch(){
-	
+function getMatch(){	
 	$.ajax({
 	 type: 'POST',
 	 url: siteurl + 'common/common/getMatch',
@@ -52,7 +58,7 @@ function getMatch(){
 		 if(data['success'])
 		 {
 			 $('.matchGroup').html(data['success']);
-			 
+			 $('#chatnow').attr('href', 'chat.html?id='+data['chat_to']);
 		 }
 	  }
    });
