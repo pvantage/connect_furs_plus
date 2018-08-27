@@ -17,11 +17,9 @@
 <script src="js/function.js"></script> 
 <script type="text/javascript">
 checkLogin();
-
 function checkdeviceLogin(){
 	loadProfile();
 }
-
 document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
@@ -31,16 +29,13 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <a href="swipe.html" class="backbtn">Back</a>
 </nav>
 <div class="breed-detail-wrap">
-    <div class="container">    
-    <div id="profile_info">    
-        
-   </div><!--  end profile info -->        
-<!--<div class="instagramFeed text-center"><img src="images/instagramimg.jpg" alt=""></div>-->
+    <div class="container">
+    <div id="profile_info"></div>
 <div id="report_user" class="modal fade" role="dialog"  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="info-background"><img src="images/info_icon.png"></div>      
+       <div class="info-background"><img src="images/info_icon.png"></div>
         <h2 class="modal-title2">Report User</h2>
       </div>
       <div class="modal-body">
@@ -57,12 +52,11 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="info-background"><img src="images/info_icon.png"></div>      
+       <div class="info-background"><img src="images/info_icon.png"></div>
         <h2 class="modal-title2">Report User</h2>
          <p>Is this person bothering you? Tell us what they did.</p>
       </div>
       <div class="modal-body">
-     
         <div><textarea name="report_text" id="report_text"></textarea></div>
         <div><button onClick="report('other');">Report User</button></div>
       </div>
@@ -75,7 +69,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="info-background"><img src="images/info_icon.png"></div>      
+       <div class="info-background"><img src="images/info_icon.png"></div>
         <h2 class="modal-title2">User Reported</h2>
       </div>
       <div class="modal-body">
@@ -100,10 +94,9 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
         </table>
     </div>
 </div>
-<script src="js/owl.carousel.js"></script> 
+<script src="js/owl.carousel.js"></script>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
-
 function loadProfile(){
 $.ajax({
 	 type: 'POST',
@@ -124,7 +117,6 @@ $.ajax({
 				paginations:false,
 				items: 1			   
 			});
-			 
 		 }
 	  }
    });
@@ -137,13 +129,12 @@ function showModal(modal_name)
 }
 
 function report(subject)
-{	
-	
+{
 	var report_msg = '';
 	
 	if(subject == 'other')
 	{
-		report_msg = $('textarea[name="report_text"]').val();	
+		report_msg = $('textarea[name="report_text"]').val();
 	}
 	
 	$.ajax({
