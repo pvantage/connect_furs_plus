@@ -164,7 +164,7 @@ function validateOtp(){
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude: lat, longitude:longi},
+	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude:lat, longitude:longi},
 	 crossDomain: true,
 	 success: function(data){
 		
@@ -181,14 +181,14 @@ function validateOtp(){
 			}else if(data['success']['redirect'] == 2)
 			{
 				window.location = 'profile-info.html';
-			}else{				
+			}else{
 				window.location = 'swipe.html';
 			}
 		}
 		
 		if(data['error'])
 		{
-			$('#customer_otp').addClass('req');			
+			$('#customer_otp').addClass('req');
 			$('#common_popup').html(data['error']['otp']);
 			$('#modal_error').modal('show');
 			//alert(data['error']['otp']);
