@@ -24,9 +24,15 @@ function onError(error){
 }
 
 
-function checkdeviceLogin(){
+/*function checkdeviceLogin(){
 	
 	
+	
+}*/
+
+function init(){
+	document.addEventListener("deviceready", function(){
+		
 	lat =  position.coords.latitude;
 	longi = position.coords.longitude;
 	
@@ -40,8 +46,8 @@ function checkdeviceLogin(){
 			device_reg_id = data.registrationId;
 			device_platform = device.platform;
 		});
-	alert(lat);
-		
+	
+	alert(lat);	
 	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
 	
 	if(enabled)
@@ -77,10 +83,9 @@ function checkdeviceLogin(){
 		$('#common_popup').html("The following error occurred: "+error);
 		$('#modal_error').modal('show');		
 	});
-}
-
-function init(){
-	document.addEventListener("deviceready", checkdeviceLogin, false);
+		
+		
+	}, false);
 }
 </script>
 </head>
