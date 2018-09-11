@@ -32,9 +32,6 @@ function checkdeviceLogin(){
 	device_platform = device.platform;
 	device_reg_id = device.uuid;
 	
-	
-	alert(lat);
-	
 	var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 		
 		push.on('registration', function(data)
@@ -65,7 +62,10 @@ function checkdeviceLogin(){
 			 }
 		
 }
-document.addEventListener("deviceready", checkdeviceLogin, true);
+document.addEventListener("deviceready", function(){
+	
+	alert('hello');
+}, true);
 </script>
 </head>
 <body>
