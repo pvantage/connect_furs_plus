@@ -17,8 +17,7 @@
 
 var lat, longi, device_platform, device_reg_id;    
 
-function onError(error){		
-        //alert('message: ' + error.message + '\n');
+function onError(error){       
 		$('.modal').modal('hide');
 		$('#common_popup').html('message: ' + error.message);
 		$('#modal_error').modal('show');
@@ -137,6 +136,10 @@ function validateOtp(){
 	var customer_mob = $('#customer_mob').val();
 	var customer_otp = $('#customer_otp').val();
 	var action_url = siteurl + 'account/login/otp';
+	
+	alert('Lat: ' +lat + ' Longitude:' + longi);
+	
+	
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
