@@ -15,23 +15,7 @@
 <script src="js/function.js"></script>
 <script type="text/javascript">
 
-var lat, longi, device_platform, device_reg_id;
-var onSuccess = function(position){					  
-			lat =  position.coords.latitude;
-			longi = position.coords.longitude;
-			
-			device_platform = device.platform;
-			device_reg_id = device.uuid;
-			
-			var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
-		
-		push.on('registration', function(data)
-		{						
-			device_reg_id = data.registrationId;
-			device_platform = device.platform;
-		});
-					
-    };
+var lat, longi, device_platform, device_reg_id;    
 
 function onError(error){		
         //alert('message: ' + error.message + '\n');
@@ -43,15 +27,21 @@ function onError(error){
 
 function checkdeviceLogin(){
 	
-	//$("#loadingImg").fadeIn();
-
-	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+	lat =  position.coords.latitude;
+	longi = position.coords.longitude;
 	
-	if(enabled)
-	{
-			navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:7000, timeout:7000, enableHighAccuracy:true});
-			
-			setTimeout(function(){
+	device_platform = device.platform;
+	device_reg_id = device.uuid;
+	
+	var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+		
+		push.on('registration', function(data)
+		{						
+			device_reg_id = data.registrationId;
+			device_platform = device.platform;
+		});
+
+	
 			
 			if(localStorage.getItem("cust_id") != null)
 			{
@@ -71,20 +61,7 @@ function checkdeviceLogin(){
 				  }
 			   });
 			 }
-				//$("#loadingImg").fadeOut();
-			}, 3000);
-	}else{
-		//alert('Please enable your location settings.');
-		$('#common_popup').html('Please enable your location settings.');
-		$('#modal_error').modal('show');
-		cordova.plugins.diagnostic.switchToLocationSettings();
-	}
-	
-	}, function(error){
-		$('#common_popup').html("The following error occurred: "+error);
-		$('#modal_error').modal('show');
-		//alert("The following error occurred: "+error);
-	});
+		
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
@@ -169,8 +146,7 @@ function validateOtp(){
 	 success: function(data){
 		
 	   	if(data['success'])
-		{
-			
+		{			
 			$('#mobile_no_container').remove();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();
