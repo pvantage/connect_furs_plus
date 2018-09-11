@@ -24,72 +24,40 @@ function onError(error){
 }
 
 
-/*function checkdeviceLogin(){
+function onSuccess(){
 	
+	lat = position.coords.latitude;
+    longi = position.coords.longitude;
 	
-	
-}*/
-
-function init(){
-	document.addEventListener("deviceready", function(){
-		
-	lat =  position.coords.latitude;
-	longi = position.coords.longitude;
-	
-	device_platform = device.platform;
-	device_reg_id = device.uuid;
-		/*	
-			var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
-		
-		push.on('registration', function(data)
-		{						
-			device_reg_id = data.registrationId;
-			device_platform = device.platform;
-		});*/
-	
-	alert(lat);	
-	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
-	
-	if(enabled)
-	{						
-						
-			if(localStorage.getItem("cust_id") != null)
+	/*if(localStorage.getItem("cust_id") != null)
+	{
+		var customer_login = localStorage.getItem("cust_id");
+		$.ajax({
+		 type: 'POST',
+		 url: siteurl + "account/setinfo/lat",
+		 dataType: 'json',
+		 data: {login_id:customer_login, latitude:lat, longitude:longi},
+		 crossDomain: true,
+		 success: function(data){
+			
+			if(data['success'])
 			{
-				var customer_login = localStorage.getItem("cust_id");
-				$.ajax({
-				 type: 'POST',
-				 url: siteurl + "account/setinfo/lat",
-				 dataType: 'json',
-				 data: {login_id:customer_login, latitude:lat, longitude:longi},
-				 crossDomain: true,
-				 success: function(data){
-					
-					if(data['success'])
-					{
-						window.location = 'swipe.html';
-					}
-				  }
-			   });
-			 }
-				
-	}else{
-		
-		$('#common_popup').html('Please enable your location settings.');
-		$('#modal_error').modal('show');
-		cordova.plugins.diagnostic.switchToLocationSettings();
-	}
+				window.location = 'swipe.html';
+			}
+		  }
+	   });
+	 }*/
 	
-	}, function(error){
-		$('#common_popup').html("The following error occurred: "+error);
-		$('#modal_error').modal('show');		
-	});
-		
-		
-	}, false);
 }
+
+
+	document.addEventListener("deviceready", function(){		
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy: true });		
+	}, false);
+
 </script>
 </head>
-<body onLoad="init();">
+<body>
 <div class="full-height center">
     <div class="container phloginecontainer">
     <form>
