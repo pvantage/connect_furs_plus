@@ -38,14 +38,14 @@ function init(){
 	
 	device_platform = device.platform;
 	device_reg_id = device.uuid;
-			
+		/*	
 			var push = PushNotification.init({ "android": {"senderID": "22045590689"}, "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 		
 		push.on('registration', function(data)
 		{						
 			device_reg_id = data.registrationId;
 			device_platform = device.platform;
-		});
+		});*/
 	
 	alert(lat);	
 	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
