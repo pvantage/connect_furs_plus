@@ -30,7 +30,6 @@ function onSuccess(position){
 	
 	lat = position.coords.latitude;
     longi = position.coords.longitude;
-	alert(longi);
 	if(localStorage.getItem("cust_id") != null)
 	{
 		var customer_login = localStorage.getItem("cust_id");
@@ -48,9 +47,8 @@ function onSuccess(position){
 			}
 		  }
 	   });
-	 }	
+	 }
 }
-
 
 document.addEventListener("deviceready", function(){		
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy: true });		
