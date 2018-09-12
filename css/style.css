@@ -950,6 +950,80 @@ label small{ font-size:8px;}
     width: 100%;
     font-size: 18px;
 }
+
+
+.forumimg {
+  float: left;
+    margin-right: 3%;
+    width: 17%;
+}
+.forumtopic {
+    float: left;
+    width: 100%;
+    background: #ffffee;
+    padding: 10px;
+    border: 1px solid #dddd66;
+	  margin-bottom: 30px;
+}
+
+.forumdtl h1 {
+    margin: 0;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.forumtopic h4 {
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    margin: 6px 0px 6px 0px;
+	color:#e33125;
+	    word-wrap: break-word;
+}
+.forumimg p {
+    font-size: 12px;
+    text-align: -webkit-center;
+    line-height: normal;
+	    font-style: italic;
+		    margin: 0;
+}
+.forumdtl p {
+    font-size: 14px;
+}
+.forumdtl {
+    float: left;
+    width: 79%;
+}
+.forumtopic.forumreply {
+    background: none;
+    border: none;
+    border-top: 1px solid #ddd;
+	    margin-bottom: 0px;
+}
+.forumreply .forumdtl p {
+    font-size: 13px;
+}
+.forum-commentbox {
+    float: left;
+    width: 100%;
+}
+.forum-commentbox textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    min-height: 97px;
+    border: 1px solid #ddd;
+    background: #fbfbfb;
+	padding: 10px;
+}
+.forum-commentbox .submitbox {
+    background: #e33125;
+    color: #fff;
+    border: none;
+    padding: 8px 19px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
 @media (max-width: 767.98px) {
   .chat-application .chat-app-window {
     height : -webkit-calc(100% - 124px);
@@ -1027,22 +1101,5 @@ body {
 }
 
 .req{ border:1px solid #F00;}.error_msg{ color:#F00;}
-.loadermain {
-    float: left;
-    width: 100%;
-    position: fixed;
-    background: rgba(0,0,0,0.7);
-    height: 100%;
-	display:none;
-    top: 0;
-    text-align: center;
-}
-
-.profilesl{
-background-position:top center;
-background-size:cover;	
-}
-
-.profilesl-thumb{ text-align:right;}
-
-.profilesl-thumb img{ width:50px;}
+.loadermain {float:left;width:100%;position:fixed;background: rgba(0,0,0,0.7);height:100%;display:none;top:0;text-align: center;}
+.profilesl{background-position:top center;background-size:cover;}.profilesl-thumb{ text-align:right;}.profilesl-thumb img{ width:50px;}.back_btn{ float:right; text-decoration:none; margin-top:10px; color:#939393; font-weight:bold;}

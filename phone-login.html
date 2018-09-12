@@ -76,6 +76,7 @@ document.addEventListener("deviceready", function(){
                 <input type="number" maxlength="6" name="customer_otp" id="customer_otp" class="form-control" placeholder="Enter OTP">
             </div>
             <button type="button" class="btn btn-block btn-danger" onClick="validateOtp();">Submit</button>
+            <a href="javascript:void(0)" onClick="showContainer('mobile_no_container')" class="back_btn">Back</a>
         </div>
         </form>
     </div>    
@@ -92,6 +93,13 @@ document.addEventListener("deviceready", function(){
 </body>
 <script type="text/javascript">
 
+function showContainer(div_to_show){
+	
+	$('.phone-login').hide();
+	$('#' + div_to_show).show();
+	
+}
+
 function loginNow(){
 	var customer_mobile = $('#customer_mobile').val();
 	var action_url = siteurl + 'account/login';	
@@ -106,7 +114,7 @@ function loginNow(){
 		
 	   	if(data['success'])
 		{
-			$('#mobile_no_container').remove();
+			$('#mobile_no_container').hide();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();			
 		}
@@ -135,7 +143,7 @@ function validateOtp(){
 		
 	   	if(data['success'])
 		{			
-			$('#mobile_no_container').remove();
+			$('#mobile_no_container').hide();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();
 			localStorage.setItem('cust_id', data['success']['id']);
