@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/function.js"></script>
+<script type="text/javascript">
+ checkLogin();
+</script>
+</head>
+
+<body class="bottom-links-bar forums-page" onLoad="getFourum();">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><img src="images/menubar.png"/></span></button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active"> <a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a> </li>
+      <li class="nav-item"> <a class="nav-link" href="javascript:void(0);">Setting</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="message-board mt-4" id="forum_info"></div>
+  
+  
+  
+  <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
+              <div class="modal-content">
+                <div id="common_popup">
+                  
+                </div>
+                <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
+              </div>
+        </div>
+</div>
+<div class="bottom-fixed-bar">
+  <div class="container">
+    <table class="table">
+      <tr>
+        <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+        <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+        <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+      </tr>
+    </table>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+function getFourum(){
+var fourum_id = gup('id');
+
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/forum/detail',
+	 dataType: 'json',
+	 data: {forum_id:fourum_id, login_id:localStorage.getItem('cust_id')},
+	 crossDomain: true,
+	 success: function(data){
+		
+	   	if(data['success'])
+		{
+			$('#forum_info').html(data['success']);	
+		}
+		
+	 }
+   });	
+	
+}
+
+function postComment(){
+	var fourum_id = gup('id');
+	var comment = $('#comment').val();
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/forum/comment',
+	 dataType: 'json',
+	 data: {forum_id:fourum_id, login_id:localStorage.getItem('cust_id'), comment: comment},
+	 crossDomain: true,
+	 success: function(data){
+		
+	   	if(data['success'])
+		{
+			$('#comment').val('');
+			$('#common_popup').html(data['success']);
+			$('#modal_error').modal('show');	
+		}else if(data['error'])
+		{	
+			var error_html = '';
+			
+			if(data['error']['login'])
+			{
+				error_html += data['error']['login'] + '<br>';
+			}
+			
+			if(data['error']['forum_id'])
+			{
+				error_html += data['error']['forum_id'] + '<br>';
+			}
+			
+			if(data['error']['comment'])
+			{
+				error_html += data['error']['comment'] + '<br>';
+			}
+				
+			$('#common_popup').html(error_html);
+			$('#modal_error').modal('show');	
+		}
+		
+	 }
+   });	
+
+}
+</script>
+</html>
