@@ -45,21 +45,21 @@
             </div>
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" class="form-control" id="title" name="name">
+                <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="form-group">
               <label>Description</label>
               <textarea class="form-control" name="description" id="description"></textarea>
             </div>
-            <button type="submit" class="btn btn-danger btn-block">SUBMIT</button>
+            <button type="button" class="btn btn-danger btn-block" onClick="addForum();">SUBMIT</button>
     </div>
-    
-    <div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
-              <div class="modal-content">               
+        
+        <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
+              <div class="modal-content">
                 <div id="common_popup">
-                  <p>Thank you, you have added form successfully. It will be visible after admin approval.</p>
-                </div>                
-                 <a href="forums.html"><button class="ok_onfirm_btn">OK</button></a>
+                  
+                </div>
+                <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
               </div>
         </div> 
 </div>
@@ -77,7 +77,77 @@
 <script type="text/javascript">
 $(document).ready(function(e){
     //$('#modal_common').modal('show');
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/forum/getforumCategory',
+	 dataType: 'json',
+	 data: {login_id:localStorage.getItem('cust_id')},
+	 crossDomain: true,
+	 success: function(data){
+		 $('#category').html(data['success']);
+	 }
+	 });
 });
+
+
+function addForum(){	
+	var category = $('#category').val();
+	var title = $('#title').val();
+	var description = $('#description').val();
+	
+	$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/forum/addForum',
+	 dataType: 'json',
+	 data: {category:category, login_id:localStorage.getItem('cust_id'), description: description, title:title},
+	 crossDomain: true,
+	 success: function(data){
+		
+	   	if(data['success'])
+		{
+			$('#description').val('');
+			$('#title').val('');
+			$('#category').val('');
+			$('#common_popup').html(data['success']);
+			$('#modal_error').modal('show');
+			
+			setTimeout(function(){ 
+			window.location = 'forums.html';
+			
+		  }, 3000);	
+		}else if(data['error'])
+		{	
+			var error_html = '';
+			
+			if(data['error']['login'])
+			{
+				error_html += data['error']['login'] + '<br>';
+			}
+			
+			if(data['error']['category'])
+			{
+				error_html += data['error']['category'] + '<br>';
+			}
+			
+			if(data['error']['title'])
+			{
+				error_html += data['error']['title'] + '<br>';
+			}
+			
+			if(data['error']['description'])
+			{
+				error_html += data['error']['description'] + '<br>';
+			}
+				
+			$('#common_popup').html(error_html);
+			$('#modal_error').modal('show');	
+		}
+		
+	 }
+   });	
+
+}
 </script>
 </body>
 </html>
