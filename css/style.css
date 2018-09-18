@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,800');
 
+iframe#chk_frame {
+    display: none;
+}
+iframe#hdr_ifr {
+    display: none;
+}
+body.chat-application.onlyforchat {
+    padding-bottom: 0;
+}
+.onlyforchat .navmainsection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+}
+.app-content.content {
+    padding-top: 68px;
+}
+a.sndbtn {
+    position: absolute;
+    right: 16px;
+    top: 18px;
+}
 div#report_confirm {
     top: 20%;
 }
@@ -1026,9 +1050,9 @@ label small{ font-size:8px;}
 
 @media (max-width: 767.98px) {
   .chat-application .chat-app-window {
-    height : -webkit-calc(100% - 124px);
-    height :    -moz-calc(100% - 124px);
-    height :         calc(100% - 124px);
+    height : -webkit-calc(100% - 72px);
+    height :    -moz-calc(100% - 72px);
+    height :         calc(100% - 72px);
   }
 }
 
