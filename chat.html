@@ -15,12 +15,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
  checkLogin();
- 
  function checkdeviceLogin(){
 	loadChat();
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
-
 </script>
 </head>
 <body class="chat-application onlyforchat">
@@ -29,17 +27,15 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <a href="swipe.html" class="backbtn">Back</a>
 </nav>
 <div class="app-content content">
-    <div class="chat-wrapper container mt-3">
-           
-            <section class="chat-app-window">           
-                <div class="chats"></div>           
-              </section>         
-              
-              <section class="chat-app-form">
+<div class="chat-wrapper container mt-3">
+    <section class="chat-app-window">
+        <div class="chats"></div>
+      </section>
+      <section class="chat-app-form">
                 <div class="chat-app-input d-flex">
                   <fieldset class="form-group position-relative has-icon-left col-10 m-0">               
-                    <input type="text" placeholder="Type your message" name="chat_txt" id="chat_txt" class="form-control"> 
-<a class="sndbtn" href="javascript:void(0);" onClick="addChat();"><img src="images/send.png"/></a>					
+                    <input type="text" placeholder="Type your message" name="chat_txt" id="chat_txt" class="form-control">
+<a class="sndbtn" href="javascript:void(0);" onClick="addChat();"><img src="images/send.png"/></a>
                   </fieldset>
                 </div>
               </section>

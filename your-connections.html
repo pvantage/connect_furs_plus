@@ -199,7 +199,11 @@ function deleteLike(invitation_id){
     }
 }
 
-
+function showModal(modal_name)
+{
+	$('.modal').modal('hide');
+	$('#'+modal_name).modal('show');	
+}
 
 function reportUser(user_id){
 	$('.modal').modal('hide');

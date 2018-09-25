@@ -8,6 +8,8 @@
 <title>Animal App</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -19,23 +21,21 @@ var longi;
 var device_platform;
 var device_reg_id;
 
-function onError(error){      
+function onError(error){
 		$('.modal').modal('hide');
 		$('#common_popup').html('message: ' + error.message);
 		$('#modal_error').modal('show');
 }
 
-
 function onSuccess(position){
-	
 	lat = position.coords.latitude;
     longi = position.coords.longitude;
 	if(localStorage.getItem("cust_id") != null)
 	{
 		var customer_login = localStorage.getItem("cust_id");
 		$.ajax({
-		 type: 'POST',
-		 url: siteurl + "account/setinfo/lat",
+		 type:'POST',
+		 url:siteurl + "account/setinfo/lat",
 		 dataType: 'json',
 		 data: {login_id:customer_login, latitude:lat, longitude:longi},
 		 crossDomain: true,
@@ -50,17 +50,23 @@ function onSuccess(position){
 	 }
 }
 
-document.addEventListener("deviceready", function(){		
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy: true });		
+document.addEventListener("deviceready", function(){
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy:true });
 }, false);
-
 </script>
 </head>
-<body>
+<body onLoad="Imgslider();">
 <div class="full-height center">
     <div class="container phloginecontainer">
     <form>
         <div class="phone-login" id="mobile_no_container">
+		
+		  <div class="login-slider">
+            <div class="owl-carousel owl-theme" id="slider_img">
+                
+            </div>
+        </div>  
+		
             <h3>Enter your mobile number</h3>
             <div class="phone-login-field">
                 <div class="countryflag"><img src="images/flag1.png" alt=""></div>
@@ -79,7 +85,7 @@ document.addEventListener("deviceready", function(){
             <a href="javascript:void(0)" onClick="showContainer('mobile_no_container')" class="back_btn">Back</a>
         </div>
         </form>
-    </div>    
+    </div>
   <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
               <div class="modal-content">
                 <div id="common_popup">
@@ -91,13 +97,37 @@ document.addEventListener("deviceready", function(){
 </div>
 <div class="loadermain" id="loadingImg"></div>
 </body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.js"></script> 
 <script type="text/javascript">
+function Imgslider(){
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/slider',
+	 dataType: 'json',
+	 data: {image:'img'},
+	 crossDomain: true,
+	 success: function(data){	 
+		
+	   	if(data['success'])
+		{			
+			$('#slider_img').html(data['success']);
+			
+			$('.owl-carousel').owlCarousel({
+				loop:false,
+				margin:0,
+				nav:false,
+				items:1
+			})			
+		}
+	 }
+   });	
+	
+}
 
 function showContainer(div_to_show){
-	
 	$('.phone-login').hide();
 	$('#' + div_to_show).show();
-	
 }
 
 function loginNow(){
@@ -128,7 +158,7 @@ function loginNow(){
 }
 
 function validateOtp(){
-		
+			
 	$('.modal').modal('hide');
 	var customer_mob = $('#customer_mob').val();
 	var customer_otp = $('#customer_otp').val();
@@ -137,12 +167,12 @@ function validateOtp(){
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude:lat, longitude:longi},
+	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude:30.21234, longitude:-41.09378},
 	 crossDomain: true,
 	 success: function(data){
 		
 	   	if(data['success'])
-		{			
+		{
 			$('#mobile_no_container').hide();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();
@@ -169,5 +199,4 @@ function validateOtp(){
    });
 }
 </script>
-<script src="js/bootstrap.min.js"></script>
 </html>
