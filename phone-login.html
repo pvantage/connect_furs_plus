@@ -8,12 +8,11 @@
 <title>Animal App</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/owl.theme.default.css">
-<link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
+<script src="js/jquery.mask.js"></script>
 <script type="text/javascript">
 
 var lat;
@@ -55,18 +54,11 @@ document.addEventListener("deviceready", function(){
 }, false);
 </script>
 </head>
-<body onLoad="Imgslider();">
+<body>
 <div class="full-height center">
     <div class="container phloginecontainer">
     <form>
-        <div class="phone-login" id="mobile_no_container">
-		
-		  <div class="login-slider">
-            <div class="owl-carousel owl-theme" id="slider_img">
-                
-            </div>
-        </div>  
-		
+        <div class="phone-login" id="mobile_no_container">		
             <h3>Enter your mobile number</h3>
             <div class="phone-login-field">
                 <div class="countryflag"><img src="images/flag1.png" alt=""></div>
@@ -97,33 +89,7 @@ document.addEventListener("deviceready", function(){
 </div>
 <div class="loadermain" id="loadingImg"></div>
 </body>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.js"></script> 
 <script type="text/javascript">
-function Imgslider(){
-$.ajax({
-	 type: 'POST',
-	 url: siteurl + 'common/common/slider',
-	 dataType: 'json',
-	 data: {image:'img'},
-	 crossDomain: true,
-	 success: function(data){	 
-		
-	   	if(data['success'])
-		{			
-			$('#slider_img').html(data['success']);
-			
-			$('.owl-carousel').owlCarousel({
-				loop:false,
-				margin:0,
-				nav:false,
-				items:1
-			})			
-		}
-	 }
-   });	
-	
-}
 
 function showContainer(div_to_show){
 	$('.phone-login').hide();
@@ -167,7 +133,7 @@ function validateOtp(){
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude:30.21234, longitude:-41.09378},
+	 data: {customer_mobile:customer_mob,otp:customer_otp, latitude:lat, longitude:longi},
 	 crossDomain: true,
 	 success: function(data){
 		
@@ -198,5 +164,9 @@ function validateOtp(){
 	 }
    });
 }
+
+$(document).ready(function () {	
+	$("#customer_mobile").mask("(99)-9999999999");	
+});
 </script>
 </html>
