@@ -19,53 +19,44 @@
 </head>
 <body class="bottom-links-bar">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"><img src="images/menubar.png"/></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active"><a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a></li>
-      <li class="nav-item"><a class="nav-link" href="view-profile.html">My Profile</a></li>
-	   <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
-    </ul>
-  </div>
+<img src="images/menu-logo.png"/>
+<a href="your-connections.html" class="backbtn">Back</a>
 </nav>
-
 <div class="container">
     <div class="edit-profile viewprofile mt-4">
-        <h1 class="red">YOUR PROFILE</h1>
+        <h1 class="red">PROFILE INFORMATION</h1>           
             <div class="form-group">
-                <label>Owner Name:</label>
+                <label>Owner Name:</label>                
                 <div id="name"></div>
             </div>
             
             <div class="form-group">
-                <label>State:</label>
+                <label>State:</label>                                
                 <div id="state"></div>
             </div>
             
             <div class="form-group">
-                <label>City:</label>
+                <label>City:</label>                
                 <div id="city"></div>
             </div> 
             
             <div class="form-group">
-                <label>Pet Name:</label>
+                <label>Pet Name:</label>               
                 <div id="petname"></div>
             </div>
             
             <div class="form-group">
-                <label>Pet Age:</label>
+                <label>Pet Age:</label>               
                 <div id="petage"></div>
             </div>
             <div class="form-group">
-                <label>Pet Sex </label>
+                <label>Pet Sex </label>                
                 <div id="sex"></div>
             </div>
             
+            
             <div class="form-group">
-                <label>Pet Temperament</label>
+                <label>Pet Temperament</label>                
                 <div id="temperment"></div>
             </div>
             
@@ -75,7 +66,7 @@
             </div>
             
             <div class="form-group">
-                <label>Breed</label>
+                <label>Breed</label>                
                 <div id="specific_breed"></div>
             </div>
             
@@ -85,7 +76,7 @@
             </div>
             
             <div class="form-group">
-                <label>Willing Distance</label>
+                <label>Willing Distance</label>                
                 <div id="willing_distance"></div>
             </div>
             
@@ -93,6 +84,10 @@
                 <label>Who do you want to play/breeding with </label>                
                 <div id="who_play_breed"></div>
             </div>
+            
+            
+            
+            
 			
 			<div class="form-group uploadbtns">
             <label>Profile Pics</label>
@@ -119,7 +114,7 @@
     </div>
 </div>
 <script type="text/javascript">
-var login_id = localStorage.getItem('cust_id');
+var login_id = gup('cust_id');
 
 $.ajax({
 	 type: 'POST',

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/function.js"></script> 
+</head>
+<body class="bottom-links-bar" onLoad="loadInfo();">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
+<img src="images/menu-logo.png"/>
+<a href="login.html" class="backbtn">Back</a>
+</nav>
+
+<div class="container">
+    <div class="your-connections mt-4" id="page">
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+function loadInfo(){
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/getcmspage',
+	 dataType: 'json',
+	 data: {page_id : gup('page_id')},
+	 crossDomain: true,
+	 success: function(data){
+		 if(data['success'])
+		 {
+			 $('#page').html(data['success']);
+		 }
+	  }
+   });
+}
+</script>
+
+</html>

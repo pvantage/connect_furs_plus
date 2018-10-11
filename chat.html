@@ -33,7 +33,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
       </section>
       <section class="chat-app-form">
                 <div class="chat-app-input d-flex">
-                  <fieldset class="form-group position-relative has-icon-left col-10 m-0">               
+                  <fieldset class="form-group position-relative has-icon-left col-10 m-0">
                     <input type="text" placeholder="Type your message" name="chat_txt" id="chat_txt" class="form-control">
 <a class="sndbtn" href="javascript:void(0);" onClick="addChat();"><img src="images/send.png"/></a>
                   </fieldset>
@@ -61,7 +61,6 @@ $.ajax({
 
 function addChat(){
 var message = $('#chat_txt').val();
-
 if(message != ''){
 $('#chat_txt').val('');
 $.ajax({

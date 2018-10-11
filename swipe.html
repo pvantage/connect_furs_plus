@@ -28,12 +28,11 @@ checkLogin();
 <div class="container">
 <div id="add_pets_profile"></div>
 <div class="modal fade modelcommon model_center_pop_up" id="modal_common" role="dialog">
-              <div class="modal-content">               
-                <div id="common_popup"></div>                
+              <div class="modal-content">
+                <div id="common_popup"></div>
                  <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
               </div>
-        </div>
-   
+</div>   
    
  <div id="report_user" class="modal fade" role="dialog"  aria-hidden="true">
   <div class="modal-dialog">
@@ -150,8 +149,11 @@ $.ajax({
 					 }else{
 						//alert('You have no more records.'); 
 						likeProfile(login_id, profile_id);
-						$('#common_popup').html('You have no more records.');
+						$('#common_popup').html('You have no more records. Reload again from start.');
 						 $('#modal_common').modal('show');
+						 
+						 setTimeout(function(){ window.location = 'swipe.html'; }, 5000);
+						 
 					 }
 				 }else if(direction == 'left')
 				 {
@@ -161,8 +163,9 @@ $.ajax({
 						$('#'+ current_html_block).remove();
 					 }else{
 						 
-						 $('#common_popup').html('You have no more records.');
+						 $('#common_popup').html('You have no more records. Reload again from start');
 						 $('#modal_common').modal('show');
+						 setTimeout(function(){ window.location = 'swipe.html'; }, 5000);
 					 }
 				 }
 				}
@@ -191,7 +194,6 @@ function likeProfile(like_by, like_to){
 	});	
 }
 
-
 function showModal(modal_name)
 {
 	$('.modal').modal('hide');
@@ -206,7 +208,6 @@ function reportUser(user_id){
 
 function report(subject)
 {	
-	
 	var report_msg = '';
 	var profile_id = $('input[name="report_prof_id"]').val();
 	
@@ -230,17 +231,15 @@ function report(subject)
 			 $('.modal').modal('hide');
 			 $('#report_confirm').modal('show');
 			 $('textarea[name="report_text"]').val('');
-			 			 
 		 }else if(data['error'])
 		 {
 			 if(data['error']['message'])
 			 {
 				$('textarea[name="report_text"]').after('<p class="error">' + data['error']['message'] + '</p>'); 
-			 }		 
+			 }
 		 }
 	  }
-   });	
-	
+   });
 }
 </script>
 </body>
