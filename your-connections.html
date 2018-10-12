@@ -25,15 +25,22 @@
       <li class="nav-item active">
         <a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a>
       </li>
-      <li class="nav-item"><a class="nav-link" href="view-profile.html">My Profile</a></li>
-	   <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="edit-profile.html">Edit Profile</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);">Setting</a>
+     </li>
+	   <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a>
+        </li>
     </ul>
   </div>
 </nav>
 <div class="container">
     <div class="your-connections mt-4">
         <h1 class="red">YOUR CONNECTIONS</h1>
-        <div class="table-responsive mb-3">
+        <div class="table-responsive mb-3 cnntblk">
             <table class="table table-bordered" id="connections">
                 
             </table>
@@ -45,7 +52,7 @@
     <div class="your-connections mt-4">
         <h1 class="red">YOUR INVITES</h1>
         <div class="table-responsive mb-3">
-            <table class="table table-bordered" id="invites">                 
+            <table class="table table-bordered invitestcn" id="invites">                 
             </table>
         </div>
       <button type="submit" class="btn btn-danger btn-block">
@@ -115,13 +122,13 @@
 <!-- end --> 
     
 </div>
-<div class="bottom-fixed-bar">
+<div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
         <table class="table">
             <tr>
-                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
-                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
-                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+                <td><a href="view-profile.html"><img src="images/user-icon.png" alt="view profile"></a></td>
+                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt="your connections"></a></td>
+                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt="forum"></a></td>
             </tr>
         </table>
     </div>

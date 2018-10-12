@@ -29,12 +29,7 @@
         <a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a>
       </li>
       <li class="nav-item"><a class="nav-link" href="view-profile.html">My Profile</a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0);">Setting</a>
-     </li>
-	   <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a>
-        </li>
+	   <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -143,7 +138,7 @@
         </form>
     </div>
 </div>
-<div class="bottom-fixed-bar">
+<div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
         <table class="table">
              <tr>
@@ -622,7 +617,10 @@ $.ajax({
 
 
 <script type="text/javascript">
-
+chatMessage(login_id);
+	setInterval(function() {
+		chatMessage(login_id);
+	}, 10000);
 </script>
 </body>
 </html>

@@ -53,9 +53,6 @@ checkLogin();
 
   </div>
 </div>     
-        
-    
-    
  <!-- report_other -->   
  <div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -93,20 +90,16 @@ checkLogin();
   </div>
 </div>
 
-<!-- end -->
-    
-    
-    
-        
+<!-- end -->       
         
 </div>
 
-<div class="bottom-fixed-bar">
+<div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
         <table class="table">
             <tbody>
                <tr>
-                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td><a href="view-profile.html"><img src="images/user-icon.png" alt="view"></a></td>
                 <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
                 <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
             </tr>
@@ -241,6 +234,13 @@ function report(subject)
 	  }
    });
 }
+
+	chatMessage(login_id);
+	setInterval(function() {
+		chatMessage(login_id);
+	}, 10000);	
+	
+
 </script>
 </body>
 </html>

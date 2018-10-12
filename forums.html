@@ -22,9 +22,8 @@
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><img src="images/menubar.png"/></span></button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active"><a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a></li>
-      <li class="nav-item"><a class="nav-link" href="view-profile.html">My Profile</a></li>
-      <li class="nav-item"><a class="nav-link" href="javascript:void(0);">Setting</a></li>
+      <li class="nav-item active"><a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a></li>      
+       <li class="nav-item"><a class="nav-link" href="edit-profile.html">Edit Profile</a></li>
 	   <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
     </ul>
   </div>
@@ -36,11 +35,11 @@
         <div id="forum_lists"></div>
     </div>
 </div>
-<div class="bottom-fixed-bar">
+<div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
         <table class="table">
              <tr>
-                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td><a href="view-profile.html"><img src="images/user-icon.png" alt=""></a></td>
                 <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
                 <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
             </tr>
@@ -68,6 +67,11 @@ function getForums(category_id){
 	 }
    });	
 }
+
+chatMessage(login_id);
+	setInterval(function() {
+		chatMessage(login_id);
+	}, 10000);
 </script>
 </body>
 </html>

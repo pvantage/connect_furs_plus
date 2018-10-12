@@ -1,5 +1,58 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,800');
 
+span.count {
+     width: 19px;
+    height: 19px;
+    background: red;
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 50px;
+    color: #fff;
+    /* padding: 10px; */
+    line-height: 19px;
+    text-align: center;
+    font-size: 11px;
+    box-shadow: 0px 1px 2px #616161;
+}
+.fchatm img {
+    float: left;
+}
+.fchatm span.count {
+    margin-left: -3px;
+    margin-top: -3px;
+    float: left;
+}
+.alertbox {
+    background: yellow;
+    float: right;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    padding: 4px 22px;
+    box-shadow: 0px 1px 4px #000;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 15px;
+    max-width: 320px;
+}
+td.yc-rightanc a {
+    padding: 3px 0px;
+    float: left;
+    width: 100%;
+}
+.your-connections .cnntblk .dog-detail {
+     margin-top: 1px;
+    margin-left: 100px;
+}
+.your-connections .cnntblk .dog-detail a {
+    float: left;
+    width: 88%;
+}
+.your-connections .cnntblk .dog-detail strong {
+    min-height: 32px;
+    float: left;
+    width: 88%;
+}
 .viewprofile .form-group div {
     float: left;
 }
@@ -1080,7 +1133,25 @@ label small{ font-size:8px;}
 .your-connections table thead .fa{ color:#fff; font-size:20px;}
 .reqfield{ color:#F00; padding-right:1px; font-weight:600;}p.noresults{ padding:5px;}
 @media (max-width: 480px) {
-.your-connections table.table{ max-width:inherit; width:480px;}	
+.your-connections .cnntblk .dog-detail {
+    margin-left: 73px;
+}	
+.your-connections table.table{ max-width:inherit; width:300px;}
+.your-connections .avatar {
+    width: 33px;
+}
+.your-connections .dog-detail {
+    margin-left: 72px;
+}
+.cnntblk img.req-act {
+    margin-top: 3px;
+    margin-right: 8px;
+    width: 20px;
+}
+.invitestcn .dog-detail {
+    margin-left: 42px;
+    margin-top: 8px;
+}
 #report_user .modal-dialog {
     max-width: 275px;
     margin: 2.75rem auto;
