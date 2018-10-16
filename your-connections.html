@@ -41,9 +41,8 @@
             <table class="table table-bordered" id="connections">
                 
             </table>
-        </div>				      <!--<button type="submit" class="btn btn-danger btn-block">
-					  <a href="swipe.html" class="btn btn-danger btn-block">KEEP SWIPING</a></button>-->
-
+        </div> <!--<button type="submit" class="btn btn-danger btn-block">
+	<a href="swipe.html" class="btn btn-danger btn-block">KEEP SWIPING</a></button>-->
     </div>
     
     <div class="your-connections mt-4">
@@ -73,13 +72,9 @@
         </ul>
       </div>
     </div>
-
   </div>
-</div>     
-        
+</div>
     
-    
- <!-- report_other -->   
  <div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -99,25 +94,20 @@
 </div>
 <!-- end -->
     
-   <!-- report confirm -->
 <div id="report_confirm" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="info-background"><img src="images/info_icon.png"></div>      
+       <div class="info-background"><img src="images/info_icon.png"></div>
         <h2 class="modal-title2">User Reported</h2>
       </div>
-      <div class="modal-body">
-        
+      	<div class="modal-body">
         <div><button data-dismiss="modal">Okay</button></div>
       </div>
     </div>
-
   </div>
 </div>
-
-<!-- end --> 
-    
+ 
 </div>
 <div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
@@ -159,7 +149,7 @@ function accptInvite(invitation_id){
 			 success:function(data){
 				 window.location = "match.html?id="+data['success'];
 			   }
-		});
+	});
 }
 
 function rejectInvite(invitation_id){
@@ -196,7 +186,6 @@ function deleteLike(invitation_id){
 				 }
 			   }
 		});
-		
     }
 }
 
@@ -213,13 +202,12 @@ function reportUser(user_id){
 }
 
 function report(subject)
-{	
+{
 	var report_msg = '';
 	var profile_id = $('input[name="report_prof_id"]').val();
-	
 	if(subject == 'other')
 	{
-		report_msg = $('textarea[name="report_text"]').val();	
+		report_msg = $('textarea[name="report_text"]').val();
 	}
 	
 	$.ajax({
@@ -246,8 +234,7 @@ function report(subject)
 			 }		 
 		 }
 	  }
-   });	
-	
+   });
 }
 </script>
 </body>
