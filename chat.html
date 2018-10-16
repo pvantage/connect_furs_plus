@@ -54,6 +54,10 @@ $.ajax({
 		 if(data['success'])
 		 {
 			 $('.chats').html(data['success']);
+			 
+			 $('.chat-app-window').animate({
+               scrollTop: $('.chat-app-window')[0].scrollHeight}, "slow");
+       		
 		 }
 	  }
    });
@@ -71,6 +75,8 @@ $.ajax({
 	 crossDomain: true,
 	 success: function(data){
 			 $('.chats').html(data['success']);
+			 $('.chat-app-window').animate({
+               scrollTop: $('.chat-app-window')[0].scrollHeight}, "slow");
 	   }
     });
   }
