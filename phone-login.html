@@ -8,12 +8,13 @@
 <title>Animal App</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.ccpicker.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="cordova.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
-<script src="js/jquery.mask.js"></script>
+<script src="js/jquery.ccpicker.js"></script>
 <script type="text/javascript">
 
 var lat;
@@ -59,11 +60,11 @@ document.addEventListener("deviceready", function(){
 <div class="full-height center">
     <div class="container phloginecontainer">
     <form>
-        <div class="phone-login" id="mobile_no_container">		
-            <h3>Enter your mobile number</h3>
-            <div class="phone-login-field">
-                <div class="countryflag"><img src="images/flag1.png" alt=""></div>
-                <input type="text" maxlength="12" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter mobile number with country code.">
+        <div class="phone-login" id="mobile_no_container">
+        <input type="hidden" name="isdcode" id="isdcode" value="1">		
+            <h3>Enter your country code and mobile number</h3>
+            <div class="phone-login-field phloginfld">				
+                <input type="number" maxlength="10" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter your mobile number">
             </div>
             <button type="button" class="btn btn-block btn-danger" onClick="loginNow();">NEXT</button>
         </div>
@@ -91,6 +92,13 @@ document.addEventListener("deviceready", function(){
 <div class="loadermain" id="loadingImg"></div>
 </body>
 <script type="text/javascript">
+$( document ).ready(function() {
+    $("#customer_mobile").CcPicker({"countryCode":"us"});
+	
+	$("#customer_mobile").on("countrySelect", function(e, i){
+		$('#isdcode').val(i.phoneCode);
+	});
+});
 
 function showContainer(div_to_show){
 	$('.phone-login').hide();
@@ -99,13 +107,14 @@ function showContainer(div_to_show){
 
 function loginNow(){
 	var customer_mobile = $('#customer_mobile').val();
+	var isdcode = $('#isdcode').val();
 	var action_url = siteurl + 'account/login';	
 			
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mobile,device_type: device_platform, device_reg_id:device_reg_id},
+	 data: {customer_mobile:customer_mobile,isdcode:isdcode,device_type: device_platform, device_reg_id:device_reg_id},
 	 crossDomain: true,
 	 success: function(data){	 
 		
@@ -114,8 +123,8 @@ function loginNow(){
 			$('#mobile_no_container').hide();
 			$('#customer_mob').val(data['success']['no']);
 			$('#otp_container').show();			
-		}
-		
+		}		
+				
 		if(data['error'])
 		{
 			$('#customer_mobile').addClass('req');
@@ -165,9 +174,5 @@ function validateOtp(){
 	 }
    });
 }
-
-$(document).ready(function () {	
-	$("#customer_mobile").mask("(99)-9999999999");	
-});
 </script>
 </html>

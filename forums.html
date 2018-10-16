@@ -49,7 +49,7 @@
 
 
 <script type="text/javascript">
-
+var login_id = localStorage.getItem('cust_id');
 function getForums(category_id){
 				
 	$.ajax({
@@ -68,7 +68,6 @@ function getForums(category_id){
    });	
 }
 
-chatMessage(login_id);
 	setInterval(function() {
 		chatMessage(login_id);
 	}, 10000);

@@ -40,6 +40,7 @@
 </div>
 </body>
 <script type="text/javascript">
+var login_id = localStorage.getItem('cust_id');
 function getFourum(){
 var fourum_id = gup('id');
 
@@ -104,7 +105,7 @@ function postComment(){
 
 }
 
-chatMessage(login_id);
+
 	setInterval(function() {
 		chatMessage(login_id);
 	}, 10000);

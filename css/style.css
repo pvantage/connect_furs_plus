@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,800');
 
+.phloginfld .cc-picker {
+float: left;
+    margin-right: 2%;
+    width: 8%;
+	    margin-top: 6px;
+}
+.alertbox a {
+    color: #000;
+    font-weight: 600 !important;
+}
+.alertbox button.close {
+    color: #000 !important;
+    opacity: inherit;
+}
 span.count {
      width: 19px;
     height: 19px;
@@ -13,6 +27,31 @@ span.count {
     text-align: center;
     font-size: 11px;
     box-shadow: 0px 1px 2px #616161;
+}
+a.backbtn.bkbtnn {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.phloginfld span {
+    float: left;
+    margin-right: 2%;
+    width: 2%;
+}
+.phloginfld input#customer_mobile {
+       width: 90%;
+    float: left;
+}
+.phloginfld {
+    float: left;
+    width: 100%;
+}
+.countrycode {
+    width: 11%;
+    float: left;
+    margin-right: 2%;
+	text-align:center;
+	padding:0px;
 }
 .fchatm img {
     float: left;
@@ -549,7 +588,7 @@ margin:0 0 20px 0;
 
 .phone-login-field{
 position:relative;
-padding-left:50px;
+padding-left:0px;
 margin-bottom:20px;	
 }
 
@@ -1133,10 +1172,23 @@ label small{ font-size:8px;}
 .your-connections table thead .fa{ color:#fff; font-size:20px;}
 .reqfield{ color:#F00; padding-right:1px; font-weight:600;}p.noresults{ padding:5px;}
 @media (max-width: 480px) {
+
+.phloginfld span {
+    margin-left: -1%;
+}
+.countrycode {
+    width: 16%;
+}
+.phloginfld input#customer_mobile {
+    width: 82%;
+}	
+.phloginfld .cc-picker {
+    width: 15%;
+}
 .your-connections .cnntblk .dog-detail {
     margin-left: 73px;
 }	
-.your-connections table.table{ max-width:inherit; width:300px;}
+.your-connections table.table{ max-width:inherit; min-width:300px;}
 .your-connections .avatar {
     width: 33px;
 }
