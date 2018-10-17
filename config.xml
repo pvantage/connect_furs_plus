@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "connectfursplus.com"
-	android-packageName="connectfursplus.com"
+    id          = "connectfurs.com"
+	android-packageName="connectfurs.com"
     ios-CFBundleIdentifier="connectfurs.com"
     versionCode = "1" 
     version     = "1.0.0" >
