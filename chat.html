@@ -34,10 +34,11 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
       <section class="chat-app-form">
                 <div class="chat-app-input d-flex">
                   <fieldset class="form-group position-relative has-icon-left col-10 m-0">
-                    <input type="text" placeholder="Type your message" name="chat_txt" id="chat_txt" class="form-control">
+                    <textarea placeholder="Type your message" name="chat_txt" id="chat_txt" class="form-control"></textarea>
 <a class="sndbtn" href="javascript:void(0);" onClick="addChat();"><img src="images/send.png"/></a>
                   </fieldset>
                 </div>
+		
               </section>
         </div>
 </div>
@@ -54,10 +55,6 @@ $.ajax({
 		 if(data['success'])
 		 {
 			 $('.chats').html(data['success']);
-			 
-			 $('.chat-app-window').animate({
-               scrollTop: $('.chat-app-window')[0].scrollHeight}, "slow");
-       		
 		 }
 	  }
    });
@@ -75,14 +72,13 @@ $.ajax({
 	 crossDomain: true,
 	 success: function(data){
 			 $('.chats').html(data['success']);
-			 $('.chat-app-window').animate({
-               scrollTop: $('.chat-app-window')[0].scrollHeight}, "slow");
 	   }
     });
   }
 }
 
-$(document).ready(function(e){   	
+$(document).ready(function(e){
+    	
 	setInterval(function (){
 		loadChat();
 	},3000);
