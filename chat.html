@@ -29,7 +29,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <div class="app-content content">
 <div class="chat-wrapper container mt-3">
     <section class="chat-app-window">
-        <div class="chats"></div>
+        <div class="chats" id="chats"></div>
       </section>
       <section class="chat-app-form">
                 <div class="chat-app-input d-flex">
@@ -54,7 +54,9 @@ $.ajax({
 	 success: function(data){
 		 if(data['success'])
 		 {
-			 $('.chats').html(data['success']);
+			 $('.chats').html(data['success']);			
+			$('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
+       		
 		 }
 	  }
    });
@@ -72,6 +74,7 @@ $.ajax({
 	 crossDomain: true,
 	 success: function(data){
 			 $('.chats').html(data['success']);
+			 $('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
 	   }
     });
   }
