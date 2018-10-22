@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Animal App</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.css">
+<link rel="stylesheet" href="css/owl.carousel.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/function.js"></script> 
+<script type="text/javascript">
+checkLogin();
+function checkdeviceLogin(){
+	loadProfile();
+}
+document.addEventListener("deviceready", checkdeviceLogin, false);
+</script>
+</head>
+<body class="bottom-links-bar">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
+<img src="images/menu-logo.png"/>
+<a href="view-profile.html" class="backbtn">Back</a>
+</nav>
+<div class="breed-detail-wrap">
+    <div class="container">
+    <div id="profile_info"></div>
+ </div>
+</div>
+<div class="bottom-fixed-bar">
+    <div class="container">
+        <table class="table">
+            <tbody>
+               <tr>
+                <td><a href="edit-profile.html"><img src="images/user-icon.png" alt=""></a></td>
+                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="js/owl.carousel.js"></script>
+<script type="text/javascript">
+var login_id = localStorage.getItem('cust_id');
+function loadProfile(){
+$.ajax({
+	 type: 'POST',
+	 url: siteurl + 'common/common/myProfile',
+	 dataType: 'json',
+	 data: {login_id:login_id},
+	 crossDomain: true,
+	 success: function(data){
+		 if(data['success'])
+		 {
+			 $('#profile_info').html(data['success']);
+			 
+			 $('.owl-carousel').owlCarousel({
+				loop:false,
+				margin:0,
+				nav:true,
+				dots: false,
+				paginations:false,
+				items: 1			   
+			});
+		 }
+	  }
+   });
+}
+</script>
+</body>
+</html>

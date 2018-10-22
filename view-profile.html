@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/swiper.css">
+<link rel="stylesheet" href="css/main.css">
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/function.js"></script>
@@ -17,109 +19,39 @@
  checkLogin();
 </script>
 </head>
-<body class="bottom-links-bar">
+<body class="bottom-links-bar profile-swipes">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"><img src="images/menubar.png"/></span>
-  </button>
-  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"><img src="images/menubar.png"/></span> </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active"><a class="nav-link" href="swipe.html">Home <span class="sr-only">Profile</span></a></li>
       <li class="nav-item"><a class="nav-link" href="edit-profile.html">Edit Profile</a></li>
-	   <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onClick="logOut();">Logout</a></li>
     </ul>
   </div>
 </nav>
-
 <div class="container">
-    <div class="edit-profile viewprofile mt-4">
-        <h1 class="red">YOUR PROFILE</h1>
-            <div class="form-group">
-                <label>Owner Name:</label>
-                <div id="name"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>State:</label>
-                <div id="state"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>City:</label>
-                <div id="city"></div>
-            </div> 
-            
-            <div class="form-group">
-                <label>Pet Name:</label>
-                <div id="petname"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Pet Age:</label>
-                <div id="petage"></div>
-            </div>
-            <div class="form-group">
-                <label>Pet Sex </label>
-                <div id="sex"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Pet Temperament</label>
-                <div id="temperment"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Pet Category</label>                
-                <div id="category"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Breed</label>
-                <div id="specific_breed"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Pet Color</label>                
-                <div id="pet_color"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Willing Distance</label>
-                <div id="willing_distance"></div>
-            </div>
-            
-            <div class="form-group">
-                <label>Who do you want to play/breeding with </label>                
-                <div id="who_play_breed"></div>
-            </div>
-			
-			<div class="form-group uploadbtns">
-            <label>Profile Pics</label>
-			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg" id="pet_image_src">            
-			<div class="smallimg">
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1">               
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2">                
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3">                
-			 	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4">               
-             </div>
-			</div>      
-            </div>
-    </div>
+  <div id="my_profile">
+    
+  </div>
 </div>
 <div class="bottom-fixed-bar" id="bottom_bar">
-    <div class="container">
-        <table class="table">
-             <tr>
-                <td><a href="view-profile.html"><img src="images/user-icon.png" alt="profile"></a></td>
-                <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
-                <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
-            </tr>
-        </table>
-    </div>
+  <div class="container">
+    <table class="table">
+      <tr>
+        <td><a href="view-profile.html"><img src="images/user-icon.png" alt="profile"></a></td>
+        <td class="text-center"><a href="your-connections.html"><img src="images/heart-icon.png" alt=""></a></td>
+        <td class="text-right"><a href="forums.html"><img src="images/chat-icon.png" alt=""></a></td>
+      </tr>
+    </table>
+  </div>
 </div>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
+
+function changeThumb(img_ur){
+	$('.profilebanner').css('background-image','url('+img_ur +')');
+}
 
 $.ajax({
 	 type: 'POST',
@@ -128,58 +60,55 @@ $.ajax({
 	 data: {login_id:login_id},
 	 crossDomain: true,
 	 success: function(data){
-			$('#name').html(data['success']['name']);
-			if(parseInt(data['success']['age']) >1 )
-			{
-				$('#petage').html(data['success']['age'] + ' Years');
-			}else{
-				$('#petage').html(data['success']['age'] + ' Year');
-			}
-			$('#petlocation').html(data['success']['location']);
-			$('#petname').html(data['success']['petname']);
-			$('#aboutpet').html(data['success']['aboutpet']);
-			$('#pet_color').html(data['success']['pet_color']);
-			$('#sex').html(data['success']['pet_sex']);
-			$('#specific_breed').html(data['success']['breed_specific']);			
-			$('#willing_distance').html(data['success']['willing_distance'] + ' Miles');
-			$('#state').html(data['success']['state_name']);
-			$('#city').html(data['success']['city']);
-			$('#temperment').html(data['success']['temperment']);
-			$('#category').html(data['success']['category']);
+		 
+		var my_profile = '<header class="profilebanner" ';		 
+		my_profile += 'style="background-image:url('+ data['success']['img'] +');">';		
+        my_profile += '<div class="breed-detail-wrap">';
+	  
+
+		my_profile += '<div class="profilesl-thumb">';
+		
+		if(data['success']['img_1_1']){
+		 my_profile += '<img src="'+data['success']['img_1_1']+'" onclick=\'changeThumb("'+data['success']['img_1_1'] +'")\'>';
+		}
+		
+		if(data['success']['img_2_2']){
+			my_profile += '<img src="'+data['success']['img_2_2']+'" onclick=\'changeThumb("'+data['success']['img_2_2']+'")\'>';
+		}
+		
+		if(data['success']['img_3_3']){
+		my_profile += '<img src="'+data['success']['img_3_3']+'" onclick=\'changeThumb("'+data['success']['img_3_3']+'")\'>';
+		}
+		
+		if(data['success']['img_4_4']){
+		my_profile += '<img src="'+data['success']['img_4_4']+'" onclick=\'changeThumb("'+data['success']['img_4_4']+'")\'>';
+		}
+		
+		my_profile += '</div>';
+        my_profile += '<div class="pet-dtl">';
+        my_profile += '<span><label>Pet Name:</label>' + data['success']['petname'] + '</span>';
+        my_profile += '<span><label>Pet Age:</label>';
+		
+		if(parseInt(data['success']['age']) >1 )
+		{
+			my_profile += data['success']['age'] + ' Years';
+		}else{
+			my_profile += data['success']['age'] + ' Year';
+		}
 			
-			if(data['success']['who_play_breed'] == 0)
-			{
-				$('#who_play_breed').html('Any Pet');
-			}else if(data['success']['who_play_breed'] == 1)
-			{
-				$('#who_play_breed').html('Just my breed');
-			}else if(data['success']['who_play_breed'] == 2)
-			{
-				$('#who_play_breed').html('Specific breed');
-			}
-			
-			
-			if(data['success']['image'])
-			{
-				$('#pet_image_src').attr('src', data['success']['image']);				
-			}
-			
-			if(data['success']['img_1'])
-			{
-				$('#src_pet_image_1').attr('src', data['success']['img_1']);				
-			}
-			if(data['success']['img_2'])
-			{
-				$('#src_pet_image_2').attr('src', data['success']['img_2']);				
-			}
-			if(data['success']['img_3'])
-			{
-				$('#src_pet_image_3').attr('src', data['success']['img_3']);				
-			}
-			if(data['success']['img_4'])
-			{
-				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
-			}			
+		my_profile += '</span>';
+		my_profile += '<span><label>Owner Name:</label>'+ data['success']['name'] +'</span>';
+        my_profile += '<span><label>Town:</label>'+ data['success']['location'] +'</span>';		
+        my_profile += '<div class="idetail"><a href="profile-detail.html?profile_id='+ login_id +'"><img src="images/i.png"></a></div>';
+        my_profile += '</div>';
+       my_profile += '</div>';
+	  
+	  
+      my_profile += '</header>';
+		 
+		$('#my_profile').html(my_profile);		
+		
+						
 	   }
    });
  
