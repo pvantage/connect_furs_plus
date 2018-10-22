@@ -95,10 +95,19 @@ $.ajax({
 		}else{
 			my_profile += data['success']['age'] + ' Year';
 		}
+		
+		
 			
 		my_profile += '</span>';
 		my_profile += '<span><label>Owner Name:</label>'+ data['success']['name'] +'</span>';
-        my_profile += '<span><label>Town:</label>'+ data['success']['location'] +'</span>';		
+        my_profile += '<span><label>Location:</label>'+ data['success']['city'];
+		
+		if(data['success']['state_name'])
+		{
+			my_profile += ', ' + data['success']['state_name'];
+		}
+		
+		my_profile += '</span>';		
         my_profile += '<div class="idetail"><a href="profile-detail.html?profile_id='+ login_id +'"><img src="images/i.png"></a></div>';
         my_profile += '</div>';
        my_profile += '</div>';
