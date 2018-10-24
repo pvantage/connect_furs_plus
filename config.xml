@@ -39,10 +39,10 @@
 	  <!-- END -->
 	  
 	  
-	  <!-- notification count -->
+	  <!-- 
 	  <plugin name="cordova-plugin-badge" source="npm" />
 	  <preference name="android-build-tool" value="gradle" />	  	  
-	  <!-- end -->
+	 end -->
 	
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />
