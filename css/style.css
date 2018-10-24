@@ -926,7 +926,7 @@ html body .content.app-content {
   top : 2px;
   cursor : pointer;
 }
-.chat-app-form .form-control{ background-color:#fff; height:38px;}
+.chat-app-form .form-control{ background-color:#fff; height:38px; padding-right:40px;}
 .match-content{ text-align:center; color:#fff;}
 .match-content h1{ font-weight:700; color:#58de58; font-size:28px;}
 .match-content h2{ font-size:25px;}
