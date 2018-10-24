@@ -29,6 +29,13 @@
 	<plugin name="phonegap-plugin-push" spec="~1.9.0">
 	 	<variable name="SENDER_ID" value="1:22045590689:android:b566515b50deee6a" />
 	 </plugin>
+	 
+	 <!-- manage status bar -->
+	 <preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#000000" />
+	<preference name="StatusBarStyle" value="lightcontent" />
+	<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
+	  <!-- END -->
 	
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />
