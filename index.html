@@ -19,7 +19,7 @@
 function checkWhenready(){
 	
 	alert('Hello');
-	/*cordova.plugins.notification.badge.registerPermission(function (gr) {
+	cordova.plugins.notification.badge.hasPermission(function (gr) {
 		
 		if(gr){
                 alert('Permission granted');
@@ -28,7 +28,7 @@ function checkWhenready(){
                 alert('Permission not granted'); 
 				console.log('Permission not granted'); 
         }		
-	});*/
+	});
 	
 	//cordova.plugins.notification.badge.configure({ indicator: 'circular' });
 	
