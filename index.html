@@ -21,11 +21,11 @@ function checkWhenready(){
 	cordova.plugins.notification.badge.hasPermission(function (gr) {
 		
 		if(gr){
-                alert('Permission granted');
-				console.log('Permission granted');
+                alert('Permission granted');	
+				cordova.plugins.notification.badge.configure({ smallIcon: 'icon' });
+				cordova.plugins.notification.badge.set(4);			
          }else{
-                alert('Permission not granted'); 
-				console.log('Permission not granted'); 
+                alert('Permission not granted');				
         }		
 	});
 	
