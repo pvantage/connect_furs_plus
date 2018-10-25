@@ -21,16 +21,18 @@ function checkWhenready(){
 	cordova.plugins.notification.badge.hasPermission(function (gr) {
 		
 		if(gr){                
-			cordova.plugins.notification.badge.configure({ smallIcon:'icon', indicator:'circular' });
+			cordova.plugins.notification.badge.configure({smallIcon:'icon',indicator:'circular'});
 			cordova.plugins.notification.badge.set(4);			
          }else{
-			cordova.plugins.notification.badge.promptForPermission();	 
+			cordova.plugins.notification.badge.promptForPermission();
+			
+			cordova.plugins.notification.badge.registerPermission();
 		}	
 	});
 	
-	//cordova.plugins.notification.badge.configure({ indicator: 'circular' });
 	
-	//cordova.plugins.notification.badge.set(2);
+	
+	
 	/*cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){		
 		
 		if(enabled)
@@ -51,9 +53,9 @@ function checkWhenready(){
 		cordova.plugins.diagnostic.switchToLocationSettings();
 	}); */
 	
-	/*setTimeout(function(){
+	setTimeout(function(){
 	window.location = 'login.html';
-   }, 5000);*/
+   }, 5000);
 }
 
 document.addEventListener("deviceready", checkWhenready, false); 
