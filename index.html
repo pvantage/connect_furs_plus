@@ -24,10 +24,10 @@ function checkWhenready(){
 			cordova.plugins.notification.badge.configure({smallIcon:'icon',indicator:'circular'});
 			cordova.plugins.notification.badge.set(4);			
          }else{
-			cordova.plugins.notification.badge.promptForPermission();
-			
-			cordova.plugins.notification.badge.registerPermission();
-		}	
+			  cordova.plugins.notification.badge.requestPermission(function (granted){
+			   cordova.plugins.notification.badge.set(4);
+			});
+		}
 	});
 	
 	
