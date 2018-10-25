@@ -13,9 +13,9 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/function.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
- checkLogin();
+<script type="text/javascript"> 
  function checkdeviceLogin(){
+	checkLogin();
 	loadChat();
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
@@ -54,9 +54,8 @@ $.ajax({
 	 success: function(data){
 		 if(data['success'])
 		 {
-			 $('.chats').html(data['success']);			
+			 $('.chats').html(data['success']);
 			$('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
-       		
 		 }
 	  }
    });
@@ -81,7 +80,23 @@ $.ajax({
 }
 
 $(document).ready(function(e){
-    	
+	
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {login_id:login_id},
+	 crossDomain: true,
+	 success: function(data){
+	   	if(data['success'])
+		{
+			cordova.plugins.notification.badge.set(parseInt(data['success']));			
+		}else{
+			cordova.plugins.notification.badge.clear();
+		}
+	 }
+   });	
+		
 	setInterval(function (){
 		loadChat();
 	},3000);
