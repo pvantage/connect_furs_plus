@@ -24,7 +24,7 @@ document.addEventListener("deviceready", checkdeviceLogin, false);
 <body class="chat-application onlyforchat">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
 <img src="images/menu-logo.png"/>
-<a href="swipe.html" class="backbtn">Back</a>
+<a href="your-connections.html" class="backbtn">Back</a>
 </nav>
 <div class="app-content content">
 <div class="chat-wrapper container mt-3">
@@ -99,6 +99,7 @@ $(document).ready(function(e){
 		
 	setInterval(function (){
 		loadChat();
+		messageCount(login_id);
 	},3000);
 });
 </script>

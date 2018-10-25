@@ -19,10 +19,10 @@
 function checkWhenready(){	
 	checkLogin();
 	if(localStorage.getItem('cust_id')){
-			setTimeout(function(){
+		setInterval(function(){
 			chatMessage(localStorage.getItem('cust_id'));
-		  }, 10000);
-  
+			messageCount(localStorage.getItem('cust_id'));
+		  }, 5000);  
 	}
 }
 
@@ -105,8 +105,6 @@ $.ajax({
 		}else{
 			my_profile += data['success']['age'] + ' Year';
 		}
-		
-		
 			
 		my_profile += '</span>';
 		my_profile += '<span><label>Owner Name:</label>'+ data['success']['name'] +'</span>';
@@ -129,7 +127,7 @@ $.ajax({
 		
 						
 	   }
-   }); 
+   });    
 </script>
 </body>
 </html>

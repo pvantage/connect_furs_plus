@@ -15,7 +15,12 @@
 <script src="js/function.js"></script>
 <script type="text/javascript">
 function checkWhenready(){	
-	checkLogin();	
+	checkLogin();
+	if(localStorage.getItem('cust_id')){
+		setInterval(function(){			
+			messageCount(localStorage.getItem('cust_id'));
+		  }, 5000);  
+	}	
 }
 
 document.addEventListener("deviceready", checkWhenready, false);

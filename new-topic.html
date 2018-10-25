@@ -14,7 +14,15 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
- checkLogin();
+function checkdeviceLogin(){
+	checkLogin();	
+	if(localStorage.getItem('cust_id')){
+		setInterval(function(){			
+			messageCount(localStorage.getItem('cust_id'));
+		  }, 5000);  
+	}
+}
+document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
 <body class="bottom-links-bar">

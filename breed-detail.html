@@ -18,12 +18,13 @@
 <script type="text/javascript">
 function checkdeviceLogin(){
 	checkLogin();
-	loadProfile();
+	
 	if(localStorage.getItem('cust_id')){
-			setTimeout(function(){
+		loadProfile();
+		setInterval(function(){
 			chatMessage(localStorage.getItem('cust_id'));
-		  }, 10000);
-  
+			messageCount(localStorage.getItem('cust_id'));
+		  }, 5000);  
 	}
 	
 }

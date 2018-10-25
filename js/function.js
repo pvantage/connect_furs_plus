@@ -139,16 +139,49 @@ function chatMessage(current_user){
 	 crossDomain: true,
 	 success: function(data){
 	   	if(data['success'])
-		{
-			cordova.plugins.notification.badge.set(parseInt(data['success']));
+		{			
 			var show_chat_msg = '<div class="alertbox alert alert-danger alert-dismissible"><a href="your-connections.html">You have new chat message....</a>';
 			
-      show_chat_msg += '<button type="button" class="close" data-dismiss="alert">&times;</button></div>';
+      show_chat_msg += '<button type="button" class="close" data-dismiss="alert"';
+	  
+	   show_chat_msg += ' onclick=\'readMsg("'+ current_user+'", "'+ data['success'] +'")\'>&times;</button></div>';
 	  
 			$('#bottom_bar').after(show_chat_msg);
+		}
+	 }
+   });
+}
+
+
+function messageCount(current_user){
+	var action_url = siteurl + 'account/chat/msgcount';	
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {login_id:current_user},
+	 crossDomain: true,
+	 success: function(data){
+	   	if(data['success'])
+		{
+			cordova.plugins.notification.badge.set(parseInt(data['success']));				
 		}else{
 			cordova.plugins.notification.badge.clear();
 		}
+	 }
+   });
+}
+
+function readMsg(login_id, chfrom){
+	
+	var action_url = siteurl + 'account/chat/msgread';	
+	$.ajax({
+	 type: 'POST',
+	 url: action_url,
+	 dataType: 'json',
+	 data: {login_id:login_id, chfrom:chfrom},
+	 crossDomain: true,
+	 success: function(data){	   	
 	 }
    });
 }
