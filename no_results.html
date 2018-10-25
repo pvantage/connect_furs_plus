@@ -14,7 +14,17 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script> 
 <script type="text/javascript">
-checkLogin();
+function checkWhenready(){	
+	checkLogin();
+	if(localStorage.getItem('cust_id')){
+			setTimeout(function(){
+			chatMessage(localStorage.getItem('cust_id'));
+		  }, 10000);
+  
+	}
+}
+
+document.addEventListener("deviceready", checkWhenready, false);
 </script>
 </head>
 <body class="bottom-links-bar">
@@ -52,12 +62,5 @@ checkLogin();
         </table>
     </div>
 </div>
-<script type="text/javascript">
-var login_id = localStorage.getItem('cust_id');
-
-	 setTimeout(function(){
-		chatMessage(login_id);
-	}, 10000);
-</script>
 </body>
 </html>

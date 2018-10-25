@@ -14,7 +14,11 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
- checkLogin();
+function checkWhenready(){	
+	checkLogin();	
+}
+
+document.addEventListener("deviceready", checkWhenready, false);
 </script>
 </head>
 <body class="bottom-links-bar" onLoad="showConnections();">

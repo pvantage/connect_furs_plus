@@ -16,14 +16,21 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script> 
 <script type="text/javascript">
-checkLogin();
 function checkdeviceLogin(){
+	checkLogin();	
 	loadProfile();
+	
+	if(localStorage.getItem('cust_id')){
+			setTimeout(function(){
+			chatMessage(localStorage.getItem('cust_id'));
+		  }, 10000);
+  
+	}
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
 </head>
-<body class="bottom-links-bar">
+<body class="bottom-links-bar" onLoad="loadProfile();">
 <nav class="navbar navbar-expand-lg navbar-light bg-light navmainsection">
 <img src="images/menu-logo.png"/>
 <a href="view-profile.html" class="backbtn">Back</a>

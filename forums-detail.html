@@ -14,7 +14,16 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
- checkLogin();
+function checkWhenready(){	
+	checkLogin();
+	if(localStorage.getItem('cust_id')){
+			setTimeout(function(){
+			chatMessage(localStorage.getItem('cust_id'));
+		  }, 10000);  
+	}
+}
+
+document.addEventListener("deviceready", checkWhenready, false);
 </script>
 </head>
 <body class="bottom-links-bar forums-page" onLoad="getFourum();">
@@ -104,10 +113,5 @@ function postComment(){
    });	
 
 }
-
-chatMessage(login_id);
-	setTimeout(function() {
-		chatMessage(login_id);
-	}, 10000);
 </script>
 </html>

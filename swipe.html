@@ -18,7 +18,17 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/function.js"></script> 
 <script type="text/javascript">
-checkLogin();
+function checkWhenready(){	
+	checkLogin();
+	if(localStorage.getItem('cust_id')){
+			setTimeout(function(){
+			chatMessage(localStorage.getItem('cust_id'));
+		  }, 10000);
+  
+	}
+}
+
+document.addEventListener("deviceready", checkWhenready, false);
 </script>
 </head>
 <body class="bottom-links-bar profile-swipes">
@@ -53,7 +63,7 @@ checkLogin();
 
   </div>
 </div>     
- <!-- report_other -->   
+   
  <div id="report_other" class="modal fade" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -234,11 +244,6 @@ function report(subject)
 	  }
    });
 }
-
-
- setTimeout(function(){
-		chatMessage(login_id);
-}, 10000);
 </script>
 </body>
 </html>

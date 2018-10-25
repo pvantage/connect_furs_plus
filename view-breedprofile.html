@@ -14,7 +14,17 @@
 <script src="js/function.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
- checkLogin();
+function checkWhenready(){	
+	checkLogin();
+	if(localStorage.getItem('cust_id')){
+			setTimeout(function(){
+			chatMessage(localStorage.getItem('cust_id'));
+		  }, 10000);
+  
+	}
+}
+
+document.addEventListener("deviceready", checkWhenready, false);
 </script>
 </head>
 <body class="bottom-links-bar">
@@ -54,55 +64,50 @@
                 <div id="sex"></div>
             </div>
             
-            
             <div class="form-group">
-                <label>Pet Temperament</label>                
+                <label>Pet Temperament</label>
                 <div id="temperment"></div>
             </div>
             
             <div class="form-group">
-                <label>Pet Category</label>                
+                <label>Pet Category</label>
                 <div id="category"></div>
             </div>
             
             <div class="form-group">
-                <label>Breed</label>                
+                <label>Breed</label>
                 <div id="specific_breed"></div>
             </div>
             
             <div class="form-group">
-                <label>Pet Color</label>                
+                <label>Pet Color</label>
                 <div id="pet_color"></div>
             </div>
             
             <div class="form-group">
-                <label>Willing Distance</label>                
+                <label>Willing Distance</label>
                 <div id="willing_distance"></div>
             </div>
             
             <div class="form-group">
-                <label>Who do you want to play/breeding with </label>                
+                <label>Who do you want to play/breeding with </label>
                 <div id="who_play_breed"></div>
             </div>
-            
-            
-            
-            
 			
 			<div class="form-group uploadbtns">
             <label>Profile Pics</label>
-			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg" id="pet_image_src">            
+			<div class="upbtn"><img class="mainpic img_upload" src="images/profile.jpg" id="pet_image_src">
 			<div class="smallimg">
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1">               
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2">                
-            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3">                
-			 	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4">               
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_1">
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_2">
+            	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_3">
+			 	<img class="img_upload" src="images/multiple.jpg" id="src_pet_image_4">
              </div>
-			</div>      
+			</div>
             </div>
     </div>
 </div>
-<div class="bottom-fixed-bar">
+<div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
         <table class="table">
              <tr>
@@ -113,7 +118,7 @@
         </table>
     </div>
 </div>
-<script type="text/javascript" id="bottom_bar">
+<script type="text/javascript">
 var login_id = gup('cust_id');
 
 $.ajax({
@@ -135,7 +140,7 @@ $.ajax({
 			$('#aboutpet').html(data['success']['aboutpet']);
 			$('#pet_color').html(data['success']['pet_color']);
 			$('#sex').html(data['success']['pet_sex']);
-			$('#specific_breed').html(data['success']['breed_specific']);			
+			$('#specific_breed').html(data['success']['breed_specific']);
 			$('#willing_distance').html(data['success']['willing_distance'] + ' Miles');
 			$('#state').html(data['success']['state_name']);
 			$('#city').html(data['success']['city']);
@@ -153,34 +158,30 @@ $.ajax({
 				$('#who_play_breed').html('Specific breed');
 			}
 			
-			
 			if(data['success']['image'])
 			{
-				$('#pet_image_src').attr('src', data['success']['image']);				
+				$('#pet_image_src').attr('src', data['success']['image']);
 			}
 			
 			if(data['success']['img_1'])
 			{
-				$('#src_pet_image_1').attr('src', data['success']['img_1']);				
+				$('#src_pet_image_1').attr('src', data['success']['img_1']);
 			}
 			if(data['success']['img_2'])
 			{
-				$('#src_pet_image_2').attr('src', data['success']['img_2']);				
+				$('#src_pet_image_2').attr('src', data['success']['img_2']);
 			}
 			if(data['success']['img_3'])
 			{
-				$('#src_pet_image_3').attr('src', data['success']['img_3']);				
+				$('#src_pet_image_3').attr('src', data['success']['img_3']);
 			}
 			if(data['success']['img_4'])
 			{
-				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
-			}			
+				$('#src_pet_image_4').attr('src', data['success']['img_4']);
+			}
 	   }
-   });
-   
-	 setTimeout(function() {
-		chatMessage(login_id);
-	}, 10000);
+});  
+
 </script>
 </body>
 </html>

@@ -125,6 +125,7 @@ function checkLogin(){
 
 function logOut(){
 	localStorage.removeItem('cust_id');
+	cordova.plugins.notification.badge.clear();
 	window.location = 'phone-login.html';
 }
 
@@ -139,11 +140,14 @@ function chatMessage(current_user){
 	 success: function(data){
 	   	if(data['success'])
 		{
+			cordova.plugins.notification.badge.set(parseInt(data['success']));
 			var show_chat_msg = '<div class="alertbox alert alert-danger alert-dismissible"><a href="your-connections.html">You have new chat message....</a>';
 			
       show_chat_msg += '<button type="button" class="close" data-dismiss="alert">&times;</button></div>';
 	  
 			$('#bottom_bar').after(show_chat_msg);
+		}else{
+			cordova.plugins.notification.badge.clear();
 		}
 	 }
    });
