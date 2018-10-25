@@ -16,15 +16,20 @@
 
 
 
-function checkDevice(){
+function checkWhenready(){
 	
-	cordova.plugins.notification.badge.registerPermission(function (granted) {
-		alert('Current Permission: ' + granted);
+	cordova.plugins.notification.badge.registerPermission(function (gr) {
+		
+		if(gr){
+                alert('Permission granted');
+         }else{
+                alert('Permission not granted');  
+        }		
 	});
 	
-	cordova.plugins.notification.badge.configure({ indicator: 'circular' });
+	//cordova.plugins.notification.badge.configure({ indicator: 'circular' });
 	
-	cordova.plugins.notification.badge.set(2);
+	//cordova.plugins.notification.badge.set(2);
 	/*cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){		
 		
 		if(enabled)
@@ -50,7 +55,7 @@ function checkDevice(){
    }, 5000);*/
 }
 
-document.addEventListener("deviceready", checkDevice, false); 
+document.addEventListener("deviceready", checkWhenready, false); 
 </script>
 </head>
 
