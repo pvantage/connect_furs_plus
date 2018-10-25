@@ -53,9 +53,14 @@ function checkWhenready(){
 		cordova.plugins.diagnostic.switchToLocationSettings();
 	}); */
 	
-	setTimeout(function(){
-	window.location = 'login.html';
-   }, 5000);
+	if(localStorage.getItem('cust_id')){
+		window.location = 'swipe.html';   
+	}else{
+		setTimeout(function(){
+		window.location = 'login.html';
+	   }, 5000);
+	
+	}
 }
 
 document.addEventListener("deviceready", checkWhenready, false); 
