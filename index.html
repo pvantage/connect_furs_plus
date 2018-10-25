@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/function.js"></script>
 <script type="text/javascript">
@@ -18,14 +18,17 @@
 
 function checkWhenready(){
 	
-	cordova.plugins.notification.badge.registerPermission(function (gr) {
+	alert('Hello');
+	/*cordova.plugins.notification.badge.registerPermission(function (gr) {
 		
 		if(gr){
                 alert('Permission granted');
+				console.log('Permission granted');
          }else{
-                alert('Permission not granted');  
+                alert('Permission not granted'); 
+				console.log('Permission not granted'); 
         }		
-	});
+	});*/
 	
 	//cordova.plugins.notification.badge.configure({ indicator: 'circular' });
 	
