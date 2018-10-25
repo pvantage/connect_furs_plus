@@ -39,10 +39,11 @@
 	  <!-- END -->
 	  
 	  
-	  <!-- 
-	  <plugin name="cordova-plugin-badge" source="npm" />
-	  <preference name="android-build-tool" value="gradle" />	  	  
-	 end -->
+	  <!-- badge count -->
+	  <preference name="android-build-tool" value="gradle" />
+	  <plugin spec="https://github.com/katzer/cordova-plugin-badge.git" source="git" />
+	  	  	  
+	<!-- end -->
 	
 	<icon src="icon.png" />
 	<icon gap:platform="webos" src="res/icon/ios/Icon-180.png" />

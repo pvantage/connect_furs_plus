@@ -14,18 +14,23 @@
 <script src="js/function.js"></script>
 <script type="text/javascript">
 
-setTimeout(function(){
-	window.location = 'login.html';
-}, 3000);
 
-function checkDeviceGPS(){
-	cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){		
+
+function checkDevice(){
+	
+	cordova.plugins.notification.badge.registerPermission(function (granted) {
+		alert('Current Permission: ' + granted);
+	});
+	
+	cordova.plugins.notification.badge.configure({ indicator: 'circular' });
+	
+	cordova.plugins.notification.badge.set(2);
+	/*cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){		
 		
 		if(enabled)
 		{
 			window.location = 'login.html';
-		}else{
-			//alert('Please enable your location settings.');
+		}else{			
 			$('.modal').modal('hide');
 			$('#common_popup').html('Please enable your location settings.');
 			$('#modal_error').modal('show');
@@ -34,14 +39,18 @@ function checkDeviceGPS(){
 		
 		
 	}, function(error){
-		//alert("The following error occurred: "+error);
+		
 		$('#common_popup').html("The following error occurred: "+error);
 		$('#modal_error').modal('show');
 		cordova.plugins.diagnostic.switchToLocationSettings();
-	}); 
+	}); */
+	
+	/*setTimeout(function(){
+	window.location = 'login.html';
+   }, 5000);*/
 }
 
-//document.addEventListener("deviceready", checkDeviceGPS, false); 
+document.addEventListener("deviceready", checkDevice, false); 
 </script>
 </head>
 
