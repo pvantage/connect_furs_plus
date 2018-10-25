@@ -80,7 +80,7 @@ $.ajax({
 }
 
 $(document).ready(function(e){
-	
+	var action_url = siteurl + 'account/chat/message';	
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
@@ -91,7 +91,7 @@ $(document).ready(function(e){
 	   	if(data['success'])
 		{
 			cordova.plugins.notification.badge.set(parseInt(data['success']));			
-		}else{
+		}else{			
 			cordova.plugins.notification.badge.clear();
 		}
 	 }
