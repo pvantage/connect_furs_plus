@@ -17,16 +17,13 @@
 
 
 function checkWhenready(){	
-	alert('Hello');
+	
 	cordova.plugins.notification.badge.hasPermission(function (gr) {
 		
-		if(gr){
-                alert('Permission granted');	
-				cordova.plugins.notification.badge.configure({ smallIcon: 'icon' });
-				cordova.plugins.notification.badge.set(4);			
-         }else{
-                alert('Permission not granted');				
-        }		
+		if(gr){                
+			cordova.plugins.notification.badge.configure({ smallIcon: 'icon' });
+			cordova.plugins.notification.badge.set(4);			
+         }	
 	});
 	
 	//cordova.plugins.notification.badge.configure({ indicator: 'circular' });
