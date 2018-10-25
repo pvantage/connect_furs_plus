@@ -54,8 +54,11 @@ $.ajax({
 	 success: function(data){
 		 if(data['success'])
 		 {
-			 $('.chats').html(data['success']);
-			$('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
+			$('.chats').html(data['success']);
+			//$('.show_most_bottom').animate({scrollTop: $('.show_most_bottom')[0].scrollHeight}, "slow");
+			var box = document.querySelector('.chats'),
+    		targetElm = document.querySelector('.show_most_bottom');
+			targetElm.scrollIntoView();
 		 }
 	  }
    });
@@ -73,7 +76,13 @@ $.ajax({
 	 crossDomain: true,
 	 success: function(data){
 			 $('.chats').html(data['success']);
-			 $('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
+			 
+			  setTimeout(function (){
+				  var box = document.querySelector('.chats'),
+    		targetElm = document.querySelector('.show_most_bottom');
+			targetElm.scrollIntoView();
+				//$('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
+			},2000);		 
 	   }
     });
   }
