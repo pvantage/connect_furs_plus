@@ -66,6 +66,7 @@ $.ajax({
 
 function addChat(){
 var message = $('#chat_txt').val();
+$('#chat_txt').focus();
 $('#chat_txt').trigger('click');
 
 if(message != ''){
@@ -84,6 +85,7 @@ $.ajax({
 					targetElm = document.querySelector('.show_most_bottom');
 					targetElm.scrollIntoView();
 				//$('#chats').animate({scrollTop: $('#chats')[0].scrollHeight}, "slow");
+				$('#chat_txt').focus();
 				$('#chat_txt').trigger('click');
 			},2000);		 
 	   }
