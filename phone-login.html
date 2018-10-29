@@ -52,7 +52,7 @@ function onSuccess(position){
 }
 
 document.addEventListener("deviceready", function(){
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy:true });		
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy:true });
 }, false);
 </script>
 </head>
@@ -64,7 +64,7 @@ document.addEventListener("deviceready", function(){
         <input type="hidden" name="isdcode" id="isdcode" value="1">		
             <h3>Enter mobile number</h3>
             <div class="phone-login-field phloginfld">				
-                <input type="number" maxlength="10" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter Mobile number">
+                <input type="number" maxlength="10" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter mobile number">
             </div>
             <button type="button" class="btn btn-block btn-danger" onClick="loginNow();">NEXT</button>
         </div>

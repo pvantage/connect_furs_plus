@@ -21,8 +21,7 @@ function checkWhenready(){
 	cordova.plugins.notification.badge.hasPermission(function (gr) {
 		
 		if(gr){                
-			cordova.plugins.notification.badge.configure({smallIcon:'icon',indicator:'circular'});
-			cordova.plugins.notification.badge.set(4);			
+			cordova.plugins.notification.badge.configure({smallIcon:'icon',indicator:'circular'});					
          }else{
 			  cordova.plugins.notification.badge.requestPermission(function (granted){
 			   

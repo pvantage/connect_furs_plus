@@ -17,8 +17,9 @@
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
 function checkWhenready(){	
-	checkLogin();
+	
 	if(localStorage.getItem('cust_id')){
+		checkLogin();
 		setInterval(function(){
 			chatMessage(localStorage.getItem('cust_id'));
 			messageCount(localStorage.getItem('cust_id'));
