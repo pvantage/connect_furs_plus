@@ -17,6 +17,13 @@
  function checkdeviceLogin(){
 	checkLogin();
 	loadChat();
+	
+	setInterval(function (){
+	var box = document.querySelector('.chats'),
+	targetElm = document.querySelector('.show_most_bottom');
+	targetElm.scrollIntoView();
+	},2000);
+	
 }
 document.addEventListener("deviceready", checkdeviceLogin, false);
 </script>
@@ -55,10 +62,7 @@ $.ajax({
 		 if(data['success'])
 		 {
 			$('.chats').html(data['success']);
-			//$('.show_most_bottom').animate({scrollTop: $('.show_most_bottom')[0].scrollHeight}, "slow");
-			var box = document.querySelector('.chats'),
-    		targetElm = document.querySelector('.show_most_bottom');
-			targetElm.scrollIntoView();
+			//$('.show_most_bottom').animate({scrollTop: $('.show_most_bottom')[0].scrollHeight}, "slow");			
 		 }
 	  }
    });
