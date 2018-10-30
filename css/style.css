@@ -3,6 +3,12 @@
 .loginmn {
     margin-top: 20px;
 }
+td.pro-td {
+    width: 44%;
+}
+#report_user .modal-body ul li:last-child {
+    border-bottom: none;
+}
 .phloginfld .cc-picker {
 float: left;
     margin-right: 2%;
