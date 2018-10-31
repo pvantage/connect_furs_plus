@@ -117,6 +117,28 @@ document.addEventListener("deviceready", checkWhenready, false);
   </div>
 </div>
  
+ 
+ 
+ <!-- delete confirm -->
+ 
+ <div id="delete_confirm" class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">       
+        <h2 class="modal-title2">Confirmation</h2>
+      </div>
+      	<div class="modal-body">
+        <p>Are you sure want to delete?</p>
+        <input type="hidden" name="del_profile" id="del_profile">
+        <div><button onClick="deleteProfile();">Ok</button>&nbsp;&nbsp;<button data-dismiss="modal">Cancel</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ <!-- end -->
+ 
+ 
 </div>
 <div class="bottom-fixed-bar" id="bottom_bar">
     <div class="container">
@@ -179,9 +201,11 @@ function rejectInvite(invitation_id){
 
 function deleteLike(invitation_id){
 	
-	var confirmtxt = confirm("Are you sure want to delete?");
+	//var confirmtxt = confirm("Are you sure want to delete?");
+	$('#del_profile').val(invitation_id);
+	$('#delete_confirm').modal('show');
 	
-	if(confirmtxt){ 
+	/*if(confirmtxt){ 
 	$.ajax({
 			 type:'POST',
 			 url:siteurl + 'account/myconnections/deleteLike',
@@ -195,7 +219,27 @@ function deleteLike(invitation_id){
 				 }
 			   }
 		});
-    }
+    }*/
+}
+
+function deleteProfile(){
+	
+	var invitation_id = $('#del_profile').val();
+	//console.log(invitation_id);
+	$('#delete_confirm').modal('hide');
+	$.ajax({
+			 type:'POST',
+			 url:siteurl + 'account/myconnections/deleteLike',
+			 dataType:'json',
+			 data:{invite_id:invitation_id, login_id:login_id},
+			 crossDomain:true,
+			 success:function(data){
+				 if(data['connection'])
+				 {
+					$('#connections').html(data['connection']);
+				 }
+			   }
+		});
 }
 
 function showModal(modal_name)
