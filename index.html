@@ -10,16 +10,11 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/function.js"></script>
-<script type="text/javascript">
-
-
-
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" type="text/javascript">
 function checkWhenready(){	
-	
-	cordova.plugins.notification.badge.hasPermission(function (gr) {
-		
+	cordova.plugins.notification.badge.hasPermission(function (gr) {		
 		if(gr){                
 			cordova.plugins.notification.badge.configure({smallIcon:'icon',indicator:'circular'});					
          }else{
@@ -61,7 +56,6 @@ function checkWhenready(){
 	
 	}
 }
-
 document.addEventListener("deviceready", checkWhenready, false); 
 </script>
 </head>
@@ -79,6 +73,6 @@ document.addEventListener("deviceready", checkWhenready, false);
               </div>
         </div>
   </div>
-<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>

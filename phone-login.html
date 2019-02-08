@@ -11,10 +11,10 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.ccpicker.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="cordova.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/function.js"></script>
-<script src="js/jquery.ccpicker.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" src="js/jquery.ccpicker.js"></script>
 <script type="text/javascript">
 
 var lat;
@@ -51,12 +51,16 @@ function onSuccess(position){
 	 }
 }
 
+function getLatval(){
+
 document.addEventListener("deviceready", function(){
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, { enableHighAccuracy:true });
 }, false);
+
+}
 </script>
 </head>
-<body>
+<body onLoad="getLatval();">
 <div class="full-height center">
     <div class="container phloginecontainer">
     <form>
@@ -109,12 +113,16 @@ function loginNow(){
 	var customer_mobile = $('#customer_mobile').val();
 	var isdcode = $('#isdcode').val();
 	var action_url = siteurl + 'account/login';	
+	
+	alert('Latitude:' + lat);
+	return false;
+	
 			
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
 	 dataType: 'json',
-	 data: {customer_mobile:customer_mobile,isdcode:isdcode,device_type: device_platform, device_reg_id:device_reg_id},
+	 data: {customer_mobile:customer_mobile,isdcode:isdcode},
 	 crossDomain: true,
 	 success: function(data){	 
 		
