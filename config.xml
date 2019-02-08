@@ -98,8 +98,9 @@
 	<splash src="res/screen/ios/Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
 	<splash src="res/screen/ios/Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />	
 	
-	<plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
-	<access origin="http://vantageappspro.com" subdomains="true" />
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
+	
+	
     <access origin="*"/>	   
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -108,5 +109,5 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
 	<access origin="cdvfile://*" />
-   
+   <access origin="http://vantageappspro.com" subdomains="true" />
 </widget>
