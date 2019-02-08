@@ -11,11 +11,47 @@
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/jquery.ccpicker.css">
 <link rel="stylesheet" href="css/style.css">
-<script type="text/javascript" src="cordova.js"></script>
+</head>
+<body onLoad="getLatval();">
+<div class="full-height center">
+    <div class="container phloginecontainer">
+    <form>
+        <div class="phone-login" id="mobile_no_container">
+        <input type="hidden" name="isdcode" id="isdcode" value="1">		
+            <h3>Enter mobile number</h3>
+            <div class="phone-login-field phloginfld">				
+                <input type="number" maxlength="10" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter mobile number">
+            </div>
+            <button type="button" class="btn btn-block btn-danger" onClick="loginNow();">NEXT</button>
+        </div>
+        
+        <div class="phone-login" id="otp_container" style="display:none;">
+            <h3>Enter OTP</h3>
+            <input type="hidden" name="customer_mob" id="customer_mob">
+            <div class="phone-login-field">
+                <input type="number" maxlength="6" name="customer_otp" id="customer_otp" class="form-control" placeholder="Enter OTP">
+            </div>
+            <button type="button" class="btn btn-block btn-danger" onClick="validateOtp();">Submit</button>
+            <a href="javascript:void(0)" onClick="showContainer('mobile_no_container')" class="back_btn">Back</a>
+        </div>
+        </form>
+    </div>
+  <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
+              <div class="modal-content">
+                <div id="common_popup">
+                  
+                </div>
+                <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
+              </div>
+        </div>
+</div>
+<div class="loadermain" id="loadingImg"></div>
+</body>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="js/jquery.ccpicker.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript">
 
 var lat;
@@ -60,42 +96,6 @@ document.addEventListener("deviceready", function(){
 
 }
 </script>
-</head>
-<body onLoad="getLatval();">
-<div class="full-height center">
-    <div class="container phloginecontainer">
-    <form>
-        <div class="phone-login" id="mobile_no_container">
-        <input type="hidden" name="isdcode" id="isdcode" value="1">		
-            <h3>Enter mobile number</h3>
-            <div class="phone-login-field phloginfld">				
-                <input type="number" maxlength="10" name="customer_mobile" id="customer_mobile" class="form-control" placeholder="Enter mobile number">
-            </div>
-            <button type="button" class="btn btn-block btn-danger" onClick="loginNow();">NEXT</button>
-        </div>
-        
-        <div class="phone-login" id="otp_container" style="display:none;">
-            <h3>Enter OTP</h3>
-            <input type="hidden" name="customer_mob" id="customer_mob">
-            <div class="phone-login-field">
-                <input type="number" maxlength="6" name="customer_otp" id="customer_otp" class="form-control" placeholder="Enter OTP">
-            </div>
-            <button type="button" class="btn btn-block btn-danger" onClick="validateOtp();">Submit</button>
-            <a href="javascript:void(0)" onClick="showContainer('mobile_no_container')" class="back_btn">Back</a>
-        </div>
-        </form>
-    </div>
-  <div class="modal fade modelcommon model_center_pop_up" id="modal_error" role="dialog">
-              <div class="modal-content">
-                <div id="common_popup">
-                  
-                </div>
-                <button class="ok_onfirm_btn" data-dismiss="modal">OK</button>
-              </div>
-        </div>
-</div>
-<div class="loadermain" id="loadingImg"></div>
-</body>
 <script type="text/javascript">
 $( document ).ready(function() {
     $("#customer_mobile").CcPicker({"countryCode":"us"});
