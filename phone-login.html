@@ -115,7 +115,7 @@ function loginNow(){
 	var isdcode = $('#isdcode').val();
 	var action_url = siteurl + 'account/login';
 	
-	alert(action_url);
+	alert('Request Url: ' + action_url);
 				
 	$.ajax({
 	 type: 'POST',
@@ -124,7 +124,7 @@ function loginNow(){
 	 data: {customer_mobile:customer_mobile,isdcode:isdcode},
 	 crossDomain: true,
 	 success: function(data){	 
-		
+		alert('Ajax response' + data);
 	   	if(data['success'])
 		{
 			$('#mobile_no_container').hide();
