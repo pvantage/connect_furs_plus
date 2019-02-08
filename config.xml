@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
-    id          = "connectfursplus.com"	
+    id          = "connectfursplus.com"
+	android-packageName="connectfursplus.com"
+    ios-CFBundleIdentifier="connectfurs.com"
     versionCode = "1" 
     version     = "1.0.0" >
 
@@ -15,6 +17,7 @@
       Krishna Kumar
     </author>
 	
+	<preference name="phonegap-version" value="cli-7.1.0" />
 	<preference name="android-targetSdkVersion" value="26"/>
 	<plugin name="cordova-plugin-device" spec="~1.1.6" />
 	<plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
