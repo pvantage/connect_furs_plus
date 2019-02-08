@@ -113,10 +113,8 @@ function showContainer(div_to_show){
 function loginNow(){
 	var customer_mobile = $('#customer_mobile').val();
 	var isdcode = $('#isdcode').val();
-	var action_url = siteurl + 'account/login';
-	
-	alert('Request Url: ' + action_url);
-				
+	var action_url = siteurl + 'account/login';	
+					
 	$.ajax({
 	 type: 'POST',
 	 url: action_url,
