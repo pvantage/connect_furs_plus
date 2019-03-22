@@ -58,7 +58,7 @@ document.addEventListener("deviceready", checkWhenready, false);
             </div>
             
             <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Age <small>(Number Only)</small>:</label>
+                <label><span class="reqfield">*</span>Pet Age <small>(Years only)</small>:</label>
                 <input type="number" name="petage" id="petage" placeholder="Please enter pet age" class="form-control">
             </div>
             <div class="form-group">
@@ -106,6 +106,23 @@ document.addEventListener("deviceready", checkWhenready, false);
                 </select>
             </div>
             
+            
+            
+            
+            <div class="form-group">
+                 <label><span class="reqfield">*</span>Select Type of Animal</label>
+                  <select name="animal_type" id="animal_type" class="form-control">
+                    <option value="">Please select </option>
+                  </select>
+                </div>
+                
+               <div class="form-group">
+                  <label><span class="reqfield">*</span>Select Breed of Animal</label>
+                  <select name="breed" id="animal_breed" class="form-control">
+                  	<option value="">Please select</option>
+                  </select>
+                </div> 
+            
             <div class="form-group">
                 <label><span class="reqfield">*</span>who do you want to<br> play/breed with </label>
                 <select class="form-control" name="who_play_breed" id="who_play_breed" tabindex="6">
@@ -115,15 +132,16 @@ document.addEventListener("deviceready", checkWhenready, false);
                 </select>
             </div>
             
+            
             <div class="form-group" id="breed_specific">
                 <label><span class="reqfield">*</span>Select Breed </label>
-                <select class="form-control" name="specific_breed" id="specific_breed" tabindex="7">
+                <select class="form-control" name="specific_breed" id="specific_breed" tabindex="8">
                 </select>
             </div>
             
             <div class="form-group">
                 <label>What color is your animal?</label>
-                <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="8">
+                <input type="text" name="pet_color" id="pet_color" class="form-control" tabindex="9">
             </div>
 			
 			<div class="form-group uploadbtns">
@@ -494,6 +512,9 @@ function addProfileinfo(){
 	var pet_color = $('#pet_color').val();
 	var pet_image = $('input[name="pet_image"]').val();
 	
+	var animal_type = $('select[name="animal_type"]').val();
+	var animal_breed = $('select[name="breed"]').val();
+	
 	var petage = $('#petage').val();
 	var state = $('#state').val();
 	var city = $('#city').val();
@@ -535,7 +556,7 @@ function addProfileinfo(){
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, pet_color:pet_color,  who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage, state:state, city:city, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
+	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed, pet_color:pet_color, who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage, state:state, city:city, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -551,6 +572,9 @@ function addProfileinfo(){
 			 if(data['error']['petage']) $('#petage').addClass('req');
 			 if(data['error']['state']) $('#state').addClass('req');
 			 if(data['error']['city']) $('#city').addClass('req');
+			 
+			  if(data['error']['animal_type']) $('#animal_type').addClass('req');
+			  if(data['error']['animal_breed']) $('#animal_breed').addClass('req');
 		 }
 		 
 	   	if(data['success'])
@@ -576,7 +600,12 @@ $.ajax({
 			$('textarea[name="aboutpet"]').val(data['success']['aboutpet']);
 			$('input[name="pet_color"]').val(data['success']['pet_color']);
 			
-			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');
+			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');			
+			
+			$('select[name="animal_type"]').html(data['success']['cat_option_val']);
+			$('select[name="breed"]').html(data['success']['bread_opt']);
+			
+			
 			$('#willing_distance [value="'+ data['success']['willing_distance'] +'"]').attr('selected', 'true');
 			
 			if(data['success']['who_play_breed'])
@@ -615,14 +644,29 @@ $.ajax({
 			if(data['success']['img_4'])
 			{
 				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
-			}
-			
-			
-			
-			
-			
+			}			
 	   }
    });
+   
+$(document).ready(function(e) {
+    $('select[name="animal_type"]').on('change', function(){ 		
+	  $.ajax({
+		 type: 'POST',
+		 url: siteurl + 'common/common/breed',
+		 dataType: 'json',
+		 data: {category_id:$(this).val()},
+		 crossDomain: true,
+		 success: function(data){
+			if(data['success'])
+			{
+				$('select[name="breed"]').html(data['success']);
+				$('select[name="specific_breed"]').html(data['success']);				
+			}
+		   }
+	   });
+      
+  });
+});
 </script>
 </body>
 </html>
