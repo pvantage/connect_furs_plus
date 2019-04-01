@@ -588,6 +588,8 @@ function addProfileinfo(){
 			 
 			  if(data['error']['animal_type']) $('#animal_type').addClass('req');
 			  if(data['error']['animal_breed']) $('#animal_breed').addClass('req');
+			  if(data['error']['temperament']) $('#temperament').addClass('req');
+			  if(data['error']['reason']) $('#reason').addClass('req');
 		 }
 		 
 	   	if(data['success'])
