@@ -106,7 +106,21 @@ document.addEventListener("deviceready", checkWhenready, false);
                 </select>
             </div>
             
-            
+            <div class="form-group">
+                 <label><span class="reqfield">*</span>Temperament</label>
+                  <select name="temperament" id="temperament" class="form-control">
+                    <option value="">Please select </option>
+                  </select>
+             </div>
+             
+             <div class="form-group">
+                 <label><span class="reqfield">*</span>Reason for visiting</label>
+                 <select id="reason" name="reason" class="form-control">  
+                 	<option value="">Please select</option>                	
+                    <option value="play">Playdate</option>
+                    <option value="breed">Breeding</option>
+                  </select>
+             </div>
             
             
             <div class="form-group">
@@ -114,7 +128,7 @@ document.addEventListener("deviceready", checkWhenready, false);
                   <select name="animal_type" id="animal_type" class="form-control">
                     <option value="">Please select </option>
                   </select>
-                </div>
+             </div>
                 
                <div class="form-group">
                   <label><span class="reqfield">*</span>Select Breed of Animal</label>
@@ -193,24 +207,22 @@ document.addEventListener("deviceready", checkWhenready, false);
 
 <script type="text/javascript">
 
-  function getImage() {             
-           navigator.camera.getPicture(uploadPhoto, function(message){						
-			//alert('Error!!');
-			
+function getImage(){
+           navigator.camera.getPicture(uploadPhoto, function(message){
+			//alert('Error!!');			
 		},{
-			quality: 60, 
+			quality:60,
 			correctOrientation: true,
 			allowEdit : true,
 			targetWidth: 500,
             targetHeight: 500,						
 			destinationType: navigator.camera.DestinationType.FILE_URI,
 			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-		}
-            );
+		});
  
-        }
+  }
  
-        function uploadPhoto(imageURI) {
+function uploadPhoto(imageURI) {
 			$("#loadingImg").fadeIn();
 			
 			var upload_url = siteurl + 'account/upload';			
@@ -511,7 +523,8 @@ function addProfileinfo(){
 	var who_play_breed = $('#who_play_breed').val();
 	var pet_color = $('#pet_color').val();
 	var pet_image = $('input[name="pet_image"]').val();
-	
+	var temperament = $('select[name="temperament"]').val();
+	var reason = $('select[name="reason"]').val();	
 	var animal_type = $('select[name="animal_type"]').val();
 	var animal_breed = $('select[name="breed"]').val();
 	
@@ -556,7 +569,7 @@ function addProfileinfo(){
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id, name:name, petname:petname, aboutpet:aboutpet, willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed, pet_color:pet_color, who_play_breed:who_play_breed, breed_specific:breed_specific,image:pet_image,petage:petage, state:state, city:city, pet_image_1:image_1, pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
+	 data: {login_id:login_id,name:name,petname:petname, aboutpet:aboutpet,willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed,pet_color:pet_color,temperament:temperament,reason:reason,who_play_breed:who_play_breed,breed_specific:breed_specific,image:pet_image,petage:petage,state:state,city:city,pet_image_1:image_1,pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -598,13 +611,13 @@ $.ajax({
 			$('input[name="petlocation"]').val(data['success']['location']);
 			$('input[name="petname"]').val(data['success']['petname']);
 			$('textarea[name="aboutpet"]').val(data['success']['aboutpet']);
-			$('input[name="pet_color"]').val(data['success']['pet_color']);
-			
+			$('input[name="pet_color"]').val(data['success']['pet_color']);			
 			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');			
 			
 			$('select[name="animal_type"]').html(data['success']['cat_option_val']);
 			$('select[name="breed"]').html(data['success']['bread_opt']);
-			
+			$('select[name="temperament"]').html(data['success']['temprament_opt']);
+			$('select[name="reason"]').html(data['success']['visit_reason']);
 			
 			$('#willing_distance [value="'+ data['success']['willing_distance'] +'"]').attr('selected', 'true');
 			
