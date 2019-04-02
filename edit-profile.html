@@ -52,28 +52,6 @@ document.addEventListener("deviceready", checkWhenready, false);
                 <label><span class="reqfield">*</span>Owner Name:</label>
                 <input type="text" name="name" id="name" placeholder="Please enter owner name" class="form-control">
             </div>
-            <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Name:</label>
-                <input type="text" name="petname" id="petname" placeholder="Please enter pet name" class="form-control">
-            </div>
-            
-            <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Age <small>(Years only)</small>:</label>
-                <input type="number" name="petage" id="petage" placeholder="Please enter pet age" class="form-control">
-            </div>
-            <div class="form-group">
-                <label><span class="reqfield">*</span>Pet Sex </label>
-                <select class="form-control" name="sex" id="sex">
-                    <option value="male">Male </option>
-                    <option value="female">Female </option>
-                </select>
-            </div>
-            
-            
-            <div class="form-group">
-                <label>Tell us about your pet</label>
-                <textarea class="form-control" name="aboutpet" id="aboutpet" tabindex="4"></textarea>
-            </div>
             
             <div class="form-group">
                 <label>Pet Location:</label>                
@@ -107,6 +85,31 @@ document.addEventListener("deviceready", checkWhenready, false);
             </div>
             
             <div class="form-group">
+                <label>Pet Detail:</label>                
+            </div>
+            <div class="form-group">
+                <label><span class="reqfield">*</span>Pet Name:</label>
+                <input type="text" name="petname" id="petname" placeholder="Please enter pet name" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>Tell us about your pet</label>
+                <textarea class="form-control" name="aboutpet" id="aboutpet" tabindex="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label><span class="reqfield">*</span>Pet Age <small>(Years only)</small>:</label>
+                <input type="number" name="petage" id="petage" placeholder="Please enter pet age" class="form-control">
+            </div>
+            <div class="form-group">
+                <label><span class="reqfield">*</span>Sex </label>
+                <select class="form-control" name="sex" id="sex">
+                    <option value="male">Male </option>
+                    <option value="female">Female </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
                  <label><span class="reqfield">*</span>Temperament</label>
                   <select name="temperament" id="temperament" class="form-control">
                     <option value="">Please select </option>
@@ -121,6 +124,65 @@ document.addEventListener("deviceready", checkWhenready, false);
                     <option value="breed">Breeding</option>
                   </select>
              </div>
+             
+             
+             <div class="form-group" id="input_papered" style="display:none;">
+                 <label>Papered/Non Papered ?</label>
+                 <select id="papered" name="papered" class="form-control">  
+                 	<option value="">select</option>                    
+                    <option value="nonpapered">Non Papered</option>
+                    <option value="papered">Papered</option>
+                  </select>
+                  </select>
+             </div>
+             
+             <div class="form-group" id="input_breed" style="display:none;">
+                 <label>Is the pet previously bred?</label>
+                 <select id="pet_breed_previously" name="pet_breed_previously" class="form-control">
+                    <option value="">Please select</option>                    
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                  </select>
+             </div>
+             
+             <div class="form-group" id="input_how_many_times" style="display:none">
+                 <label>How many times ?</label>
+                 <select id="how_many_times" name="how_many_times" class="form-control">
+                    <option value="">Please select</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                  </select>
+             </div>
+             
+             <div class="form-group" id="input_heat_cycle" style="display:none;">
+                 <label>Heat cycles</label>
+                 <select id="heat_cycle" name="heat_cycle" class="form-control">
+                    <option value="">Please select</option>
+                    <option value="1">Jan to Feb</option>
+                    <option value="2">Mar to Apr</option>
+                    <option value="3">July to Aug</option>
+                  </select>
+                </div>
+            
+             
             
             
             <div class="form-group">
@@ -526,7 +588,13 @@ function addProfileinfo(){
 	var temperament = $('select[name="temperament"]').val();
 	var reason = $('select[name="reason"]').val();	
 	var animal_type = $('select[name="animal_type"]').val();
-	var animal_breed = $('select[name="breed"]').val();
+	var animal_breed = $('select[name="breed"]').val();	
+	
+	var papered = $('select[name="papered"]').val();
+	var pet_breed_previously = $('select[name="pet_breed_previously"]').val();
+	var how_many_times = $('select[name="how_many_times"]').val();
+	var heat_cycle = $('select[name="heat_cycle"]').val();
+	
 	
 	var petage = $('#petage').val();
 	var state = $('#state').val();
@@ -563,13 +631,11 @@ function addProfileinfo(){
 		image_4 = $('#pet_image_4').val();		
 	}
 	
-	
-	
 	$.ajax({
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id,name:name,petname:petname, aboutpet:aboutpet,willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed,pet_color:pet_color,temperament:temperament,reason:reason,who_play_breed:who_play_breed,breed_specific:breed_specific,image:pet_image,petage:petage,state:state,city:city,pet_image_1:image_1,pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4},
+	 data: {login_id:login_id,name:name,petname:petname, aboutpet:aboutpet,willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed,pet_color:pet_color,temperament:temperament,reason:reason,who_play_breed:who_play_breed,breed_specific:breed_specific,image:pet_image,petage:petage,state:state,city:city,pet_image_1:image_1,pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4,papered:papered,pet_breed_previously:pet_breed_previously,how_many_times:how_many_times,heat_cycle:heat_cycle},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -614,12 +680,22 @@ $.ajax({
 			$('input[name="petname"]').val(data['success']['petname']);
 			$('textarea[name="aboutpet"]').val(data['success']['aboutpet']);
 			$('input[name="pet_color"]').val(data['success']['pet_color']);			
-			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');			
-			
+			$('#sex [value="'+ data['success']['pet_sex'] +'"]').attr('selected', 'true');		
 			$('select[name="animal_type"]').html(data['success']['cat_option_val']);
 			$('select[name="breed"]').html(data['success']['bread_opt']);
 			$('select[name="temperament"]').html(data['success']['temprament_opt']);
 			$('select[name="reason"]').html(data['success']['visit_reason']);
+			
+			$('#papered [value="'+ data['success']['papered'] +'"]').attr('selected', 'true');
+			$('#pet_breed_previously [value="'+ data['success']['pet_breed_previously'] +'"]').attr('selected', 'true');
+			$('#how_many_times [value="'+ data['success']['how_many_times'] +'"]').attr('selected', 'true');
+			$('#heat_cycle [value="'+ data['success']['heat_cycle'] +'"]').attr('selected', 'true');
+			
+			if(data['success']['reason'] == 'breed'){
+				$('select[name="reason"]').trigger('change');
+			}
+			
+						
 			
 			$('#willing_distance [value="'+ data['success']['willing_distance'] +'"]').attr('selected', 'true');
 			
@@ -681,6 +757,50 @@ $(document).ready(function(e) {
 	   });
       
   });
+  
+  
+$('select[name="reason"]').on('change', function(){   
+	if($(this).val() == 'breed'){
+		$('#input_papered').show();	
+	}else{
+		$('#input_papered').hide();
+	} 
+	
+	$('select[name="cpapered"]').trigger('change'); 
+});
+
+$('select[name="papered"]').on('change', function(){   
+	if($(this).val() == 'papered'){
+		$('#input_breed').show();	
+	}else{
+		$('#input_breed').hide();
+	}
+	
+	$('select[name="pet_breed_previously"]').trigger('change'); 
+	  
+});
+
+
+$('select[name="pet_breed_previously"]').on('change', function(){   
+	if($(this).val() == 'yes'){
+		$('#input_how_many_times').show();	
+	}else{
+		$('#input_how_many_times').hide();
+	} 
+	
+	$('select[name="how_many_times"]').trigger('change');
+	 
+});
+
+$('select[name="how_many_times"]').on('change', function(){   
+	if($(this).val() != ''){
+		$('#input_heat_cycle').show();	
+	}else{
+		$('#input_heat_cycle').hide();
+	} 	 
+});
+  
+  
 });
 </script>
 </body>
