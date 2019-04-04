@@ -200,13 +200,15 @@ border-radius:0px;
 .modelcommon .modal-content {
     background-color: #fff;
     margin: auto;
-    padding: 20px;
+    padding: 0 20px 10px 20px;
     border: 1px solid #fff;
     max-width: 450px;
     border-radius: 0;
     width: 100%;
     width: 87%;
 }
+
+.modelcommon .modal-content .modal-header{ padding:0px 15px 15px 15px;}
 .modelcommon .modal-content .close{
 color: #fff;
     float: right;
