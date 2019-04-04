@@ -559,7 +559,7 @@ var login_id = localStorage.getItem('cust_id');
 
 $.ajax({
 	 type: 'POST',
-	 url: siteurl + 'common/common/getbreedbylogin',
+	 url: siteurl + 'common/common/getspecificBreed',
 	 dataType: 'json',
 	 data: {login_id:login_id},
 	 crossDomain: true,
@@ -594,7 +594,7 @@ function addProfileinfo(){
 	var pet_breed_previously = $('select[name="pet_breed_previously"]').val();
 	var how_many_times = $('select[name="how_many_times"]').val();
 	var heat_cycle = $('select[name="heat_cycle"]').val();
-	
+	var sex = $('select[name="sex"]').val();
 	
 	var petage = $('#petage').val();
 	var state = $('#state').val();
@@ -635,7 +635,7 @@ function addProfileinfo(){
 	 type: 'POST',
 	 url: siteurl + 'account/setinfo/profile',
 	 dataType: 'json',
-	 data: {login_id:login_id,name:name,petname:petname, aboutpet:aboutpet,willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed,pet_color:pet_color,temperament:temperament,reason:reason,who_play_breed:who_play_breed,breed_specific:breed_specific,image:pet_image,petage:petage,state:state,city:city,pet_image_1:image_1,pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4,papered:papered,pet_breed_previously:pet_breed_previously,how_many_times:how_many_times,heat_cycle:heat_cycle},
+	 data: {login_id:login_id,name:name,petname:petname, aboutpet:aboutpet,willing_distance:willing_distance, animal_type:animal_type,animal_breed:animal_breed,pet_color:pet_color,temperament:temperament,reason:reason,who_play_breed:who_play_breed,breed_specific:breed_specific,image:pet_image,petage:petage,state:state,city:city,pet_image_1:image_1,pet_image_2:image_2,pet_image_3:image_3,pet_image_4:image_4,papered:papered,pet_breed_previously:pet_breed_previously,how_many_times:how_many_times,heat_cycle:heat_cycle,prof_update:'yes',sex:sex},
 	 crossDomain: true,
 	 success: function(data){
 		 
@@ -684,20 +684,14 @@ $.ajax({
 			$('select[name="animal_type"]').html(data['success']['cat_option_val']);
 			$('select[name="breed"]').html(data['success']['bread_opt']);
 			$('select[name="temperament"]').html(data['success']['temprament_opt']);
-			$('select[name="reason"]').html(data['success']['visit_reason']);
-			
+			$('select[name="reason"]').html(data['success']['visit_reason']);			
 			$('#papered [value="'+ data['success']['papered'] +'"]').attr('selected', 'true');
 			$('#pet_breed_previously [value="'+ data['success']['pet_breed_previously'] +'"]').attr('selected', 'true');
 			$('#how_many_times [value="'+ data['success']['how_many_times'] +'"]').attr('selected', 'true');
-			$('#heat_cycle [value="'+ data['success']['heat_cycle'] +'"]').attr('selected', 'true');
-			
-			if(data['success']['reason'] == 'breed'){
-				$('select[name="reason"]').trigger('change');
-			}
-			
-						
+			$('#heat_cycle [value="'+ data['success']['heat_cycle'] +'"]').attr('selected', 'true');						
 			
 			$('#willing_distance [value="'+ data['success']['willing_distance'] +'"]').attr('selected', 'true');
+			//$('#reason [value="'+ data['success']['reason'] +'"]').attr('selected', 'true');
 			
 			if(data['success']['who_play_breed'])
 			{
@@ -708,11 +702,9 @@ $.ajax({
 				{
 					$('#specific_breed [value="'+ data['success']['breed_specific'] +'"]').attr('selected', 'true');
 				}
-			}
-			
+			}			
 			getState(data['success']['state']);			
-			getCity(data['success']['city'], data['success']['state']);
-			
+			getCity(data['success']['city'], data['success']['state']);			
 			
 			if(data['success']['image'])
 			{
@@ -736,6 +728,8 @@ $.ajax({
 			{
 				$('#src_pet_image_4').attr('src', data['success']['img_4']);				
 			}			
+						
+			setTimeout(function(){ $('select[name="reason"]').trigger('change'); }, 2000);			
 	   }
    });
    
@@ -766,7 +760,7 @@ $('select[name="reason"]').on('change', function(){
 		$('#input_papered').hide();
 	} 
 	
-	$('select[name="cpapered"]').trigger('change'); 
+	$('select[name="papered"]').trigger('change'); 
 });
 
 $('select[name="papered"]').on('change', function(){   
