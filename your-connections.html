@@ -130,7 +130,9 @@ document.addEventListener("deviceready", checkWhenready, false);
       	<div class="modal-body">
         <p>Are you sure want to delete?</p>
         <input type="hidden" name="del_profile" id="del_profile">
-        <div><button onClick="deleteProfile();">Ok</button>&nbsp;&nbsp;<button data-dismiss="modal">Cancel</button></div>
+        <div class="row">
+        <div class="col-md-4"><button onClick="deleteProfile();" class="ok_onfirm_btn">Ok</button></div>
+        <div class="col-md-4"><button data-dismiss="modal" class="ok_onfirm_btn">Cancel</button></div>
       </div>
     </div>
   </div>
@@ -153,6 +155,11 @@ document.addEventListener("deviceready", checkWhenready, false);
 </div>
 <script type="text/javascript">
 var login_id = localStorage.getItem('cust_id');
+
+$(document).ready(function(e) {
+    $('#delete_confirm').modal('show');
+});
+
 function showConnections(){
 	$.ajax({
 		 type:'POST',
